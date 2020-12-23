@@ -11,6 +11,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import tictactoe.presenter.home.HomeViewBase;
+import tictactoe.tictactoe.presenter.game.GameController;
+import tictactoe.tictactoe.presenter.game.GameViewBase;
 
 /**
  *
@@ -20,10 +22,13 @@ public class TicTacToe extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = new HomeViewBase(stage);
-        
+        //Parent root = new HomeViewBase(stage);
+ 
+        GameController game = new GameController();
+        Parent root = game.getGameView();
+
         Scene scene = new Scene(root);
-        
+
         stage.setScene(scene);
         stage.show();
     }
