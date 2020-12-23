@@ -3,8 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package tictactoe;
+package tictactoe.presenter.options;
 
+import tictactoe.presenter.home.*;
+import tictactoe.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -16,7 +18,7 @@ import javafx.scene.control.Label;
  *
  * @author A.Elfarsisy
  */
-public class FXMLDocumentController implements Initializable {
+public class HomeController implements Initializable {
     
     @FXML
     private Label label;
