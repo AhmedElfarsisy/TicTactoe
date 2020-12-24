@@ -11,7 +11,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import tictactoe.Helpers.BaseController;
+import tictactoe.helper.BaseController;
 import tictactoe.presenter.home.HomeViewBase;
 import tictactoe.presenter.game.GameController;
 import tictactoe.presenter.game.GameViewBase;

@@ -12,8 +12,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
-import tictactoe.Helpers.BaseController;
-import tictactoe.Helpers.Navigator;
+import tictactoe.helper.BaseController;
+import tictactoe.helper.Navigator;
+
 
 /**
  *

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package tictactoe.Helpers;
+package tictactoe.helper;
 
 import javafx.fxml.FXML;
 import javafx.scene.layout.Pane;
