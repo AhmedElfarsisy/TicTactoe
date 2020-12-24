@@ -3,30 +3,39 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package tictactoe.tictactoe.presenter.game;
+package tictactoe.presenter.game;
 
-import tictactoe.tictactoe.presenter.game.*;
-import tictactoe.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
 import javafx.scene.control.Button;
+import javafx.scene.layout.Pane;
+import tictactoe.Helpers.BaseController;
+import tictactoe.Helpers.Navigator;
 
 /**
  *
- * @author A.Elfarsisy
+ * @author yasmineghazy
  */
-public class GameController implements Initializable {
+
+//3 - Inherit from BaseController
+public class GameController extends BaseController implements Initializable {
     
-    @FXML
-    private GameViewBase gameView ;
+    //MARK: - Properties
+    private GameViewBase gameView;
     
+    //MARK: - Constructor
     public GameController(){
-          gameView = new GameViewBase();
         
+        //create new view
+        gameView = new GameViewBase();
+        
+        //4 - Set viewBase -> Parent = currentView -> Child
+        viewBase = gameView;
+        
+        //Set action handler
           for(Object ch: gameView.gameBoardGP.getChildren()){
             ((Button) ch).setOnAction((ActionEvent event) -> {
             ((Button) event.getSource()).setText("X");
@@ -40,18 +49,29 @@ public class GameController implements Initializable {
                     ((Button) ch).setText("");
               }
           });
+          
+          gameView.backBtn.setOnAction((ActionEvent event) -> {
+              Navigator.goToGame();//2. Calling
+              
+          });
     }
 
     
+    //MARK: - Implement Initializable callback method
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
    
     }  
     
+    //MARK: - Getters
     public GameViewBase getGameView(){
-        // TODO
         return  gameView;
     }   
+
+//    protected void setViewPane() {
+//        //set super view
+//        viewBase = gameView;
+//    }
     
 }

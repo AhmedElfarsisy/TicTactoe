@@ -1,4 +1,4 @@
-package tictactoe.tictactoe.presenter.game;
+package tictactoe.presenter.game;
 
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
@@ -146,7 +146,7 @@ public class GameViewBase extends BorderPane {
         backgroundIV.setFitHeight(400.0);
         backgroundIV.setFitWidth(300.0);
         backgroundIV.setPickOnBounds(true);
-        backgroundIV.setImage(new Image(getClass().getResourceAsStream("/tictactoe/tictactoe/resource/images/background.jpeg")));
+        backgroundIV.setImage(new Image(getClass().getResourceAsStream("/tictactoe/resource/images/background.jpeg")));
 
         borderPane.setPrefHeight(200.0);
         borderPane.setPrefWidth(200.0);
