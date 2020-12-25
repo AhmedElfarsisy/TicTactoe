@@ -52,7 +52,7 @@ public class GameController extends BaseController implements Initializable {
           });
           
           gameView.backBtn.setOnAction((ActionEvent event) -> {
-              Navigator.goToGame();//2. Calling
+              Navigator.goToRecordedGame();//2. Calling
               
           });
     }
