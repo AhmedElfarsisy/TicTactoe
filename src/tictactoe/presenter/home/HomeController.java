@@ -30,7 +30,9 @@ public class HomeController extends BaseController implements Initializable {
         homeView.singlePlayerBtn.setOnAction((event) -> {Navigator.goToGame();});
         
         //Go to MultiPlayer Offline Game Page
-        homeView.multiPlayerOnlineBtn.setOnAction((event) -> {Navigator.goToLogin();});
+          homeView.multiPlayerOnlineBtn.setOnAction((event) -> {Navigator.goToLogin();});
+        //homeView.multiPlayerOnlineBtn.setOnAction((event) -> {Navigator.goToOnlinePlayers();});
+
         //Go to MultiPlayer Offline Game Page
         homeView.multiPlayerOfflineBtn.setOnAction((event) -> {Navigator.goToGame();});
 

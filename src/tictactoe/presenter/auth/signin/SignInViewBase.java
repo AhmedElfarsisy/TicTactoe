@@ -60,6 +60,7 @@ public  class SignInViewBase extends Pane {
         imageView.setFitHeight(400.0);
         imageView.setFitWidth(300.0);
         imageView.setPickOnBounds(true);
+
         imageView.setImage(new Image(getClass().getResource(Constants.BACKGROUND).toExternalForm()));
 
         vBox.setLayoutX(300.0);

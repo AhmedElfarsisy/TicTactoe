@@ -9,8 +9,13 @@ import tictactoe.TicTacToe;
 import tictactoe.presenter.auth.register.RegisterController;
 import tictactoe.presenter.auth.signin.SignInController;
 import tictactoe.presenter.game.GameController;
+import tictactoe.presenter.game.GameViewBase;
+import tictactoe.presenter.onlineplayers.OnlinePlayersController;
+import tictactoe.presenter.recordedgames.RecordedGameController;
+
 import tictactoe.presenter.home.HomeController;
 import tictactoe.presenter.options.OptionsController;
+
 /**
  *
  * @author yasmineghazy
@@ -22,6 +27,12 @@ public class Navigator {
     
     public static void goToHome(){
         TicTacToe.changeScene(new HomeController());
+    }
+    public static void goToOnlinePlayers(){
+        TicTacToe.changeScene(new OnlinePlayersController());
+    }
+    public static void goToRecordedGame(){
+        TicTacToe.changeScene(new RecordedGameController());
     }
     
     //1. Creating navigation method

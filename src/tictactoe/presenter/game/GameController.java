@@ -45,8 +45,9 @@ public class GameController extends BaseController implements Initializable {
                   ((Button) ch).setText("");
             });
           });
-          
+
           gameView.backBtn.setOnAction((event) -> {Navigator.goToHome();});
+
     }
 
     

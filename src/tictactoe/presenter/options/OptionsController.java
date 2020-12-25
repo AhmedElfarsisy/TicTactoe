@@ -25,7 +25,7 @@ public class OptionsController extends BaseController implements Initializable{
         //4 - Set viewBase -> Parent = currentView -> Child
         viewBase = optionsView;
         optionsView.backOptionsBtn.setOnAction((event) -> {Navigator.goToHome();});
-        
+        optionsView.recordedGamesBtn.setOnAction((event) -> {Navigator.goToRecordedGame();});
     }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
