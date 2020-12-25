@@ -4,34 +4,44 @@
  * and open the template in the editor.
  */
 package tictactoe.presenter.options;
-
 import tictactoe.presenter.home.*;
-import tictactoe.*;
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+import tictactoe.helpers.BaseController;
 
 /**
  *
  * @author A.Elfarsisy
  */
-public class HomeController implements Initializable {
+public class OptionsController extends BaseController implements Initializable {
+    
+ 
     
     @FXML
-    private Label label;
-    
-    @FXML
-    private void handleButtonAction(ActionEvent event) {
-        System.out.println("You clicked me!");
-        label.setText("Hello World!");
+    private OptionsViewBase optionsView;
+
+ 
+    public OptionsController() {
+       
+        
+        optionsView = new OptionsViewBase();
+        this.viewBase=optionsView;
+        optionsView.backOptionsBtn.setOnAction((event) -> {navigateBackHome();}); 
+        
     }
-    
+
+   
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
+        //TODO
+    }
+
+     
     
 }

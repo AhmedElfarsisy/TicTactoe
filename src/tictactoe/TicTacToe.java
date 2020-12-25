@@ -10,22 +10,28 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import tictactoe.presenter.home.HomeController;
 import tictactoe.presenter.home.HomeViewBase;
+import tictactoe.presenter.options.OptionsController;
 
 /**
  *
  * @author A.Elfarsisy
  */
 public class TicTacToe extends Application {
-    
+
+    HomeController homeController;
+    OptionsController optionsController;
+
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = new HomeViewBase(stage);
-        
+        homeController = new HomeController(stage);
+       
+        Parent root = homeController.getHomeView();
         Scene scene = new Scene(root);
-        
         stage.setScene(scene);
         stage.show();
+        optionsController = new OptionsController();
     }
 
     /**
@@ -34,5 +40,6 @@ public class TicTacToe extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-    
+
+    public static void change
 }
