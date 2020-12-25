@@ -26,7 +26,7 @@
                   <Insets top="10.0" />
                </VBox.margin>
             </Label>
-            <Button fx:id="recordedGamesBtn" mnemonicParsing="false" onAction="#goToSinglePlayer" prefHeight="25.0" prefWidth="303.0" style="-fx-background-color: #00B8D0;" text="Recorded Games" textFill="WHITE">
+            <Button fx:id="recordedGamesBtn" mnemonicParsing="false" prefHeight="25.0" prefWidth="303.0" style="-fx-background-color: #00B8D0;" text="Recorded Games" textFill="WHITE">
                <VBox.margin>
                   <Insets top="48.0" />
                </VBox.margin>
@@ -49,7 +49,7 @@
                   <Font name="Cooper Black" size="20.0" />
                </font>
             </Button>
-            <Button fx:id="backOptionsBtn" mnemonicParsing="false" style="-fx-background-color: #00B8D0;" text="Back" textFill="WHITE">
+            <Button fx:id="backOptionsBtn" mnemonicParsing="false" style="-fx-background-color: #00B8D0;" text="Back&gt;" textFill="WHITE">
                <VBox.margin>
                   <Insets left="230.0" top="48.0" />
                </VBox.margin>
@@ -67,7 +67,7 @@
             <Font name="Cooper Black" size="30.0" />
          </font>
       </Label>
-      <Label fx:id="letUsPlayLbl" alignment="CENTER" layoutX="4.0" layoutY="145.0" prefHeight="17.0" prefWidth="293.0" text="Let ’s play " textAlignment="CENTER" textFill="#00b8d0">
+      <Label fx:id="letUsPlayLbl" alignment="CENTER" layoutX="4.0" layoutY="145.0" prefHeight="17.0" prefWidth="293.0" text="Let 's play " textAlignment="CENTER" textFill="#00b8d0">
          <font>
             <Font name="Cooper Black" size="20.0" />
          </font>

@@ -8,31 +8,30 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
+import tictactoe.helper.Constants;
 
-public class HomeViewBase extends Pane {
+public  class HomeViewBase extends Pane {
 
     protected final ImageView backgroundIV;
     protected final VBox vBox;
     protected final Label homeLbl;
-    protected final Button singlePlayerBtn;
-    protected final Button multiPlayerOfflineBtn;
-    protected final Button multiPlayerOnBtn;
-    protected Button optionsBtn;
-    protected final Button logoutBtn;
+    protected  Button singlePlayerBtn;
+    protected  Button multiPlayerOfflineBtn;
+    protected  Button multiPlayerOnlineBtn;
+    protected  Button optionsBtn;
+    protected  Button logoutBtn;
     protected final Label gameNameLbl;
     protected final Label letUsPlayLbl;
     protected final Label ticTacToeLbl;
-    HomeController homeController; 
-
 
     public HomeViewBase() {
-      
+
         backgroundIV = new ImageView();
         vBox = new VBox();
         homeLbl = new Label();
         singlePlayerBtn = new Button();
         multiPlayerOfflineBtn = new Button();
-        multiPlayerOnBtn = new Button();
+        multiPlayerOnlineBtn = new Button();
         optionsBtn = new Button();
         logoutBtn = new Button();
         gameNameLbl = new Label();
@@ -50,7 +49,7 @@ public class HomeViewBase extends Pane {
         backgroundIV.setFitHeight(400.0);
         backgroundIV.setFitWidth(300.0);
         backgroundIV.setPickOnBounds(true);
-        backgroundIV.setImage(new Image(getClass().getResource("/tictactoe/resource/images/background.jpeg").toExternalForm()));
+        backgroundIV.setImage(new Image(getClass().getResource(Constants.BACKGROUND).toExternalForm()));
 
         vBox.setLayoutX(300.0);
         vBox.setPrefHeight(400.0);
@@ -84,13 +83,13 @@ public class HomeViewBase extends Pane {
         multiPlayerOfflineBtn.setTextFill(javafx.scene.paint.Color.WHITE);
         multiPlayerOfflineBtn.setFont(new Font("Cooper Black", 20.0));
 
-        multiPlayerOnBtn.setMnemonicParsing(false);
-        multiPlayerOnBtn.setPrefHeight(25.0);
-        multiPlayerOnBtn.setPrefWidth(303.0);
-        multiPlayerOnBtn.setStyle("-fx-background-color: #00B8D0;");
-        multiPlayerOnBtn.setText("Multi Player online");
-        multiPlayerOnBtn.setTextFill(javafx.scene.paint.Color.WHITE);
-        multiPlayerOnBtn.setFont(new Font("Cooper Black", 20.0));
+        multiPlayerOnlineBtn.setMnemonicParsing(false);
+        multiPlayerOnlineBtn.setPrefHeight(25.0);
+        multiPlayerOnlineBtn.setPrefWidth(303.0);
+        multiPlayerOnlineBtn.setStyle("-fx-background-color: #00B8D0;");
+        multiPlayerOnlineBtn.setText("Multi Player online");
+        multiPlayerOnlineBtn.setTextFill(javafx.scene.paint.Color.WHITE);
+        multiPlayerOnlineBtn.setFont(new Font("Cooper Black", 20.0));
 
         optionsBtn.setMnemonicParsing(false);
         optionsBtn.setPrefHeight(25.0);
@@ -107,7 +106,6 @@ public class HomeViewBase extends Pane {
         logoutBtn.setText("Logout");
         logoutBtn.setTextFill(javafx.scene.paint.Color.WHITE);
         logoutBtn.setFont(new Font("Cooper Black", 20.0));
-        logoutBtn.setVisible(false);
         vBox.setPadding(new Insets(10.0));
 
         gameNameLbl.setAlignment(javafx.geometry.Pos.CENTER);
@@ -144,13 +142,13 @@ public class HomeViewBase extends Pane {
         vBox.getChildren().add(homeLbl);
         vBox.getChildren().add(singlePlayerBtn);
         vBox.getChildren().add(multiPlayerOfflineBtn);
-        vBox.getChildren().add(multiPlayerOnBtn);
+        vBox.getChildren().add(multiPlayerOnlineBtn);
         vBox.getChildren().add(optionsBtn);
         vBox.getChildren().add(logoutBtn);
         getChildren().add(vBox);
         getChildren().add(gameNameLbl);
         getChildren().add(letUsPlayLbl);
         getChildren().add(ticTacToeLbl);
-    }
 
+    }
 }

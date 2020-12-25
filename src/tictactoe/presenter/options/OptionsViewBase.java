@@ -1,10 +1,6 @@
 package tictactoe.presenter.options;
 
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -12,24 +8,24 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
-import javafx.stage.Stage;
-import tictactoe.presenter.home.HomeViewBase;
+import tictactoe.helper.Constants;
 
-public class OptionsViewBase extends Pane {
+public  class OptionsViewBase extends Pane {
 
     protected final ImageView backgroundIV;
     protected final VBox VBox;
     protected final Label homeLbl;
-    protected final Button recordedGamesBtn;
-    protected final Button themesBtn;
-    protected final Button soundOptionsBtn;
-    protected final Button levelsBtn;
+    protected  Button recordedGamesBtn;
+    protected  Button themesBtn;
+    protected  Button soundOptionsBtn;
+    protected  Button levelsBtn;
     protected  Button backOptionsBtn;
     protected final Label gameNameLbl;
     protected final Label letUsPlayLbl;
     protected final Label ticTacToeLbl;
-    OptionsController optionsController; 
+
     public OptionsViewBase() {
+
         backgroundIV = new ImageView();
         VBox = new VBox();
         homeLbl = new Label();
@@ -53,7 +49,7 @@ public class OptionsViewBase extends Pane {
         backgroundIV.setFitHeight(400.0);
         backgroundIV.setFitWidth(300.0);
         backgroundIV.setPickOnBounds(true);
-        backgroundIV.setImage(new Image(getClass().getResource("/tictactoe/resource/images/background.jpeg").toExternalForm()));
+        backgroundIV.setImage(new Image(getClass().getResource(Constants.BACKGROUND).toExternalForm()));
 
         VBox.setLayoutX(300.0);
         VBox.setPrefHeight(400.0);
@@ -105,7 +101,7 @@ public class OptionsViewBase extends Pane {
 
         backOptionsBtn.setMnemonicParsing(false);
         backOptionsBtn.setStyle("-fx-background-color: #00B8D0;");
-        backOptionsBtn.setText("Back");
+        backOptionsBtn.setText("Back>");
         backOptionsBtn.setTextFill(javafx.scene.paint.Color.WHITE);
         VBox.setMargin(backOptionsBtn, new Insets(48.0, 0.0, 0.0, 230.0));
         backOptionsBtn.setFont(new Font("Cooper Black", 10.0));
@@ -126,7 +122,7 @@ public class OptionsViewBase extends Pane {
         letUsPlayLbl.setLayoutY(145.0);
         letUsPlayLbl.setPrefHeight(17.0);
         letUsPlayLbl.setPrefWidth(293.0);
-        letUsPlayLbl.setText("Let �s play ");
+        letUsPlayLbl.setText("Let 's play ");
         letUsPlayLbl.setTextAlignment(javafx.scene.text.TextAlignment.CENTER);
         letUsPlayLbl.setTextFill(javafx.scene.paint.Color.valueOf("#00b8d0"));
         letUsPlayLbl.setFont(new Font("Cooper Black", 20.0));
@@ -152,7 +148,6 @@ public class OptionsViewBase extends Pane {
         getChildren().add(gameNameLbl);
         getChildren().add(letUsPlayLbl);
         getChildren().add(ticTacToeLbl);
-    }
 
-    
+    }
 }

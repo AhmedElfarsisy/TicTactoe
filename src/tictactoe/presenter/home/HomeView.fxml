@@ -16,42 +16,51 @@
             <Image url="@../../../../../Desktop/WhatsApp%20Image%202020-12-23%20at%202.53.51%20PM.jpeg" />
          </image>
       </ImageView>
+
       <VBox layoutX="300.0" prefHeight="400.0" prefWidth="300.0" spacing="10.0" style="-fx-background-color: #FFFFFF;">
          <children>
             <Label fx:id="homeLbl" alignment="CENTER" prefHeight="17.0" prefWidth="293.0" text="Home" textAlignment="CENTER" textFill="#00b8d0">
-               <font>
+             <font>
                   <Font name="Cooper Black" size="30.0" />
                </font>
                <VBox.margin>
                   <Insets top="10.0" />
                </VBox.margin>
             </Label>
+
             <Button fx:id="singlePlayerBtn" mnemonicParsing="false" prefHeight="25.0" prefWidth="303.0" style="-fx-background-color: #00B8D0;" text="Single Player" textFill="WHITE">
-               <VBox.margin>
+              <VBox.margin>
                   <Insets top="48.0" />
                </VBox.margin>
                <font>
                   <Font name="Cooper Black" size="20.0" />
                </font>
             </Button>
+
             <Button fx:id="multiPlayerOfflineBtn" mnemonicParsing="false" prefHeight="25.0" prefWidth="303.0" style="-fx-background-color: #00B8D0;" text="Multi Player offline" textFill="WHITE">
+
                <font>
                   <Font name="Cooper Black" size="20.0" />
                </font>
             </Button>
-            <Button fx:id="multiPlayerOnBtn" mnemonicParsing="false" prefHeight="25.0" prefWidth="303.0" style="-fx-background-color: #00B8D0;" text="Multi Player online" textFill="WHITE">
+
+            <Button fx:id="multiPlayerOnlineBtn" mnemonicParsing="false" prefHeight="25.0" prefWidth="303.0" style="-fx-background-color: #00B8D0;" text="Multi Player online" textFill="WHITE">
+
                <font>
                   <Font name="Cooper Black" size="20.0" />
                </font>
             </Button>
+
             <Button fx:id="optionsBtn" mnemonicParsing="false" prefHeight="25.0" prefWidth="303.0" style="-fx-background-color: #00B8D0;" text="Options" textFill="WHITE">
                <font>
                   <Font name="Cooper Black" size="20.0" />
                </font>
             </Button>
+
             <Button fx:id="logoutBtn" mnemonicParsing="false" prefHeight="25.0" prefWidth="303.0" style="-fx-background-color: #00B8D0;" text="Logout" textFill="WHITE">
                <font>
                   <Font name="Cooper Black" size="20.0" />
+
                </font>
             </Button>
          </children>
@@ -64,6 +73,7 @@
             <Font name="Cooper Black" size="30.0" />
          </font>
       </Label>
+
       <Label fx:id="letUsPlayLbl" alignment="CENTER" layoutX="4.0" layoutY="145.0" prefHeight="17.0" prefWidth="293.0" text="let 's play " textAlignment="CENTER" textFill="#00b8d0">
          <font>
             <Font name="Cooper Black" size="20.0" />

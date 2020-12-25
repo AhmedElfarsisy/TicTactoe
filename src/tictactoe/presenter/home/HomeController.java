@@ -12,41 +12,47 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.stage.Stage;
-import tictactoe.presenter.options.OptionsViewBase;
+import tictactoe.helper.BaseController;
+import tictactoe.helper.Navigator;
+import tictactoe.presenter.game.GameViewBase;
 
 /**
  *
  * @author A.Elfarsisy
  */
-public class HomeController implements Initializable {
-     @FXML
+public class HomeController extends BaseController implements Initializable {
+
     private HomeViewBase homeView;
-    Stage stage;
 
-    public HomeController(Stage s) {
-        stage = s;
+    //Home Controller Constarctor 
+    public HomeController() {
+        //create Home view
         homeView = new HomeViewBase();
-        homeView.optionsBtn.setOnAction((event) -> {navigateToOptions();});
-    }
+        //4 - Set viewBase -> Parent = currentView -> Child
+        viewBase = homeView;
+        //Go to Single Game Page
+        homeView.singlePlayerBtn.setOnAction((event) -> {Navigator.goToGame();});
+        
+        //Go to MultiPlayer Offline Game Page
+        homeView.multiPlayerOnlineBtn.setOnAction((event) -> {});
+        //Go to MultiPlayer Offline Game Page
+        homeView.multiPlayerOfflineBtn.setOnAction((event) -> {Navigator.goToGame();});
 
-    public HomeViewBase getHomeView() {
-        return homeView;
+        //Go to Option Page
+        homeView.optionsBtn.setOnAction((event) -> {
+            Navigator.goToOptions();
+        });
+
     }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        //TODO
     }
+    //Get Home View 
 
-    public void navigateToOptions() {
-        Parent root = new OptionsViewBase();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+    public HomeViewBase getHomeView() {
+        return homeView;
     }
 
 }

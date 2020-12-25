@@ -12,36 +12,31 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import tictactoe.helpers.BaseController;
+import tictactoe.helper.BaseController;
+import tictactoe.helper.Navigator;
 
 /**
  *
  * @author A.Elfarsisy
  */
-public class OptionsController extends BaseController implements Initializable {
+public class OptionsController extends BaseController implements Initializable{
+     private  OptionsViewBase optionsView;
     
- 
-    
-    @FXML
-    private OptionsViewBase optionsView;
-
- 
-    public OptionsController() {
-       
-        
+    //Options Controller Constarctor 
+     public OptionsController() {
+         //create Options view
         optionsView = new OptionsViewBase();
-        this.viewBase=optionsView;
-        optionsView.backOptionsBtn.setOnAction((event) -> {navigateBackHome();}); 
+        //4 - Set viewBase -> Parent = currentView -> Child
+        viewBase = optionsView;
+        optionsView.backOptionsBtn.setOnAction((event) -> {Navigator.goToHome();});
         
     }
-
-   
-
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        //TODO
     }
-
-     
+     //Get Options View 
+    public OptionsViewBase getHomeView() {
+        return optionsView;
+    } 
     
 }
