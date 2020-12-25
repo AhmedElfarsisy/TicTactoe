@@ -1,4 +1,4 @@
-package tictactoe.tictactoe.presenter.auth.register;
+package tictactoe.presenter.auth.register;
 
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;

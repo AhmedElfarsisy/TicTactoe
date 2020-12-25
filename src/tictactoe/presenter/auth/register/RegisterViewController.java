@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package tictactoe.tictactoe.presenter.auth.signin;
+package tictactoe.presenter.auth.register;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -14,7 +14,7 @@ import javafx.fxml.Initializable;
  *
  * @author Heba
  */
-public class SignInViewController implements Initializable {
+public class RegisterViewController implements Initializable {
 
     /**
      * Initializes the controller class.

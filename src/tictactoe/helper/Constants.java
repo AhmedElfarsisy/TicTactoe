@@ -11,6 +11,6 @@ package tictactoe.helper;
  */
 public class Constants {
     
-    public static String background = "/tictactoe/resource/images/background.jpeg";
+    public static String background = "/tictactoe/resource/images/background.jpg";
     
 }

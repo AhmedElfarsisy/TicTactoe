@@ -1,4 +1,4 @@
-package tictactoe.tictactoe.presenter.auth.signin;
+package tictactoe.presenter.auth.signin;
 
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
@@ -14,6 +14,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.RowConstraints;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
+import tictactoe.helper.Constants;
 
 public class SignInViewBase extends GridPane {
 
@@ -70,7 +71,7 @@ public class SignInViewBase extends GridPane {
         imageView.setFitWidth(648.0);
         imageView.setPickOnBounds(true);
         imageView.setPreserveRatio(true);
-        imageView.setImage(new Image(getClass().getResource("../../../resource/images/background.jpeg").toExternalForm()));
+        imageView.setImage(new Image(getClass().getResource(Constants.background).toExternalForm()));
 
         vBox.setLayoutX(300.0);
         vBox.setLayoutY(1.0);
