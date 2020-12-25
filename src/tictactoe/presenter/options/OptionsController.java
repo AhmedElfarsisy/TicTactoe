@@ -1,0 +1,42 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package tictactoe.presenter.options;
+import tictactoe.presenter.home.*;
+import java.net.URL;
+import java.util.ResourceBundle;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+import tictactoe.helper.BaseController;
+import tictactoe.helper.Navigator;
+
+/**
+ *
+ * @author A.Elfarsisy
+ */
+public class OptionsController extends BaseController implements Initializable{
+     private  OptionsViewBase optionsView;
+    
+    //Options Controller Constarctor 
+     public OptionsController() {
+         //create Options view
+        optionsView = new OptionsViewBase();
+        //4 - Set viewBase -> Parent = currentView -> Child
+        viewBase = optionsView;
+        optionsView.backOptionsBtn.setOnAction((event) -> {Navigator.goToHome();});
+        optionsView.recordedGamesBtn.setOnAction((event) -> {Navigator.goToRecordedGame();});
+    }
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+    }
+     //Get Options View 
+    public OptionsViewBase getHomeView() {
+        return optionsView;
+    } 
+    
+}

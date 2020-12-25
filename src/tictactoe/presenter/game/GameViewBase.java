@@ -147,7 +147,7 @@ public class GameViewBase extends BorderPane {
         backgroundIV.setFitHeight(400.0);
         backgroundIV.setFitWidth(300.0);
         backgroundIV.setPickOnBounds(true);
-        backgroundIV.setImage(new Image(getClass().getResourceAsStream(Constants.background)));
+        backgroundIV.setImage(new Image(getClass().getResourceAsStream(Constants.BACKGROUND)));
 
         borderPane.setPrefHeight(200.0);
         borderPane.setPrefWidth(200.0);

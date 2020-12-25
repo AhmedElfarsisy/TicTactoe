@@ -13,6 +13,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.image.ImageView;
 import tictactoe.helper.BaseController;
+import tictactoe.helper.Navigator;
 import tictactoe.presenter.game.GameViewBase;
 
 /**
@@ -34,7 +35,7 @@ public class OnlinePlayersController extends BaseController implements Initializ
         
         //4 - Set viewBase -> Parent = currentView -> Child
         viewBase = op;
-    
+        op.backbtn.setOnAction((event) -> {Navigator.goToHome();});
     
     }
     @Override

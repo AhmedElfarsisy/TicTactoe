@@ -9,6 +9,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
 import tictactoe.helper.BaseController;
+import tictactoe.helper.Navigator;
 import tictactoe.presenter.onlineplayers.OnlinePlayersBase;
 
 /**
@@ -27,7 +28,7 @@ public class RecordedGameController extends BaseController implements Initializa
         
         //4 - Set viewBase -> Parent = currentView -> Child
         viewBase = rg;
-    
+        rg.backbtn.setOnAction((event) -> {Navigator.goToOptions();});
         
         
     

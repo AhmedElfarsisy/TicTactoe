@@ -53,7 +53,7 @@ public class RecordedGameBase extends Pane {
         backgroundIV.setFitHeight(400.0);
         backgroundIV.setFitWidth(300.0);
         backgroundIV.setPickOnBounds(true);
-        backgroundIV.setImage(new Image(getClass().getResourceAsStream(Constants.background)));
+        backgroundIV.setImage(new Image(getClass().getResourceAsStream(Constants.BACKGROUND)));
 
 
         vBox.setLayoutX(300.0);
@@ -73,16 +73,16 @@ public class RecordedGameBase extends Pane {
 
         tableView.setPrefHeight(200.0);
         tableView.setPrefWidth(200.0);
-
+       
         player1.setPrefWidth(107.0);
-        player1.setText("player");
-
+        player1.setText("player1");
+        
         player2.setPrefWidth(94.0);
         player2.setText("player2");
 
         result.setPrefWidth(78.0);
         result.setText("result");
-
+        
         showbtn.setMnemonicParsing(false);
         showbtn.setPrefHeight(25.0);
         showbtn.setPrefWidth(303.0);

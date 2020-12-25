@@ -10,7 +10,9 @@ package tictactoe.helper;
  * @author yasmineghazy
  */
 public class Constants {
+
     
-    public static String background = "/tictactoe/resource/images/background.jpg";
+    public static String BACKGROUND = "/tictactoe/resource/images/background.jpg";
     
+
 }

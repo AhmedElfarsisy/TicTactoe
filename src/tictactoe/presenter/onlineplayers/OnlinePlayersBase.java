@@ -46,7 +46,7 @@ public class OnlinePlayersBase extends Pane {
         backgroundIV.setFitHeight(400.0);
         backgroundIV.setFitWidth(300.0);
         backgroundIV.setPickOnBounds(true);
-        backgroundIV.setImage(new Image(getClass().getResourceAsStream(Constants.background)));
+        backgroundIV.setImage(new Image(getClass().getResourceAsStream(Constants.BACKGROUND)));
 
         vBox.setLayoutX(300.0);
         vBox.setPrefHeight(400.0);
