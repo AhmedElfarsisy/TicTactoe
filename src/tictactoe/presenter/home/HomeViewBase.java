@@ -149,6 +149,8 @@ public  class HomeViewBase extends Pane {
         getChildren().add(gameNameLbl);
         getChildren().add(letUsPlayLbl);
         getChildren().add(ticTacToeLbl);
+        
+        logoutBtn.setVisible(false);
 
     }
 }

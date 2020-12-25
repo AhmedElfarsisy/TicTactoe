@@ -8,10 +8,8 @@ package tictactoe.presenter.game;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.layout.Pane;
 import tictactoe.helper.BaseController;
 import tictactoe.helper.Navigator;
 
@@ -52,7 +50,7 @@ public class GameController extends BaseController implements Initializable {
           });
           
           gameView.backBtn.setOnAction((ActionEvent event) -> {
-              Navigator.goToGame();//2. Calling
+              Navigator.goToHome();//2. Calling
               
           });
     }
