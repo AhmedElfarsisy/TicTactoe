@@ -14,7 +14,6 @@ import javafx.scene.layout.RowConstraints;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
-import javafx.stage.Stage;
 import tictactoe.helper.Constants;
 
 public class GameViewBase extends BorderPane {

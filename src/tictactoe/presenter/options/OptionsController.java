@@ -4,14 +4,10 @@
  * and open the template in the editor.
  */
 package tictactoe.presenter.options;
-import tictactoe.presenter.home.*;
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
+
 import tictactoe.helper.BaseController;
 import tictactoe.helper.Navigator;
 

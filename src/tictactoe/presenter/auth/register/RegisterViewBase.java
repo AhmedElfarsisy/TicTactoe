@@ -10,6 +10,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
+import tictactoe.helper.Constants;
 
 public class RegisterViewBase extends Pane {
 
@@ -22,8 +23,8 @@ public class RegisterViewBase extends Pane {
     protected final PasswordField passwordPF;
     protected final Label confirmPasswordLbl;
     protected final PasswordField confirmPasswordPF;
-    protected final Button signUpBtn;
-    protected final Button signUpBackBtn;
+    protected  Button signUpBtn;
+    protected  Button signUpBackBtn;
     protected final Label xCandyOLbl;
     protected final Label letsPlayLbl;
     protected final Label ticTacToeLbl;
@@ -56,7 +57,7 @@ public class RegisterViewBase extends Pane {
         imageView.setFitWidth(644.0);
         imageView.setPickOnBounds(true);
         imageView.setPreserveRatio(true);
-        imageView.setImage(new Image(getClass().getResource("../../../resource/images/background.jpeg").toExternalForm()));
+        imageView.setImage(new Image(getClass().getResource(Constants.BACKGROUND).toExternalForm()));
 
         userNameTF.setId("userNameTF");
         userNameTF.setLayoutX(300.0);

@@ -12,6 +12,6 @@ package tictactoe.helper;
 public class Constants {
 
     //Background Path in the app 
-    public static String BACKGROUND = "/tictactoe/resource/images/background.jpeg";
+    public static String BACKGROUND = "/tictactoe/resource/images/background.jpg";
 
 }

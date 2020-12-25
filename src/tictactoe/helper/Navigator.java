@@ -5,12 +5,10 @@
  */
 package tictactoe.helper;
 
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import tictactoe.presenter.home.HomeViewBase;
 import tictactoe.TicTacToe;
+import tictactoe.presenter.auth.register.RegisterController;
+import tictactoe.presenter.auth.signin.SignInController;
 import tictactoe.presenter.game.GameController;
-import tictactoe.presenter.game.GameViewBase;
 import tictactoe.presenter.home.HomeController;
 import tictactoe.presenter.options.OptionsController;
 /**
@@ -27,22 +25,20 @@ public class Navigator {
     }
     
     //1. Creating navigation method
-//    public static void goToLogin(){
-//       TicTacToe.changeScene(new LoginController());
-//    }
-    
+    public static void goToLogin(){
+       TicTacToe.changeScene(new SignInController());
+    }
    
-    
-  
-    //1. Creating navigation method
-//    public static void goToLogin(){
-//       TicTacToe.changeScene(new LoginController());
-//    }
 
     public static void goToOptions() {
        TicTacToe.changeScene(new OptionsController());
+    }
 
+    public static void goToRegister() {
+         TicTacToe.changeScene(new RegisterController());
     }
     
-    
+      public static void goToAvailablePlayer() {
+         //TicTacToe.changeScene(new RegisterController());
+    }
 }

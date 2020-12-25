@@ -123,7 +123,7 @@ public  class HomeViewBase extends Pane {
         letUsPlayLbl.setLayoutY(145.0);
         letUsPlayLbl.setPrefHeight(17.0);
         letUsPlayLbl.setPrefWidth(293.0);
-        letUsPlayLbl.setText("let 's play ");
+        letUsPlayLbl.setText("Let 's play ");
         letUsPlayLbl.setTextAlignment(javafx.scene.text.TextAlignment.CENTER);
         letUsPlayLbl.setTextFill(javafx.scene.paint.Color.valueOf("#00b8d0"));
         letUsPlayLbl.setFont(new Font("Cooper Black", 20.0));

@@ -8,15 +8,13 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.ColumnConstraints;
-import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.RowConstraints;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import tictactoe.helper.Constants;
 
-public class SignInViewBase extends GridPane {
+public  class SignInViewBase extends Pane {
 
     protected final ImageView imageView;
     protected final VBox vBox;
@@ -25,15 +23,11 @@ public class SignInViewBase extends GridPane {
     protected final TextField userNameTF;
     protected final Label passwordLbl;
     protected final PasswordField passwordPF;
-    protected final Button loginBtn;
-    protected final GridPane gridPane;
-    protected final ColumnConstraints columnConstraints;
-    protected final ColumnConstraints columnConstraints0;
-    protected final ColumnConstraints columnConstraints1;
-    protected final RowConstraints rowConstraints;
-    protected final Hyperlink signUpHP;
+    protected  Button loginBtn;
+    protected final HBox hBox;
     protected final Label notHaveAccountLbl;
-    protected final Button backBtn;
+    protected  Hyperlink signUpHP;
+    protected  Button backBtn;
     protected final Label xCandyOLbl;
     protected final Label letsPlayLbl;
     protected final Label ticTacToeLbl;
@@ -48,13 +42,9 @@ public class SignInViewBase extends GridPane {
         passwordLbl = new Label();
         passwordPF = new PasswordField();
         loginBtn = new Button();
-        gridPane = new GridPane();
-        columnConstraints = new ColumnConstraints();
-        columnConstraints0 = new ColumnConstraints();
-        columnConstraints1 = new ColumnConstraints();
-        rowConstraints = new RowConstraints();
-        signUpHP = new Hyperlink();
+        hBox = new HBox();
         notHaveAccountLbl = new Label();
+        signUpHP = new Hyperlink();
         backBtn = new Button();
         xCandyOLbl = new Label();
         letsPlayLbl = new Label();
@@ -67,11 +57,10 @@ public class SignInViewBase extends GridPane {
         setPrefHeight(400.0);
         setPrefWidth(600.0);
 
-        imageView.setFitHeight(430.0);
-        imageView.setFitWidth(648.0);
+        imageView.setFitHeight(400.0);
+        imageView.setFitWidth(300.0);
         imageView.setPickOnBounds(true);
-        imageView.setPreserveRatio(true);
-        imageView.setImage(new Image(getClass().getResource(Constants.background).toExternalForm()));
+        imageView.setImage(new Image(getClass().getResource(Constants.BACKGROUND).toExternalForm()));
 
         vBox.setLayoutX(300.0);
         vBox.setLayoutY(1.0);
@@ -99,7 +88,7 @@ public class SignInViewBase extends GridPane {
         userNameTF.setPrefHeight(30.0);
         userNameTF.setPrefWidth(280.0);
         VBox.setMargin(userNameTF, new Insets(0.0, 10.0, 0.0, 10.0));
-        userNameTF.setPadding(new Insets(0.0, 10.0, 0.0, 10.0));
+        userNameTF.setFont(new Font(16.0));
 
         passwordLbl.setId("passwordLbl");
         passwordLbl.setPrefHeight(44.0);
@@ -114,6 +103,7 @@ public class SignInViewBase extends GridPane {
         passwordPF.setPrefHeight(30.0);
         passwordPF.setPrefWidth(280.0);
         VBox.setMargin(passwordPF, new Insets(0.0, 10.0, 0.0, 10.0));
+        passwordPF.setFont(new Font(16.0));
 
         loginBtn.setId("loginBtn");
         loginBtn.setMnemonicParsing(false);
@@ -126,42 +116,24 @@ public class SignInViewBase extends GridPane {
         loginBtn.setPadding(new Insets(10.0, 0.0, 10.0, 0.0));
         loginBtn.setFont(new Font("Cooper Black", 20.0));
 
-        gridPane.setPrefHeight(24.0);
-        gridPane.setPrefWidth(300.0);
+        hBox.setAlignment(javafx.geometry.Pos.CENTER);
+        hBox.setPrefHeight(100.0);
+        hBox.setPrefWidth(200.0);
+        hBox.setStyle("-fx-background-color: #ffffff;");
 
-        columnConstraints.setHgrow(javafx.scene.layout.Priority.SOMETIMES);
-        columnConstraints.setMaxWidth(242.0);
-        columnConstraints.setMinWidth(10.0);
-        columnConstraints.setPrefWidth(121.0);
-
-        columnConstraints0.setHgrow(javafx.scene.layout.Priority.SOMETIMES);
-        columnConstraints0.setMaxWidth(242.0);
-        columnConstraints0.setMinWidth(10.0);
-        columnConstraints0.setPrefWidth(116.0);
-
-        columnConstraints1.setHgrow(javafx.scene.layout.Priority.SOMETIMES);
-        columnConstraints1.setMaxWidth(144.0);
-        columnConstraints1.setMinWidth(10.0);
-        columnConstraints1.setPrefWidth(63.0);
-
-        rowConstraints.setMinHeight(10.0);
-        rowConstraints.setPrefHeight(30.0);
-        rowConstraints.setVgrow(javafx.scene.layout.Priority.SOMETIMES);
-
-        GridPane.setColumnIndex(signUpHP, 2);
-        signUpHP.setId("signUpHP");
-        signUpHP.setPrefHeight(20.0);
-        signUpHP.setPrefWidth(58.0);
-        signUpHP.setText("Sign up");
-        signUpHP.setFont(new Font("Cooper Black", 11.0));
-
-        GridPane.setColumnIndex(notHaveAccountLbl, 1);
         notHaveAccountLbl.setId("notHaveAccountLbl");
         notHaveAccountLbl.setPrefHeight(21.0);
         notHaveAccountLbl.setPrefWidth(116.0);
         notHaveAccountLbl.setText("Don't have account?");
         notHaveAccountLbl.setTextFill(javafx.scene.paint.Color.valueOf("#00b8d0"));
         notHaveAccountLbl.setFont(new Font("Cooper Black", 11.0));
+
+        signUpHP.setId("signUpHP");
+        signUpHP.setPrefHeight(20.0);
+        signUpHP.setPrefWidth(58.0);
+        signUpHP.setText("Sign up");
+        signUpHP.setFont(new Font("Cooper Black", 11.0));
+        VBox.setMargin(hBox, new Insets(0.0));
 
         backBtn.setId("backBtn");
         backBtn.setLayoutX(20.0);
@@ -204,13 +176,9 @@ public class SignInViewBase extends GridPane {
         vBox.getChildren().add(passwordLbl);
         vBox.getChildren().add(passwordPF);
         vBox.getChildren().add(loginBtn);
-        gridPane.getColumnConstraints().add(columnConstraints);
-        gridPane.getColumnConstraints().add(columnConstraints0);
-        gridPane.getColumnConstraints().add(columnConstraints1);
-        gridPane.getRowConstraints().add(rowConstraints);
-        gridPane.getChildren().add(signUpHP);
-        gridPane.getChildren().add(notHaveAccountLbl);
-        vBox.getChildren().add(gridPane);
+        hBox.getChildren().add(notHaveAccountLbl);
+        hBox.getChildren().add(signUpHP);
+        vBox.getChildren().add(hBox);
         vBox.getChildren().add(backBtn);
         getChildren().add(vBox);
         getChildren().add(xCandyOLbl);
