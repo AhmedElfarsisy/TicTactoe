@@ -3,6 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
@@ -10,52 +11,50 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <ImageView fx:id="backgroundIV" fitHeight="400.0" fitWidth="300.0" pickOnBounds="true" />
-
-      <VBox layoutX="300.0" prefHeight="400.0" prefWidth="300.0" spacing="10.0" style="-fx-background-color: #FFFFFF;">
+      <ImageView fx:id="backgroundIV" fitHeight="400.0" fitWidth="300.0" pickOnBounds="true">
+         <image>
+            <Image url="@../../../../../Desktop/WhatsApp%20Image%202020-12-23%20at%202.53.51%20PM.jpeg" />
+         </image>
+      </ImageView>
+      <VBox fx:id="VBox" layoutX="300.0" prefHeight="400.0" prefWidth="300.0" spacing="10.0" style="-fx-background-color: #FFFFFF;">
          <children>
-            <Label fx:id="homeLbl" alignment="CENTER" prefHeight="17.0" prefWidth="293.0" text="Home" textAlignment="CENTER" textFill="#00b8d0">
-             <font>
+            <Label fx:id="homeLbl" alignment="CENTER" prefHeight="17.0" prefWidth="293.0" text="Options" textAlignment="CENTER" textFill="#00b8d0">
+               <font>
                   <Font name="Cooper Black" size="30.0" />
                </font>
                <VBox.margin>
                   <Insets top="10.0" />
                </VBox.margin>
             </Label>
-
-            <Button fx:id="singlePlayerBtn" mnemonicParsing="false" prefHeight="25.0" prefWidth="303.0" style="-fx-background-color: #00B8D0;" text="Single Player" textFill="WHITE">
-              <VBox.margin>
+            <Button fx:id="recordedGamesBtn" mnemonicParsing="false" prefHeight="25.0" prefWidth="303.0" style="-fx-background-color: #00B8D0;" text="Recorded Games" textFill="WHITE">
+               <VBox.margin>
                   <Insets top="48.0" />
                </VBox.margin>
                <font>
                   <Font name="Cooper Black" size="20.0" />
                </font>
             </Button>
-
-            <Button fx:id="multiPlayerOfflineBtn" mnemonicParsing="false" prefHeight="25.0" prefWidth="303.0" style="-fx-background-color: #00B8D0;" text="Multi Player offline" textFill="WHITE">
-
+            <Button fx:id="themesBtn" mnemonicParsing="false" prefHeight="25.0" prefWidth="303.0" style="-fx-background-color: #00B8D0;" text="Themes" textFill="WHITE">
                <font>
                   <Font name="Cooper Black" size="20.0" />
                </font>
             </Button>
-
-            <Button fx:id="multiPlayerOnlineBtn" mnemonicParsing="false" prefHeight="25.0" prefWidth="303.0" style="-fx-background-color: #00B8D0;" text="Multi Player online" textFill="WHITE">
-
+            <Button fx:id="soundOptionsBtn" mnemonicParsing="false" prefHeight="25.0" prefWidth="303.0" style="-fx-background-color: #00B8D0;" text="Sound Options " textFill="WHITE">
                <font>
                   <Font name="Cooper Black" size="20.0" />
                </font>
             </Button>
-
-            <Button fx:id="optionsBtn" mnemonicParsing="false" prefHeight="25.0" prefWidth="303.0" style="-fx-background-color: #00B8D0;" text="Options" textFill="WHITE">
+            <Button fx:id="levelsBtn" mnemonicParsing="false" prefHeight="25.0" prefWidth="303.0" style="-fx-background-color: #00B8D0;" text="Levels" textFill="WHITE">
                <font>
                   <Font name="Cooper Black" size="20.0" />
                </font>
             </Button>
-
-            <Button fx:id="logoutBtn" mnemonicParsing="false" prefHeight="25.0" prefWidth="303.0" style="-fx-background-color: #00B8D0;" text="Logout" textFill="WHITE">
+            <Button fx:id="backOptionsBtn" mnemonicParsing="false" style="-fx-background-color: #00B8D0;" text="Back&gt;" textFill="WHITE">
+               <VBox.margin>
+                  <Insets left="230.0" top="48.0" />
+               </VBox.margin>
                <font>
-                  <Font name="Cooper Black" size="20.0" />
-
+                  <Font name="Cooper Black" size="10.0" />
                </font>
             </Button>
          </children>
@@ -68,7 +67,6 @@
             <Font name="Cooper Black" size="30.0" />
          </font>
       </Label>
-
       <Label fx:id="letUsPlayLbl" alignment="CENTER" layoutX="4.0" layoutY="145.0" prefHeight="17.0" prefWidth="293.0" text="Let 's play " textAlignment="CENTER" textFill="#00b8d0">
          <font>
             <Font name="Cooper Black" size="20.0" />

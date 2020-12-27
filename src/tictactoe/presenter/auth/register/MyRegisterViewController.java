@@ -3,32 +3,36 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package tictactoe.presenter.options;
+package tictactoe.presenter.auth.register;
 
-import tictactoe.presenter.home.*;
-import tictactoe.*;
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.layout.VBox;
 
 /**
+ * FXML Controller class
  *
- * @author A.Elfarsisy
+ * @author Heba
  */
-public class HomeController implements Initializable {
-    
+public class MyRegisterViewController implements Initializable {
+
     @FXML
-    private Label label;
-    
+    private VBox signUpVBox;
     @FXML
-    private void handleButtonAction(ActionEvent event) {
-        System.out.println("You clicked me!");
-        label.setText("Hello World!");
-    }
-    
+    private VBox userNameTF;
+    @FXML
+    private Label xCandyOLbl;
+    @FXML
+    private Label letsPlayLbl;
+    @FXML
+    private Label ticTacToeLbl;
+
+    /**
+     * Initializes the controller class.
+     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO

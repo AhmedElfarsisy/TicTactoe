@@ -22,7 +22,7 @@ import tictactoe.presenter.auth.signin.SignInViewBase;
  *
  * @author Heba
  */
-public class SignInViewController implements Initializable {
+public class MySignInViewController implements Initializable {
      SignInViewBase signInViewBase= new SignInViewBase();
      SignInValidation signInValidation= new SignInValidation();
     @FXML

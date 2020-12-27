@@ -5,32 +5,51 @@
  */
 package tictactoe.presenter.home;
 
-import tictactoe.*;
+
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
+import tictactoe.helper.BaseController;
+import tictactoe.helper.Navigator;
 
 /**
  *
  * @author A.Elfarsisy
  */
-public class HomeController implements Initializable {
-    
-    @FXML
-    private Label label;
-    
-    @FXML
-    private void handleButtonAction(ActionEvent event) {
-        System.out.println("You clicked me!");
-        label.setText("Hello World!");
+public class HomeController extends BaseController implements Initializable {
+
+    private HomeViewBase homeView;
+
+    //Home Controller Constarctor 
+    public HomeController() {
+        //create Home view
+        homeView = new HomeViewBase();
+        //4 - Set viewBase -> Parent = currentView -> Child
+        viewBase = homeView;
+        //Go to Single Game Page
+        homeView.singlePlayerBtn.setOnAction((event) -> {Navigator.goToGame();});
+        
+        //Go to MultiPlayer Offline Game Page
+          homeView.multiPlayerOnlineBtn.setOnAction((event) -> {Navigator.goToLogin();});
+        //homeView.multiPlayerOnlineBtn.setOnAction((event) -> {Navigator.goToOnlinePlayers();});
+
+        //Go to MultiPlayer Offline Game Page
+        homeView.multiPlayerOfflineBtn.setOnAction((event) -> {Navigator.goToGame();});
+
+        //Go to Option Page
+        homeView.optionsBtn.setOnAction((event) -> {
+            Navigator.goToOptions();
+        });
+
     }
-    
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
-    
+    }
+    //Get Home View 
+
+    public HomeViewBase getHomeView() {
+        return homeView;
+    }
+
 }

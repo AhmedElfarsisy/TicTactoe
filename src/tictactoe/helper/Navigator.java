@@ -5,12 +5,17 @@
  */
 package tictactoe.helper;
 
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import tictactoe.presenter.home.HomeViewBase;
 import tictactoe.TicTacToe;
+import tictactoe.presenter.auth.register.RegisterController;
+import tictactoe.presenter.auth.signin.SignInController;
 import tictactoe.presenter.game.GameController;
 import tictactoe.presenter.game.GameViewBase;
+import tictactoe.presenter.onlineplayers.OnlinePlayersController;
+import tictactoe.presenter.recordedgames.RecordedGameController;
+
+import tictactoe.presenter.home.HomeController;
+import tictactoe.presenter.options.OptionsController;
+
 /**
  *
  * @author yasmineghazy
@@ -21,7 +26,13 @@ public class Navigator {
     }
     
     public static void goToHome(){
-        //TicTacToe.changeScene(new HomeController());
+        TicTacToe.changeScene(new HomeController());
+    }
+    public static void goToOnlinePlayers(){
+        TicTacToe.changeScene(new OnlinePlayersController());
+    }
+    public static void goToRecordedGame(){
+        TicTacToe.changeScene(new RecordedGameController());
     }
     
     //1. Creating navigation method
@@ -30,4 +41,22 @@ public class Navigator {
 //    }
     
  
+
+    public static void goToLogin(){
+       TicTacToe.changeScene(new SignInController());
+    }
+   
+
+    public static void goToOptions() {
+       TicTacToe.changeScene(new OptionsController());
+    }
+
+    public static void goToRegister() {
+         TicTacToe.changeScene(new RegisterController());
+    }
+    
+      public static void goToAvailablePlayer() {
+         //TicTacToe.changeScene(new RegisterController());
+    }
+      
 }

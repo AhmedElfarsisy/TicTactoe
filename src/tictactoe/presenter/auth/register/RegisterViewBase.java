@@ -23,8 +23,8 @@ public class RegisterViewBase extends Pane {
     protected final PasswordField passwordPF;
     protected final Label confirmPasswordLbl;
     protected final PasswordField confirmPasswordPF;
-    protected final Button signUpBtn;
-    protected final Button signUpBackBtn;
+    protected  Button signUpBtn;
+    protected  Button signUpBackBtn;
     protected final Label xCandyOLbl;
     protected final Label letsPlayLbl;
     protected final Label ticTacToeLbl;
@@ -57,7 +57,8 @@ public class RegisterViewBase extends Pane {
         imageView.setFitWidth(644.0);
         imageView.setPickOnBounds(true);
         imageView.setPreserveRatio(true);
-        imageView.setImage(new Image(getClass().getResource(Constants.background).toExternalForm()));
+
+        imageView.setImage(new Image(getClass().getResource(Constants.BACKGROUND).toExternalForm()));
 
         signUpVBox.setId("userNameTF");
         signUpVBox.setLayoutX(300.0);
