@@ -10,14 +10,15 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
+import tictactoe.helper.Constants;
 
 public class RegisterViewBase extends Pane {
 
     protected final ImageView imageView;
-    protected final VBox userNameTF;
+    protected final VBox signUpVBox;
     protected final Label singnUpLbl;
     protected final Label userNameLbl;
-    protected final TextField userNameTF0;
+    protected final TextField userNameTF;
     protected final Label passwordLbl;
     protected final PasswordField passwordPF;
     protected final Label confirmPasswordLbl;
@@ -31,10 +32,10 @@ public class RegisterViewBase extends Pane {
     public RegisterViewBase() {
 
         imageView = new ImageView();
-        userNameTF = new VBox();
+        signUpVBox = new VBox();
         singnUpLbl = new Label();
         userNameLbl = new Label();
-        userNameTF0 = new TextField();
+        userNameTF = new TextField();
         passwordLbl = new Label();
         passwordPF = new PasswordField();
         confirmPasswordLbl = new Label();
@@ -56,14 +57,14 @@ public class RegisterViewBase extends Pane {
         imageView.setFitWidth(644.0);
         imageView.setPickOnBounds(true);
         imageView.setPreserveRatio(true);
-        imageView.setImage(new Image(getClass().getResource("../../../resource/images/background.jpeg").toExternalForm()));
+        imageView.setImage(new Image(getClass().getResource(Constants.background).toExternalForm()));
 
-        userNameTF.setId("userNameTF");
-        userNameTF.setLayoutX(300.0);
-        userNameTF.setLayoutY(2.0);
-        userNameTF.setPrefHeight(400.0);
-        userNameTF.setPrefWidth(300.0);
-        userNameTF.setStyle("-fx-background-color: #ffffff;");
+        signUpVBox.setId("userNameTF");
+        signUpVBox.setLayoutX(300.0);
+        signUpVBox.setLayoutY(2.0);
+        signUpVBox.setPrefHeight(400.0);
+        signUpVBox.setPrefWidth(300.0);
+        signUpVBox.setStyle("-fx-background-color: #ffffff;");
 
         singnUpLbl.setId("signUpLbl");
         singnUpLbl.setPrefHeight(59.0);
@@ -86,10 +87,10 @@ public class RegisterViewBase extends Pane {
         userNameLbl.setPadding(new Insets(0.0, 10.0, 0.0, 10.0));
         userNameLbl.setFont(new Font("Cooper Black", 16.0));
 
-        userNameTF0.setId("userNameTF");
-        userNameTF0.setPrefHeight(30.0);
-        userNameTF0.setPrefWidth(280.0);
-        VBox.setMargin(userNameTF0, new Insets(0.0, 10.0, 0.0, 10.0));
+        userNameTF.setId("userNameTF");
+        userNameTF.setPrefHeight(30.0);
+        userNameTF.setPrefWidth(280.0);
+        VBox.setMargin(userNameTF, new Insets(0.0, 10.0, 0.0, 10.0));
 
         passwordLbl.setId("passwordLbl");
         passwordLbl.setPrefHeight(34.0);
@@ -179,16 +180,16 @@ public class RegisterViewBase extends Pane {
         ticTacToeLbl.setFont(new Font("Cooper Black", 30.0));
 
         getChildren().add(imageView);
-        userNameTF.getChildren().add(singnUpLbl);
-        userNameTF.getChildren().add(userNameLbl);
-        userNameTF.getChildren().add(userNameTF0);
-        userNameTF.getChildren().add(passwordLbl);
-        userNameTF.getChildren().add(passwordPF);
-        userNameTF.getChildren().add(confirmPasswordLbl);
-        userNameTF.getChildren().add(confirmPasswordPF);
-        userNameTF.getChildren().add(signUpBtn);
-        userNameTF.getChildren().add(signUpBackBtn);
-        getChildren().add(userNameTF);
+        signUpVBox.getChildren().add(singnUpLbl);
+        signUpVBox.getChildren().add(userNameLbl);
+        signUpVBox.getChildren().add(userNameTF);
+        signUpVBox.getChildren().add(passwordLbl);
+        signUpVBox.getChildren().add(passwordPF);
+        signUpVBox.getChildren().add(confirmPasswordLbl);
+        signUpVBox.getChildren().add(confirmPasswordPF);
+        signUpVBox.getChildren().add(signUpBtn);
+        signUpVBox.getChildren().add(signUpBackBtn);
+        getChildren().add(signUpVBox);
         getChildren().add(xCandyOLbl);
         getChildren().add(letsPlayLbl);
         getChildren().add(ticTacToeLbl);
