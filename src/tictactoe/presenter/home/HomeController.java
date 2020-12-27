@@ -9,6 +9,7 @@ package tictactoe.presenter.home;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
+import javafx.scene.layout.Pane;
 import tictactoe.helper.BaseController;
 import tictactoe.helper.Navigator;
 
@@ -18,26 +19,24 @@ import tictactoe.helper.Navigator;
  */
 public class HomeController extends BaseController implements Initializable {
 
-    private HomeViewBase homeView;
+    private HomeViewBase view;
 
     //Home Controller Constarctor 
     public HomeController() {
         //create Home view
-        homeView = new HomeViewBase();
-        //4 - Set viewBase -> Parent = currentView -> Child
-        viewBase = homeView;
+        view = new HomeViewBase();
         //Go to Single Game Page
-        homeView.singlePlayerBtn.setOnAction((event) -> {Navigator.goToGame();});
+        view.singlePlayerBtn.setOnAction((event) -> {Navigator.goToGame();});
         
         //Go to MultiPlayer Offline Game Page
-          homeView.multiPlayerOnlineBtn.setOnAction((event) -> {Navigator.goToLogin();});
+          view.multiPlayerOnlineBtn.setOnAction((event) -> {Navigator.goToLogin();});
         //homeView.multiPlayerOnlineBtn.setOnAction((event) -> {Navigator.goToOnlinePlayers();});
 
         //Go to MultiPlayer Offline Game Page
-        homeView.multiPlayerOfflineBtn.setOnAction((event) -> {Navigator.goToGame();});
+        view.multiPlayerOfflineBtn.setOnAction((event) -> {Navigator.goToGame();});
 
         //Go to Option Page
-        homeView.optionsBtn.setOnAction((event) -> {
+        view.optionsBtn.setOnAction((event) -> {
             Navigator.goToOptions();
         });
 
@@ -48,8 +47,11 @@ public class HomeController extends BaseController implements Initializable {
     }
     //Get Home View 
 
-    public HomeViewBase getHomeView() {
-        return homeView;
+        //MARK: - Implement BaseController method  
+    @Override
+    public Pane getView() {
+        //set super view
+        return view;
     }
 
 }

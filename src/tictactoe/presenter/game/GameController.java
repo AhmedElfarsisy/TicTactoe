@@ -10,6 +10,7 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.layout.Pane;
 import tictactoe.helper.BaseController;
 import tictactoe.helper.Navigator;
 
@@ -23,30 +24,30 @@ import tictactoe.helper.Navigator;
 public class GameController extends BaseController implements Initializable {
     
     //MARK: - Properties
-    private GameViewBase gameView;
+    private GameViewBase view;
     
     //MARK: - Constructor
     public GameController(){
         
         //create new view
-        gameView = new GameViewBase();
+        view = new GameViewBase();
         
         //4 - Set viewBase -> Parent = currentView -> Child
-        viewBase = gameView;
+        //viewBase = view;
         
         //Set action handler
-        gameView.gameBoardGP.getChildren().forEach((ch) -> {
+        view.gameBoardGP.getChildren().forEach((ch) -> {
             ((Button) ch).setOnAction(( event) -> {((Button) event.getSource()).setText("X");});
         });
           
           
-          gameView.playAgainBtn.setOnAction((event) -> {
-              gameView.gameBoardGP.getChildren().forEach((ch) -> {
+          view.playAgainBtn.setOnAction((event) -> {
+              view.gameBoardGP.getChildren().forEach((ch) -> {
                   ((Button) ch).setText("");
             });
           });
 
-          gameView.backBtn.setOnAction((event) -> {Navigator.goToHome();});
+          view.backBtn.setOnAction((event) -> {Navigator.goToHome();});
 
     }
 
@@ -58,14 +59,11 @@ public class GameController extends BaseController implements Initializable {
    
     }  
     
-    //MARK: - Getters
-    public GameViewBase getGameView(){
-        return  gameView;
-    }   
-
-//    protected void setViewPane() {
-//        //set super view
-//        viewBase = gameView;
-//    }
+    //MARK: - Implement BaseController method  
+    @Override
+    public Pane getView() {
+        //set super view
+        return view;
+    }
     
 }

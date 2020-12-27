@@ -34,7 +34,7 @@ public class TicTacToe extends Application {
         stage.setResizable(false);
         //Set Home Screen as the starting scene
 
-        Scene scene = new Scene((new HomeController()).getHomeView());
+        Scene scene = new Scene((new HomeController()).getView());
         stage.setScene(scene);
         stage.show();
   
@@ -48,7 +48,7 @@ public class TicTacToe extends Application {
     }
 
     public static void changeScene(BaseController controller) {
-        Scene scene = new Scene(controller.getViewBase());
+        Scene scene = new Scene(controller.getView());
         stage.setScene(scene);
         stage.show();
     }

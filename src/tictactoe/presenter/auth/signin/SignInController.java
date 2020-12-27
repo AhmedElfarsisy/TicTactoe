@@ -8,6 +8,7 @@ package tictactoe.presenter.auth.signin;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
+import javafx.scene.layout.Pane;
 import tictactoe.helper.BaseController;
 import tictactoe.helper.Navigator;
 
@@ -18,20 +19,18 @@ import tictactoe.helper.Navigator;
  */
 public class SignInController extends BaseController implements Initializable {
 
-      private SignInViewBase signInView;
+      private SignInViewBase view;
 
     //SignIn Controller Constarctor 
     public SignInController() {
         //create SignIn view
-        signInView = new SignInViewBase();
-        //4 - Set viewBase -> Parent = currentView -> Child
-        viewBase = signInView;
+        view = new SignInViewBase();
         //Go to available  Player  screen 
-        signInView.loginBtn.setOnAction((event) -> {  /*Navigator.goToAvailable ();*/  Navigator.goToGame();});
+        view.loginBtn.setOnAction((event) -> {  /*Navigator.goToAvailable ();*/  Navigator.goToGame();});
         //Go to register  screen
-        signInView.signUpHP.setOnAction((event) -> {Navigator.goToRegister();});
+        view.signUpHP.setOnAction((event) -> {Navigator.goToRegister();});
         //Go back to home 
-        signInView.backBtn.setOnAction((event) -> {   Navigator.goToHome();});
+        view.backBtn.setOnAction((event) -> {   Navigator.goToHome();});
         
     }
     
@@ -40,5 +39,12 @@ public class SignInController extends BaseController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
+    
+    //MARK: - Implement BaseController method  
+    @Override
+    public Pane getView() {
+        //set super view
+        return view;
+    }
     
 }

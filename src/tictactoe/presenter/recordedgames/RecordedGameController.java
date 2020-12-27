@@ -8,6 +8,7 @@ package tictactoe.presenter.recordedgames;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
+import javafx.scene.layout.Pane;
 import tictactoe.helper.BaseController;
 import tictactoe.helper.Navigator;
 import tictactoe.presenter.onlineplayers.OnlinePlayersBase;
@@ -19,20 +20,15 @@ import tictactoe.presenter.onlineplayers.OnlinePlayersBase;
  */
 public class RecordedGameController extends BaseController implements Initializable {
 
-    private RecordedGameBase rg;
+    private RecordedGameBase view;
     
     public RecordedGameController(){
      
         //create new view
-        rg= new RecordedGameBase();
+        view = new RecordedGameBase();
         
         //4 - Set viewBase -> Parent = currentView -> Child
-        viewBase = rg;
-        rg.backbtn.setOnAction((event) -> {Navigator.goToOptions();});
-        
-        
-    
-    
+        view.backbtn.setOnAction((event) -> {Navigator.goToOptions();});
     }
     
     
@@ -41,6 +37,12 @@ public class RecordedGameController extends BaseController implements Initializa
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    }  
+    
+    //MARK: - Implement BaseController method  
+    @Override
+    public Pane getView() {
+        return view;
+    }
     
 }

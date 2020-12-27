@@ -8,6 +8,7 @@ package tictactoe.presenter.auth.register;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
+import javafx.scene.layout.Pane;
 import tictactoe.helper.BaseController;
 import tictactoe.helper.Navigator;
 
@@ -18,25 +19,31 @@ import tictactoe.helper.Navigator;
  */
 public class RegisterController extends BaseController implements Initializable {
 
-    private RegisterViewBase registerView;
+    private RegisterViewBase view;
 
     //Home Controller Constarctor 
     public RegisterController() {
         //create Register view
-        registerView = new RegisterViewBase();
-        //4 - Set viewBase -> Parent = currentView -> Child
-        viewBase = registerView;
+        view = new RegisterViewBase();
         //Go to avaliable  player list  Game screen
-        registerView.signUpBtn.setOnAction((event) -> {/*go to player list*/    Navigator.goToGame();});
+        view.signUpBtn.setOnAction((event) -> {/*go to player list*/    Navigator.goToGame();});
         //Go to Home screen 
-        registerView.signUpBackBtn.setOnAction((event) -> {Navigator.goToHome();});
+        view.signUpBackBtn.setOnAction((event) -> {Navigator.goToHome();});
         //Go to MultiPlayer Offline Game Page
-        registerView.signUpBackBtn.setOnAction((event) -> {Navigator.goToLogin();});
+        view.signUpBackBtn.setOnAction((event) -> {Navigator.goToLogin();});
     }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    }   
+    
+    
+        //MARK: - Implement BaseController method  
+    @Override
+    public Pane getView() {
+        //set super view
+        return view;
+    }
     
 }
