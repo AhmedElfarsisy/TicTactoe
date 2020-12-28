@@ -22,6 +22,7 @@ import tictactoe.presenter.options.OptionsController;
  */
 public class Navigator {
     public static void goToGame(){
+        
        TicTacToe.changeScene(new GameController());
     }
     

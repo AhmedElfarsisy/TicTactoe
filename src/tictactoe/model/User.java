@@ -12,19 +12,18 @@ package tictactoe.model;
 public class User {
     String userName; 
     String password; 
-    int score; 
-    int state; 
+    Integer score; 
 
     public User(String userName, String password) {
         this.userName = userName;
         this.password = password;
+        this.score = 0;
     }
 
-    public User(String userName, String password, int score, int state) {
+    public User(String userName, String password, Integer score, int state) {
         this.userName = userName;
         this.password = password;
         this.score = score;
-        this.state = state;
     }
 
     public String getUserName() {
@@ -43,19 +42,11 @@ public class User {
         this.password = password;
     }
 
-    public int getScore() {
+    public Integer getScore() {
         return score;
     }
 
-    public void setScore(int score) {
+    public void setScore(Integer score) {
         this.score = score;
-    }
-
-    public int getState() {
-        return state;
-    }
-
-    public void setState(int state) {
-        this.state = state;
     }
 }
