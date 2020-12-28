@@ -34,6 +34,11 @@ public class Game {
 
     //MARK: - Methods
 
+    public PlayMode getMode() {
+        return mode;
+    }
+
+    
     public Board getBoard() {
         return board;
     }

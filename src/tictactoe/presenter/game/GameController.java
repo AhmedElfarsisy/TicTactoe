@@ -29,21 +29,20 @@ public class GameController extends BaseController implements Initializable {
     private final GameViewBase view;
     private final Game game;
     private int currentPlayer;
+    private Button[][] gridButtons;
     
     //MARK: - Constructor
-    public GameController(){
+    public GameController(Game g){
         
         //create new view
         view = new GameViewBase();
         
         //Set game
-        
-        Player player1 = new Player("Player 1", Symbol.O);
-        Player player2 = new Player("Player 2", Symbol.X);
-        Player [] players = {player1, player2};
-        Game g = new Game(players,PlayMode.MULTIOFFLINE);
         this.game = g;
         currentPlayer = 0;
+        gridButtons = new Button[3][3];
+        setBoardButtons();
+        
         startGame();
         
         //Set action handler
@@ -66,10 +65,23 @@ public class GameController extends BaseController implements Initializable {
     }
     
     //MARK: - Methods
+    private void setBoardButtons(){
+        gridButtons[0][0] = getBoardButton(0);
+        gridButtons[0][1] = getBoardButton(1);
+        gridButtons[0][2] = getBoardButton(2);
+        gridButtons[1][0] = getBoardButton(3);
+        gridButtons[1][1] = getBoardButton(4);
+        gridButtons[1][2] = getBoardButton(5);
+        gridButtons[2][0] = getBoardButton(6);
+        gridButtons[2][1] = getBoardButton(7);
+        gridButtons[2][2] = getBoardButton(8);
+    }
+    
     private void setActionHandler(){
         
-        for(int pos = 0; pos < 9; pos++){
-            (getBoardButton(pos)).setOnAction((ActionEvent event) -> {
+        for(int x = 0; x < 3; x++){
+            for(int y = 0; y < 3; y++){
+                (gridButtons[x][y]).setOnAction((ActionEvent event) -> {
                 Button btn = (Button) event.getSource();
                 btn.setText(game.getPlayerSymbol(currentPlayer));
                 btn.setDisable(true);
@@ -77,6 +89,7 @@ public class GameController extends BaseController implements Initializable {
                 checkGameEnd();
                 togglePlayer();  
             });
+            }
         }
           
         view.playAgainBtn.setOnAction((event) -> { startGame(); });
@@ -89,7 +102,7 @@ public class GameController extends BaseController implements Initializable {
     
     private void checkGameEnd(){
         if(isGameEnded()){
-            //startGame();
+            startGame();
         }
     }
     
@@ -108,7 +121,7 @@ public class GameController extends BaseController implements Initializable {
     }
     
     private void showWinner(int index){
-        (new Alert(AlertType.INFORMATION, game.getPlayerName(index) + "Win")).show();
+        (new Alert(AlertType.INFORMATION, game.getPlayerName(index) + " Win")).show();
          currentPlayer = index;
          game.updatePlayerScore(index);
     }
@@ -139,9 +152,13 @@ public class GameController extends BaseController implements Initializable {
     
     private void togglePlayer(){
         currentPlayer = currentPlayer == 0 ? 1 : 0;
-        view.playerTurnLbl.setText(game.getPlayerName(currentPlayer) + "Turn");
+        view.playerTurnLbl.setText(game.getPlayerName(currentPlayer) + " Turn");
+        
+        if(game.getMode() == PlayMode.SINGLE){
+           if(currentPlayer == 1){//Computer
+              Move move = game.getBoard().getNextMove(game.getPlayerSymbol(currentPlayer));
+              gridButtons[move.getX()][move.getY()].fire();
+           }
+        }
     }
-    
-    
-    
 }

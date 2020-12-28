@@ -12,6 +12,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.layout.Pane;
 import tictactoe.helper.BaseController;
 import tictactoe.helper.Navigator;
+import tictactoe.model.PlayMode;
 
 /**
  *
@@ -26,14 +27,14 @@ public class HomeController extends BaseController implements Initializable {
         //create Home view
         view = new HomeViewBase();
         //Go to Single Game Page
-        view.singlePlayerBtn.setOnAction((event) -> {Navigator.goToGame();});
+        view.singlePlayerBtn.setOnAction((event) -> {Navigator.goToGame(PlayMode.SINGLE);});
         
         //Go to MultiPlayer Offline Game Page
           view.multiPlayerOnlineBtn.setOnAction((event) -> {Navigator.goToLogin();});
         //homeView.multiPlayerOnlineBtn.setOnAction((event) -> {Navigator.goToOnlinePlayers();});
 
         //Go to MultiPlayer Offline Game Page
-        view.multiPlayerOfflineBtn.setOnAction((event) -> {Navigator.goToGame();});
+        view.multiPlayerOfflineBtn.setOnAction((event) -> {Navigator.goToGame(PlayMode.MULTIOFFLINE);});
 
         //Go to Option Page
         view.optionsBtn.setOnAction((event) -> {

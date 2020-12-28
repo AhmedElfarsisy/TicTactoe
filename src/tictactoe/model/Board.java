@@ -90,5 +90,116 @@ public class Board{
     private Boolean isEqual(int row, int col,String symbol){
         return (tiles[row][col] != null) && (tiles[row][col].equals(symbol));
     }
+    
+    //Play with Computer
+    public Move getNextMove(String symbol){
+      
+       //Attack 
+       Move move = getEmptyTile(symbol);
+       if(move.getX() == -1){
+            //Defend
+            move = symbol.equals("X") ? getEmptyTile("O") : getEmptyTile("X");
+            if(move.getX() == -1){
+                //Random
+                move = getRandomMove();
+            }
+       }
+       return move; 
+    }
+    
+    
+    private Move getEmptyTile(String symbol){
+        
+        Move attackMove = new Move();
+        
+        int mainDiag = 0, antiDiag = 0;
+        
+        for(int row = 0; row < size; row++){
+            
+            int nCol = 0, nRow = 0;
+            
+            for(int col = 0; col < size; col++){
+                
+                //Check Columns
+                if(isEqual(row,col,symbol)){ //row = 0, col = 1, ,2 ,3
+                    nCol++; 
+                    if(nCol == 2){ attackMove = getEmptyRowMove(row); break;}
+                }
+                 
+                //Check Rows
+                if(isEqual(col,row,symbol)){ //row = 1 , 2, 3 col = 0
+                    nRow++;  
+                    if(nRow == 2){ attackMove = getEmptyColMove(row); break;}
+                }  
+            }
+            
+            //Check Main Diagonal
+            if(isEqual(row,row,symbol)){ 
+                mainDiag++;  
+                if(mainDiag == 2){ attackMove = getMainDiaMove(); break;}
+            } 
+                 
+            //Check Anti Diagonal
+            if(isEqual(row,size - row - 1,symbol)){ 
+                antiDiag++;  
+                if(antiDiag == 2){ attackMove = getAntiDiaMove(); break;}
+            } 
+        }
+        return attackMove;
+    }
+    
+    private Move getEmptyRowMove(int row){
+        Move m = new Move();
+        for(int col = 0; col < size; col++){
+            if(tiles[row][col] == null) {m.setXY(row, col); break;}
+        }
+        return m;
+    }
+    
+    private Move getEmptyColMove(int col){
+        Move m = new Move();
+        for(int row = 0; row < size; row++){
+            if (tiles[row][col] == null) {m.setXY(row, col); break;}
+        }
+        return m;
+    }
+    
+    private Move getMainDiaMove(){
+        Move m = new Move();
+        for(int row = 0; row < size; row++){
+            if (tiles[row][row] == null) {m.setXY(row, row); break;}
+        }
+        return m;
+    }
+    
+    private Move getAntiDiaMove(){
+        Move m = new Move();
+        for(int row = 0; row < size; row++){
+            if (tiles[row][size - row - 1] == null) {m.setXY(row,size - row - 1); break;}
+        }
+        return m;
+    }
+    
+    private Move getRandomMove(){
+        Move m = new Move();
+        for(int row = 0; row < size; row++){
+            for(int col = 0; col < size; col++){
+                if(tiles[row][col] == null){
+                    m.setXY(row, col);
+                    break;
+                }
+            }  
+        }
+        return m;
+    }
+    
+    
+    /**
+     *0,0    0,1     0,2
+     *1,0    1,1     1,2 
+     *2,0    2,1     2,2
+     */
+    
+     
    
 }

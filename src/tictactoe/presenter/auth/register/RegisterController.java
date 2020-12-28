@@ -26,7 +26,7 @@ public class RegisterController extends BaseController implements Initializable 
         //create Register view
         view = new RegisterViewBase();
         //Go to avaliable  player list  Game screen
-        view.signUpBtn.setOnAction((event) -> {/*go to player list*/    Navigator.goToGame();});
+        view.signUpBtn.setOnAction((event) -> {/*go to player list*/    Navigator.goToHome();});
         //Go to Home screen 
         view.signUpBackBtn.setOnAction((event) -> {Navigator.goToHome();});
         //Go to MultiPlayer Offline Game Page
