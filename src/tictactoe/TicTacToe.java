@@ -5,15 +5,18 @@
  */
 package tictactoe;
 
+import java.util.concurrent.TimeUnit;
+import java.util.logging.Level;
+import java.util.logging.LogRecord;
+import java.util.logging.Logger;
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import tictactoe.helper.BaseController;
+import tictactoe.helper.Navigator;
 import tictactoe.presenter.home.HomeController;
-import tictactoe.presenter.home.HomeViewBase;
-import tictactoe.presenter.options.OptionsController;
 
 /**
  *
@@ -37,7 +40,13 @@ public class TicTacToe extends Application {
         Scene scene = new Scene((new HomeController()).getView());
         stage.setScene(scene);
         stage.show();
-  
+    
+//        stage.setOnShown((event)->{
+//            System.out.println("Showen");
+//            Navigator.goToHome();          
+//        });
+                
+
     }
 
     /**

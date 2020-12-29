@@ -120,16 +120,21 @@ public class Board{
             
             for(int col = 0; col < size; col++){
                 
-                //Check Columns
+                //Check Columns -> row
                 if(isEqual(row,col,symbol)){ //row = 0, col = 1, ,2 ,3
                     nCol++; 
-                    if(nCol == 2){ attackMove = getEmptyRowMove(row); break;}
+                    if(nCol == 2){ 
+                        attackMove = getEmptyRowMove(row); break;
+                    }
                 }
                  
                 //Check Rows
+                //0 1 2 , 0
                 if(isEqual(col,row,symbol)){ //row = 1 , 2, 3 col = 0
                     nRow++;  
-                    if(nRow == 2){ attackMove = getEmptyColMove(row); break;}
+                    if(nRow == 2){ 
+                        attackMove = getEmptyColMove(row); break;
+                    }
                 }  
             }
             
@@ -156,10 +161,10 @@ public class Board{
         return m;
     }
     
-    private Move getEmptyColMove(int col){
+    private Move getEmptyColMove(int col){//col = 1
         Move m = new Move();
         for(int row = 0; row < size; row++){
-            if (tiles[row][col] == null) {m.setXY(row, col); break;}
+            if (tiles[row][col] == null) {m.setXY(row, col); break;} //0,1 1,1  2,1
         }
         return m;
     }

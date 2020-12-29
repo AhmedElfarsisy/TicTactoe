@@ -13,6 +13,6 @@ public class Constants {
 
     //Background Path in the app 
     public static String BACKGROUND = "/tictactoe/resource/images/background.jpg";
-
-
+    public static String SPLASH = "/tictactoe/resource/images/loading.gif";
+    public static String LOADER = "/tictactoe/resource/images/loader.gif";
 }

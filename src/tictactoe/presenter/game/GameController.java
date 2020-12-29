@@ -146,7 +146,7 @@ public class GameController extends BaseController implements Initializable {
         game.resetBoard();
         view.gameBoardGP.getChildren().forEach((ch) -> {
                 ((Button) ch).setText("");
-                 ((Button) ch).setDisable(false);
+                ((Button) ch).setDisable(false);
         });
     }
     

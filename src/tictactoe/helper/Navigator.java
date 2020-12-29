@@ -25,6 +25,7 @@ import tictactoe.presenter.options.OptionsController;
  * @author yasmineghazy
  */
 public class Navigator {
+    
     public static void goToGame(PlayMode mode){
         Game g;
         Player player1;
