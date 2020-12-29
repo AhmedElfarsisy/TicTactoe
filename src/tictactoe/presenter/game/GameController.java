@@ -28,7 +28,7 @@ public class GameController extends BaseController implements Initializable {
     //MARK: - Properties
     private final GameViewBase view;
     private final Game game;
-    private int currentPlayer;
+    private int currentPlayer = 0;
     private Button[][] gridButtons;
     
     //MARK: - Constructor
@@ -39,13 +39,9 @@ public class GameController extends BaseController implements Initializable {
         
         //Set game
         this.game = g;
-        currentPlayer = 0;
-        gridButtons = new Button[3][3];
-        setBoardButtons();
-        
+       
+        setupViews();
         startGame();
-        
-        //Set action handler
         setActionHandler();
     }
 
@@ -65,7 +61,13 @@ public class GameController extends BaseController implements Initializable {
     }
     
     //MARK: - Methods
+    private void setupViews(){
+        view.playAgainBtn.setVisible(false);
+        setBoardButtons();
+    }
+    
     private void setBoardButtons(){
+        gridButtons = new Button[3][3];
         gridButtons[0][0] = getBoardButton(0);
         gridButtons[0][1] = getBoardButton(1);
         gridButtons[0][2] = getBoardButton(2);
@@ -87,7 +89,7 @@ public class GameController extends BaseController implements Initializable {
                 btn.setDisable(true);
                 game.setMove(btn.getText(), getInt(btn, 0), getInt(btn, 1));
                 checkGameEnd();
-                togglePlayer();  
+                  
             });
             }
         }
@@ -102,7 +104,10 @@ public class GameController extends BaseController implements Initializable {
     
     private void checkGameEnd(){
         if(isGameEnded()){
-            startGame();
+            view.playAgainBtn.setVisible(true);
+            setBoardDisable(true);
+        }else{
+            togglePlayer();
         }
     }
     
@@ -113,7 +118,7 @@ public class GameController extends BaseController implements Initializable {
         }else if(game.getWinner() == 1){ //Second player wins
            showWinner(1);
         }else if(game.isBoardFull()){
-          (new Alert(AlertType.INFORMATION, "You Draw")).show();
+           view.playerTurnLbl.setText("You Draw");
         }else{
             isGameEnded = false;
         }
@@ -121,9 +126,11 @@ public class GameController extends BaseController implements Initializable {
     }
     
     private void showWinner(int index){
-        (new Alert(AlertType.INFORMATION, game.getPlayerName(index) + " Win")).show();
+         view.playerTurnLbl.setText(game.getPlayerName(index) + " Win");
          currentPlayer = index;
          game.updatePlayerScore(index);
+         view.firstPlayerScoreLbl.setText(game.getPlayerScore(0));
+         view.secondPlayerScoreLbl.setText(game.getPlayerScore(1));
     }
     
     //Reinitialize board
@@ -136,6 +143,7 @@ public class GameController extends BaseController implements Initializable {
         view.secondPlayerNameLbl.setText(game.getPlayerName(1));
         view.secondPlayerScoreLbl.setText(game.getPlayerScore(1));
         view.playerTurnLbl.setText(game.getPlayerName(currentPlayer) + " Turn");
+        view.playAgainBtn.setVisible(false);
     }
     
     private Button getBoardButton(int pos){
@@ -144,11 +152,23 @@ public class GameController extends BaseController implements Initializable {
     
     private void resetBoard(){
         game.resetBoard();
+        view.playAgainBtn.setVisible(true);
+        setBoardDisable(false);
+        clearBoard();
+    }
+    
+    private void setBoardDisable(Boolean isDisable){
         view.gameBoardGP.getChildren().forEach((ch) -> {
-                ((Button) ch).setText("");
-                ((Button) ch).setDisable(false);
+                ((Button) ch).setDisable(isDisable);
         });
     }
+    
+    private void clearBoard(){
+        view.gameBoardGP.getChildren().forEach((ch) -> {
+                ((Button) ch).setText("");
+        });
+    }
+    
     
     private void togglePlayer(){
         currentPlayer = currentPlayer == 0 ? 1 : 0;

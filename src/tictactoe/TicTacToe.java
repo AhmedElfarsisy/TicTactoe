@@ -39,14 +39,7 @@ public class TicTacToe extends Application {
 
         Scene scene = new Scene((new HomeController()).getView());
         stage.setScene(scene);
-        stage.show();
-    
-//        stage.setOnShown((event)->{
-//            System.out.println("Showen");
-//            Navigator.goToHome();          
-//        });
-                
-
+        stage.show();              
     }
 
     /**
