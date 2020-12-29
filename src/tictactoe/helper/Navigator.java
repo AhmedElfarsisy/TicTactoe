@@ -56,7 +56,7 @@ public class Navigator {
     }
     
       public static void goToAvailablePlayer() {
-         //TicTacToe.changeScene(new RegisterController());
+         TicTacToe.changeScene(new OnlinePlayersController());
     }
       
 }
