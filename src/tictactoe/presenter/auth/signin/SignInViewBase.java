@@ -1,5 +1,6 @@
 package tictactoe.presenter.auth.signin;
 
+
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
@@ -20,14 +21,14 @@ public  class SignInViewBase extends Pane {
     protected final VBox vBox;
     protected final Label loginLbl;
     protected final Label userNameLbl;
-    protected final TextField userNameTF;
+    protected TextField userNameTF;
     protected final Label passwordLbl;
-    protected final PasswordField passwordPF;
-    protected  Button loginBtn;
+    protected PasswordField passwordPF;
+    protected Button loginBtn;
     protected final HBox hBox;
     protected final Label notHaveAccountLbl;
-    protected  Hyperlink signUpHP;
-    protected  Button backBtn;
+    protected Hyperlink signUpHP;
+    protected Button backBtn;
     protected final Label xCandyOLbl;
     protected final Label letsPlayLbl;
     protected final Label ticTacToeLbl;
@@ -185,6 +186,6 @@ public  class SignInViewBase extends Pane {
         getChildren().add(xCandyOLbl);
         getChildren().add(letsPlayLbl);
         getChildren().add(ticTacToeLbl);
-
+        
     }
 }

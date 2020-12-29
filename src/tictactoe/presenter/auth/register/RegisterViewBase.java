@@ -18,13 +18,13 @@ public class RegisterViewBase extends Pane {
     protected final VBox signUpVBox;
     protected final Label singnUpLbl;
     protected final Label userNameLbl;
-    protected final TextField userNameTF;
+    protected TextField userNameTF;
     protected final Label passwordLbl;
-    protected final PasswordField passwordPF;
+    protected PasswordField passwordPF;
     protected final Label confirmPasswordLbl;
-    protected final PasswordField confirmPasswordPF;
-    protected  Button signUpBtn;
-    protected  Button signUpBackBtn;
+    protected PasswordField confirmPasswordPF;
+    protected Button signUpBtn;
+    protected Button signUpBackBtn;
     protected final Label xCandyOLbl;
     protected final Label letsPlayLbl;
     protected final Label ticTacToeLbl;
