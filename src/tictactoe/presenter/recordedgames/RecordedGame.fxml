@@ -28,11 +28,11 @@
                   <Insets top="10.0" />
                </VBox.margin>
             </Label>
-            <TableView prefHeight="200.0" prefWidth="200.0">
+            <TableView fx:id="recordedGamestTV" prefHeight="200.0" prefWidth="200.0">
               <columns>
-                <TableColumn fx:id="player1" prefWidth="107.0" text="player" />
-                <TableColumn fx:id="player2" prefWidth="94.0" text="player2" />
-                  <TableColumn fx:id="result" prefWidth="78.0" text="result" />
+                <TableColumn fx:id="player1RecordedGameTC" prefWidth="107.0" text="player" />
+                <TableColumn fx:id="player2RecordedGameTC" prefWidth="94.0" text="player2" />
+                  <TableColumn fx:id="resultRecordedGameTC" prefWidth="78.0" text="result" />
               </columns>
             </TableView>
             <Button fx:id="showbtn" mnemonicParsing="false" prefHeight="25.0" prefWidth="303.0" style="-fx-background-color: #00B8D0;" text="show" textFill="WHITE">
@@ -40,7 +40,7 @@
                   <Font name="Cooper Black" size="20.0" />
                </font>
             </Button>
-            <Button fx:id="backbtn" layoutX="20.0" layoutY="285.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="95.0" style="-fx-background-color: #00B8D0;" text="Back&gt;" textFill="WHITE">
+            <Button fx:id="backbtn" alignment="BOTTOM_RIGHT" layoutX="20.0" layoutY="285.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="95.0" style="-fx-background-color: #00B8D0;" text="Back&gt;" textFill="WHITE">
                <font>
                   <Font name="Cooper Black" size="20.0" />
                </font>

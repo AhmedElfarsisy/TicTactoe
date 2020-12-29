@@ -5,6 +5,7 @@
  */
 package tictactoe;
 
+import java.io.File;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -14,6 +15,7 @@ import tictactoe.helper.BaseController;
 import tictactoe.presenter.home.HomeController;
 import tictactoe.presenter.home.HomeViewBase;
 import tictactoe.presenter.options.OptionsController;
+import tictactoe.repository.GameDao;
 
 /**
  *
@@ -33,10 +35,10 @@ public class TicTacToe extends Application {
 
         stage.setResizable(false);
         //Set Home Screen as the starting scene
-
         Scene scene = new Scene((new HomeController()).getHomeView());
         stage.setScene(scene);
         stage.show();
+        createGameFile();
   
     }
 
@@ -52,4 +54,15 @@ public class TicTacToe extends Application {
         stage.setScene(scene);
         stage.show();
     }
+
+    private void createGameFile() {
+        GameDao gameDao=new GameDao(); 
+        gameDao.createGameFile();
+        gameDao.createRecordGameFile();
+        gameDao.addDummyData();
+        gameDao.writeGame();
+        
+    }
+
+  
 }

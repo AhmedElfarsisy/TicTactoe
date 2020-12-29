@@ -11,18 +11,19 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import tictactoe.helper.Constants;
+import tictactoe.repository.models.Game;
 
-public class RecordedGameBase extends Pane {
+public  class RecordedGameBase extends Pane {
 
     protected final ImageView backgroundIV;
     protected final VBox vBox;
     protected final Label label;
-    protected final TableView tableView;
-    protected final TableColumn player1;
-    protected final TableColumn player2;
-    protected final TableColumn result;
-    protected final Button showbtn;
-    protected final Button backbtn;
+    protected  TableView recordedGamestTV;
+    protected  TableColumn<Game,String> player1RecordedGameTC;
+    protected  TableColumn<Game,String> player2RecordedGameTC;
+    protected  TableColumn<Game,String> resultRecordedGameTC;
+    protected  Button showbtn;
+    protected  Button backbtn;
     protected final Label label0;
     protected final Label label1;
     protected final Label label2;
@@ -32,10 +33,10 @@ public class RecordedGameBase extends Pane {
         backgroundIV = new ImageView();
         vBox = new VBox();
         label = new Label();
-        tableView = new TableView();
-        player1 = new TableColumn();
-        player2 = new TableColumn();
-        result = new TableColumn();
+        recordedGamestTV = new TableView();
+        player1RecordedGameTC = new TableColumn();
+        player2RecordedGameTC = new TableColumn();
+        resultRecordedGameTC = new TableColumn();
         showbtn = new Button();
         backbtn = new Button();
         label0 = new Label();
@@ -53,8 +54,7 @@ public class RecordedGameBase extends Pane {
         backgroundIV.setFitHeight(400.0);
         backgroundIV.setFitWidth(300.0);
         backgroundIV.setPickOnBounds(true);
-        backgroundIV.setImage(new Image(getClass().getResourceAsStream(Constants.BACKGROUND)));
-
+        backgroundIV.setImage(new Image(getClass().getResource(Constants.BACKGROUND).toExternalForm()));
 
         vBox.setLayoutX(300.0);
         vBox.setPrefHeight(400.0);
@@ -71,18 +71,18 @@ public class RecordedGameBase extends Pane {
         label.setFont(new Font("Cooper Black", 30.0));
         VBox.setMargin(label, new Insets(10.0, 0.0, 0.0, 0.0));
 
-        tableView.setPrefHeight(200.0);
-        tableView.setPrefWidth(200.0);
-       
-        player1.setPrefWidth(107.0);
-        player1.setText("player1");
-        
-        player2.setPrefWidth(94.0);
-        player2.setText("player2");
+        recordedGamestTV.setPrefHeight(200.0);
+        recordedGamestTV.setPrefWidth(200.0);
 
-        result.setPrefWidth(78.0);
-        result.setText("result");
-        
+        player1RecordedGameTC.setPrefWidth(107.0);
+        player1RecordedGameTC.setText("player");
+
+        player2RecordedGameTC.setPrefWidth(94.0);
+        player2RecordedGameTC.setText("player2");
+
+        resultRecordedGameTC.setPrefWidth(78.0);
+        resultRecordedGameTC.setText("result");
+
         showbtn.setMnemonicParsing(false);
         showbtn.setPrefHeight(25.0);
         showbtn.setPrefWidth(303.0);
@@ -91,6 +91,7 @@ public class RecordedGameBase extends Pane {
         showbtn.setTextFill(javafx.scene.paint.Color.WHITE);
         showbtn.setFont(new Font("Cooper Black", 20.0));
 
+        backbtn.setAlignment(javafx.geometry.Pos.BOTTOM_RIGHT);
         backbtn.setLayoutX(20.0);
         backbtn.setLayoutY(285.0);
         backbtn.setMnemonicParsing(false);
@@ -135,10 +136,10 @@ public class RecordedGameBase extends Pane {
 
         getChildren().add(backgroundIV);
         vBox.getChildren().add(label);
-        tableView.getColumns().add(player1);
-        tableView.getColumns().add(player2);
-        tableView.getColumns().add(result);
-        vBox.getChildren().add(tableView);
+        recordedGamestTV.getColumns().add(player1RecordedGameTC);
+        recordedGamestTV.getColumns().add(player2RecordedGameTC);
+        recordedGamestTV.getColumns().add(resultRecordedGameTC);
+        vBox.getChildren().add(recordedGamestTV);
         vBox.getChildren().add(showbtn);
         vBox.getChildren().add(backbtn);
         getChildren().add(vBox);

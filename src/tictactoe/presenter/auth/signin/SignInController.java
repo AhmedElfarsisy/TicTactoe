@@ -27,7 +27,7 @@ public class SignInController extends BaseController implements Initializable {
         //4 - Set viewBase -> Parent = currentView -> Child
         viewBase = signInView;
         //Go to available  Player  screen 
-        signInView.loginBtn.setOnAction((event) -> {  /*Navigator.goToAvailable ();*/  Navigator.goToGame();});
+        signInView.loginBtn.setOnAction((event) -> {  /*Navigator.goToAvailable ();*/  Navigator.goToAvailablePlayer();});
         //Go to register  screen
         signInView.signUpHP.setOnAction((event) -> {Navigator.goToRegister();});
         //Go back to home 

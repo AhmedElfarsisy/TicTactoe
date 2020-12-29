@@ -14,5 +14,10 @@ public class Constants {
     //Background Path in the app 
     public static String BACKGROUND = "/tictactoe/resource/images/background.jpg";
 
+    public static String getFileDirectory() {
+        String fileDirectroy = System.getProperty("user.dir");
+        fileDirectroy += "//XCandyO//";
+        return fileDirectroy;
+    }
 
 }
