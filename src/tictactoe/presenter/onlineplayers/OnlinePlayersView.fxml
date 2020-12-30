@@ -33,14 +33,6 @@
                   <Font name="Cooper Black" size="20.0" />
                </font>
             </Button>
-            <Button fx:id="backbtn" layoutX="20.0" layoutY="285.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="95.0" style="-fx-background-color: #00B8D0;" text="Back&gt;" textFill="WHITE">
-               <font>
-                  <Font name="Cooper Black" size="20.0" />
-               </font>
-               <VBox.margin>
-                  <Insets left="185.0" />
-               </VBox.margin>
-            </Button>
          </children>
          <padding>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -61,5 +53,10 @@
             <Font name="Cooper Black" size="30.0" />
          </font>
       </Label>
+      <Button fx:id="backBtn" layoutX="500.0" layoutY="350.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" style="-fx-background-color: white;" text="back&gt;" textAlignment="RIGHT" textFill="#00b8d0">
+         <font>
+            <Font name="Cooper Black" size="20.0" />
+         </font>
+      </Button>
    </children>
 </Pane>

@@ -11,29 +11,29 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import tictactoe.helper.Constants;
 
-public class OnlinePlayersBase extends Pane {
+public class OnlinePlayersViewBase extends Pane {
 
     protected final ImageView backgroundIV;
     protected final VBox vBox;
     protected final Label playerLbl;
     protected final ListView LV;
     protected final Button asktoplaybtn;
-    protected final Button backbtn;
     protected final Label label;
     protected final Label label0;
     protected final Label label1;
+    protected final Button backBtn;
 
-    public OnlinePlayersBase() {
+    public OnlinePlayersViewBase() {
 
         backgroundIV = new ImageView();
         vBox = new VBox();
         playerLbl = new Label();
         LV = new ListView();
         asktoplaybtn = new Button();
-        backbtn = new Button();
         label = new Label();
         label0 = new Label();
         label1 = new Label();
+        backBtn = new Button();
 
         setMaxHeight(USE_PREF_SIZE);
         setMaxWidth(USE_PREF_SIZE);
@@ -73,17 +73,6 @@ public class OnlinePlayersBase extends Pane {
         asktoplaybtn.setText("Ask to play");
         asktoplaybtn.setTextFill(javafx.scene.paint.Color.WHITE);
         asktoplaybtn.setFont(new Font("Cooper Black", 20.0));
-
-        backbtn.setLayoutX(20.0);
-        backbtn.setLayoutY(285.0);
-        backbtn.setMnemonicParsing(false);
-        backbtn.setPrefHeight(38.0);
-        backbtn.setPrefWidth(95.0);
-        backbtn.setStyle("-fx-background-color: #00B8D0;");
-        backbtn.setText("Back>");
-        backbtn.setTextFill(javafx.scene.paint.Color.WHITE);
-        backbtn.setFont(new Font("Cooper Black", 20.0));
-        VBox.setMargin(backbtn, new Insets(0.0, 0.0, 0.0, 185.0));
         vBox.setPadding(new Insets(10.0));
 
         label.setAlignment(javafx.geometry.Pos.CENTER);
@@ -101,7 +90,7 @@ public class OnlinePlayersBase extends Pane {
         label0.setLayoutY(145.0);
         label0.setPrefHeight(17.0);
         label0.setPrefWidth(293.0);
-        label0.setText("Let �s play ");
+        label0.setText("Let ’s play ");
         label0.setTextAlignment(javafx.scene.text.TextAlignment.CENTER);
         label0.setTextFill(javafx.scene.paint.Color.valueOf("#00b8d0"));
         label0.setFont(new Font("Cooper Black", 20.0));
@@ -116,15 +105,26 @@ public class OnlinePlayersBase extends Pane {
         label1.setTextFill(javafx.scene.paint.Color.valueOf("#00b8d0"));
         label1.setFont(new Font("Cooper Black", 30.0));
 
+        backBtn.setLayoutX(500.0);
+        backBtn.setLayoutY(350.0);
+        backBtn.setMnemonicParsing(false);
+        backBtn.setPrefHeight(50.0);
+        backBtn.setPrefWidth(100.0);
+        backBtn.setStyle("-fx-background-color: white;");
+        backBtn.setText("back>");
+        backBtn.setTextAlignment(javafx.scene.text.TextAlignment.RIGHT);
+        backBtn.setTextFill(javafx.scene.paint.Color.valueOf("#00b8d0"));
+        backBtn.setFont(new Font("Cooper Black", 20.0));
+
         getChildren().add(backgroundIV);
         vBox.getChildren().add(playerLbl);
         vBox.getChildren().add(LV);
         vBox.getChildren().add(asktoplaybtn);
-        vBox.getChildren().add(backbtn);
         getChildren().add(vBox);
         getChildren().add(label);
         getChildren().add(label0);
         getChildren().add(label1);
+        getChildren().add(backBtn);
 
     }
 }

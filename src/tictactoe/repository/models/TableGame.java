@@ -6,20 +6,28 @@
 package tictactoe.repository.models;
 
 import java.io.Serializable;
+import tictactoe.model.Game;
 
 /**
  *
  * @author A.Elfarsisy
  */
-public class Game implements Serializable{
+public class TableGame implements Serializable{
     String PlayerOneName; 
     String PlayerTwoName; 
     String GameState; 
+    
 
-    public Game(String PlayerOneName, String PlayerTwoName, String GameState) {
+    public TableGame(String PlayerOneName, String PlayerTwoName, String GameState) {
         this.PlayerOneName = PlayerOneName;
         this.PlayerTwoName = PlayerTwoName;
         this.GameState = GameState;
+    }
+    public TableGame(Game game){
+        this.PlayerOneName=game.getPlayerName(0);
+        this.PlayerTwoName=game.getPlayerName(1); 
+        this.GameState=game.getWinner()==0 ?"win":"lose";
+        
     }
 
     public String getPlayerOneName() {

@@ -14,10 +14,8 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import tictactoe.helper.Constants;
-import tictactoe.repository.models.Game;
+import tictactoe.model.Game;
 import tictactoe.repository.models.Player;
 
 /**
@@ -26,20 +24,19 @@ import tictactoe.repository.models.Player;
  */
 public class GameDao {
 
-    Game game;
-    Player player1;
-    Player player2;
-    Player player;
     File gameFile;
     ArrayList<Game> gamesList;
     File[] listFiles;
+    private static GameDao shared;
 
-    public GameDao() {
-        System.out.println("Dao Constratctor");
-        player1 = new Player("Ahmed Elfarsisy", 50);
-        player2 = new Player("Yassmin Ghazy", 160);
-        player = new Player("Mostfa", 150);
+    private GameDao() {
+    }
 
+    public static GameDao getInstance() {
+        if (shared == null) {
+            shared = new GameDao();
+        }
+        return shared;
     }
 
     public void createGameFile() {
@@ -48,15 +45,14 @@ public class GameDao {
         file.mkdir();
     }
 
-    public void createRecordGameFile() {
+    public void createRecordGameFile(String playerName) {
         try {
-            System.out.println("create Record game file");
             Date date = new Date();
             long time = date.getTime();
             //Uniqu folder Name for player
-            String gamePlayerName =player1.getName();
+
             //Create directory called XCandyO insind it you can find players directories
-            File playerDirectory = new File(Constants.getFileDirectory(), gamePlayerName);
+            File playerDirectory = new File(Constants.getFileDirectory(), playerName);
             playerDirectory.mkdir();
             playerDirectory.getAbsolutePath();
             //Unique file  name for game with it date the file inside the player name 
@@ -68,13 +64,13 @@ public class GameDao {
 
     }
 
-    public void writeGame() {
+    public void writeGame(Object object) {
         try {
             System.out.println("Write Games");
             //String gameName = gameFile.getName();
             FileOutputStream fos = new FileOutputStream(gameFile);
             ObjectOutputStream objectOutStream = new ObjectOutputStream(fos);
-            objectOutStream.writeObject(game);
+            objectOutStream.writeObject(object);
             objectOutStream.close();
         } catch (FileNotFoundException ex) {
             ex.printStackTrace();
@@ -84,47 +80,32 @@ public class GameDao {
 
     }
 
-    public void getRecordedGames() {
-        System.out.println("get Record Games");
-        String gamePlayerName;
-        gamePlayerName = player1.getName();
+    public ArrayList<Game> readGamesFromFiles(String gamePlayerName) {
         File file = new File(Constants.getFileDirectory(), gamePlayerName);
+        gamesList = new ArrayList<>();
         if (file.exists()) {
             listFiles = file.listFiles();
-        }
+            for (File f : listFiles) {
+                try {
+                    FileInputStream fos = new FileInputStream(f);
+                    ObjectInputStream objectOutStream = new ObjectInputStream(fos);
+                    Game gameObject = (Game) objectOutStream.readObject();
+                    gamesList.add(gameObject);
+                    objectOutStream.close();
+                } catch (FileNotFoundException ex) {
+                    ex.printStackTrace();
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                } catch (ClassNotFoundException ex) {
+                    ex.printStackTrace();
+                }
 
-    }
-
-    public ArrayList<Game> readGamesFromFiles() {
-        System.out.println("Read recorded games");
-        gamesList = new ArrayList<>();
-
-        for (File f : listFiles) {
-            try {
-                //      String gameName = gameFile.getName();
-                FileInputStream fos = new FileInputStream(f);
-                ObjectInputStream objectOutStream = new ObjectInputStream(fos);
-                Game gameObject = (Game) objectOutStream.readObject();
-                gamesList.add(gameObject);
-                objectOutStream.close();
-            } catch (FileNotFoundException ex) {
-                ex.printStackTrace();
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            } catch (ClassNotFoundException ex) {
-                ex.printStackTrace();
             }
 
         }
-       
-            return gamesList; 
-        
-    }
 
-    public void addDummyData() {
-        System.out.println("Add dummy data");
-      
-        game = new Game(player1.getName(), player2.getName(), "win");
+        return gamesList;
+
     }
 
 }

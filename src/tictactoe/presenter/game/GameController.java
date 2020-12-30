@@ -81,9 +81,9 @@ public class GameController extends BaseController implements Initializable {
     
     private void setActionHandler(){
         
-        for(Integer x = 0; x < 3; x++){
-            for(Integer y = 0; y < 3; y++){
-               gridButtons[x][y].setId(x.toString() + y.toString());
+        for(int x = 0; x < 3; x++){
+            for(int y = 0; y < 3; y++){
+               gridButtons[x][y].setId(x+""+y);
                 (gridButtons[x][y]).setOnAction((ActionEvent event) -> {
                 Button btn = (Button) event.getSource();
                 btn.setText(game.getPlayerSymbol(currentPlayer));

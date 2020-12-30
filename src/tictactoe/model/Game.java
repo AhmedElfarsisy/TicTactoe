@@ -5,11 +5,13 @@
  */
 package tictactoe.model;
 
+import java.io.Serializable;
+
 /**
  *
  * @author yasmineghazy
  */
-public class Game {
+public class Game implements Serializable{
     
     //MARK: - Properties    
     private Player [] players;

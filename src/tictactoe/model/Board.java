@@ -5,12 +5,14 @@
  */
 package tictactoe.model;
 
+import java.io.Serializable;
+
 /**
  *
  * @author yasmineghazy
  */
 
-public class Board{
+public class Board implements Serializable{
     
     //MARK: - Properties
     private String [][] tiles;
@@ -133,7 +135,7 @@ public class Board{
                 if(isEqual(col,row,symbol)){ //row = 1 , 2, 3 col = 0
                     nRow++;  
                     if(nRow == 2){ 
-                        attackMove = getEmptyColMove(row); break;
+                        attackMove = getEmptyColMove(col); break;
                     }
                 }  
             }

@@ -5,30 +5,12 @@
  */
 package tictactoe;
 
-import static com.sun.javafx.PlatformUtil.isEmbedded;
-import java.io.IOException;
-import java.util.TimerTask;
-import java.util.concurrent.TimeUnit;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javafx.animation.FadeTransition;
 import javafx.application.Application;
-import javafx.application.Platform;
-import javafx.application.Preloader.StateChangeNotification;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
-import javafx.util.Duration;
 import tictactoe.helper.BaseController;
 import tictactoe.helper.Constants;
 import tictactoe.presenter.home.HomeController;
-import tictactoe.presenter.spalsh.SplashController;
-import tictactoe.repository.GameDao;
 
 /**
  *
@@ -45,11 +27,9 @@ public class TicTacToe extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         this.stage = stage;
-
         stage.setResizable(false);
         Scene scene = new Scene(new HomeController().getView());
         scene.getStylesheets().add(getClass().getResource(Constants.STYLE).toString());
-        
         stage.setScene(scene);
         stage.show();
 
@@ -78,5 +58,4 @@ public class TicTacToe extends Application {
 //        gameDao.writeGame();
 //        
 //    }
-
 
