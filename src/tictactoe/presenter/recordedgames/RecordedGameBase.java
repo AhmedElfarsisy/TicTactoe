@@ -13,20 +13,21 @@ import javafx.scene.text.Font;
 import tictactoe.helper.Constants;
 import tictactoe.repository.models.Game;
 
-public  class RecordedGameBase extends Pane {
+public class RecordedGameBase extends Pane {
 
     protected final ImageView backgroundIV;
     protected final VBox vBox;
     protected final Label label;
-    protected  TableView recordedGamestTV;
-    protected  TableColumn<Game,String> player1RecordedGameTC;
-    protected  TableColumn<Game,String> player2RecordedGameTC;
-    protected  TableColumn<Game,String> resultRecordedGameTC;
-    protected  Button showbtn;
-    protected  Button backbtn;
+    protected final TableView recordedGamestTV;
+    protected final TableColumn<Game,String> player1RecordedGameTC;
+    protected final TableColumn<Game,String>  player2RecordedGameTC;
+    protected final TableColumn<Game,String> resultRecordedGameTC;
+    protected final TableColumn<Game,String> resultRecordedGameTC1;
+    protected final Button showBtn;
     protected final Label label0;
     protected final Label label1;
     protected final Label label2;
+    protected final Button backBtn;
 
     public RecordedGameBase() {
 
@@ -37,11 +38,12 @@ public  class RecordedGameBase extends Pane {
         player1RecordedGameTC = new TableColumn();
         player2RecordedGameTC = new TableColumn();
         resultRecordedGameTC = new TableColumn();
-        showbtn = new Button();
-        backbtn = new Button();
+        resultRecordedGameTC1 = new TableColumn();
+        showBtn = new Button();
         label0 = new Label();
         label1 = new Label();
         label2 = new Label();
+        backBtn = new Button();
 
         setMaxHeight(USE_PREF_SIZE);
         setMaxWidth(USE_PREF_SIZE);
@@ -74,34 +76,25 @@ public  class RecordedGameBase extends Pane {
         recordedGamestTV.setPrefHeight(200.0);
         recordedGamestTV.setPrefWidth(200.0);
 
-        player1RecordedGameTC.setPrefWidth(107.0);
+        player1RecordedGameTC.setPrefWidth(70.0);
         player1RecordedGameTC.setText("player");
 
-        player2RecordedGameTC.setPrefWidth(94.0);
+        player2RecordedGameTC.setPrefWidth(70.0);
         player2RecordedGameTC.setText("player2");
 
-        resultRecordedGameTC.setPrefWidth(78.0);
+        resultRecordedGameTC.setPrefWidth(70.0);
         resultRecordedGameTC.setText("result");
 
-        showbtn.setMnemonicParsing(false);
-        showbtn.setPrefHeight(25.0);
-        showbtn.setPrefWidth(303.0);
-        showbtn.setStyle("-fx-background-color: #00B8D0;");
-        showbtn.setText("show");
-        showbtn.setTextFill(javafx.scene.paint.Color.WHITE);
-        showbtn.setFont(new Font("Cooper Black", 20.0));
+        resultRecordedGameTC1.setPrefWidth(70.0);
+        resultRecordedGameTC1.setText("Date");
 
-        backbtn.setAlignment(javafx.geometry.Pos.BOTTOM_RIGHT);
-        backbtn.setLayoutX(20.0);
-        backbtn.setLayoutY(285.0);
-        backbtn.setMnemonicParsing(false);
-        backbtn.setPrefHeight(38.0);
-        backbtn.setPrefWidth(95.0);
-        backbtn.setStyle("-fx-background-color: #00B8D0;");
-        backbtn.setText("Back>");
-        backbtn.setTextFill(javafx.scene.paint.Color.WHITE);
-        backbtn.setFont(new Font("Cooper Black", 20.0));
-        VBox.setMargin(backbtn, new Insets(0.0, 0.0, 0.0, 185.0));
+        showBtn.setMnemonicParsing(false);
+        showBtn.setPrefHeight(25.0);
+        showBtn.setPrefWidth(303.0);
+        showBtn.setStyle("-fx-background-color: #00B8D0;");
+        showBtn.setText("show");
+        showBtn.setTextFill(javafx.scene.paint.Color.WHITE);
+        showBtn.setFont(new Font("Cooper Black", 20.0));
         vBox.setPadding(new Insets(10.0));
 
         label0.setAlignment(javafx.geometry.Pos.CENTER);
@@ -119,7 +112,7 @@ public  class RecordedGameBase extends Pane {
         label1.setLayoutY(145.0);
         label1.setPrefHeight(17.0);
         label1.setPrefWidth(293.0);
-        label1.setText("Let �s play ");
+        label1.setText("Let ’s play ");
         label1.setTextAlignment(javafx.scene.text.TextAlignment.CENTER);
         label1.setTextFill(javafx.scene.paint.Color.valueOf("#00b8d0"));
         label1.setFont(new Font("Cooper Black", 20.0));
@@ -134,18 +127,30 @@ public  class RecordedGameBase extends Pane {
         label2.setTextFill(javafx.scene.paint.Color.valueOf("#00b8d0"));
         label2.setFont(new Font("Cooper Black", 30.0));
 
+        backBtn.setLayoutX(500.0);
+        backBtn.setLayoutY(350.0);
+        backBtn.setMnemonicParsing(false);
+        backBtn.setPrefHeight(50.0);
+        backBtn.setPrefWidth(100.0);
+        backBtn.setStyle("-fx-background-color: white;");
+        backBtn.setText("back>");
+        backBtn.setTextAlignment(javafx.scene.text.TextAlignment.RIGHT);
+        backBtn.setTextFill(javafx.scene.paint.Color.valueOf("#00b8d0"));
+        backBtn.setFont(new Font("Cooper Black", 20.0));
+
         getChildren().add(backgroundIV);
         vBox.getChildren().add(label);
         recordedGamestTV.getColumns().add(player1RecordedGameTC);
         recordedGamestTV.getColumns().add(player2RecordedGameTC);
         recordedGamestTV.getColumns().add(resultRecordedGameTC);
+        recordedGamestTV.getColumns().add(resultRecordedGameTC1);
         vBox.getChildren().add(recordedGamestTV);
-        vBox.getChildren().add(showbtn);
-        vBox.getChildren().add(backbtn);
+        vBox.getChildren().add(showBtn);
         getChildren().add(vBox);
         getChildren().add(label0);
         getChildren().add(label1);
         getChildren().add(label2);
+        getChildren().add(backBtn);
 
     }
 }

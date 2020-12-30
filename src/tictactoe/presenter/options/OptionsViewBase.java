@@ -10,19 +10,19 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import tictactoe.helper.Constants;
 
-public  class OptionsViewBase extends Pane {
+public class OptionsViewBase extends Pane {
 
     protected final ImageView backgroundIV;
     protected final VBox VBox;
     protected final Label homeLbl;
-    protected  Button recordedGamesBtn;
-    protected  Button themesBtn;
-    protected  Button soundOptionsBtn;
-    protected  Button levelsBtn;
-    protected  Button backOptionsBtn;
+    protected final Button recordedGamesBtn;
+    protected final Button themesBtn;
+    protected final Button soundOptionsBtn;
+    protected final Button levelsBtn;
     protected final Label gameNameLbl;
     protected final Label letUsPlayLbl;
     protected final Label ticTacToeLbl;
+    protected final Button backBtn;
 
     public OptionsViewBase() {
 
@@ -33,10 +33,10 @@ public  class OptionsViewBase extends Pane {
         themesBtn = new Button();
         soundOptionsBtn = new Button();
         levelsBtn = new Button();
-        backOptionsBtn = new Button();
         gameNameLbl = new Label();
         letUsPlayLbl = new Label();
         ticTacToeLbl = new Label();
+        backBtn = new Button();
 
         setMaxHeight(USE_PREF_SIZE);
         setMaxWidth(USE_PREF_SIZE);
@@ -98,13 +98,6 @@ public  class OptionsViewBase extends Pane {
         levelsBtn.setText("Levels");
         levelsBtn.setTextFill(javafx.scene.paint.Color.WHITE);
         levelsBtn.setFont(new Font("Cooper Black", 20.0));
-
-        backOptionsBtn.setMnemonicParsing(false);
-        backOptionsBtn.setStyle("-fx-background-color: #00B8D0;");
-        backOptionsBtn.setText("Back>");
-        backOptionsBtn.setTextFill(javafx.scene.paint.Color.WHITE);
-        VBox.setMargin(backOptionsBtn, new Insets(48.0, 0.0, 0.0, 230.0));
-        backOptionsBtn.setFont(new Font("Cooper Black", 10.0));
         VBox.setPadding(new Insets(10.0));
 
         gameNameLbl.setAlignment(javafx.geometry.Pos.CENTER);
@@ -137,17 +130,28 @@ public  class OptionsViewBase extends Pane {
         ticTacToeLbl.setTextFill(javafx.scene.paint.Color.valueOf("#00b8d0"));
         ticTacToeLbl.setFont(new Font("Cooper Black", 30.0));
 
+        backBtn.setLayoutX(500.0);
+        backBtn.setLayoutY(350.0);
+        backBtn.setMnemonicParsing(false);
+        backBtn.setPrefHeight(50.0);
+        backBtn.setPrefWidth(100.0);
+        backBtn.setStyle("-fx-background-color: white;");
+        backBtn.setText("back>");
+        backBtn.setTextAlignment(javafx.scene.text.TextAlignment.RIGHT);
+        backBtn.setTextFill(javafx.scene.paint.Color.valueOf("#00b8d0"));
+        backBtn.setFont(new Font("Cooper Black", 20.0));
+
         getChildren().add(backgroundIV);
         VBox.getChildren().add(homeLbl);
         VBox.getChildren().add(recordedGamesBtn);
         VBox.getChildren().add(themesBtn);
         VBox.getChildren().add(soundOptionsBtn);
         VBox.getChildren().add(levelsBtn);
-        VBox.getChildren().add(backOptionsBtn);
         getChildren().add(VBox);
         getChildren().add(gameNameLbl);
         getChildren().add(letUsPlayLbl);
         getChildren().add(ticTacToeLbl);
+        getChildren().add(backBtn);
 
     }
 }

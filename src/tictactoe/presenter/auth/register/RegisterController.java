@@ -10,9 +10,11 @@ import java.util.ResourceBundle;
 import java.util.regex.PatternSyntaxException;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
+import javafx.scene.layout.Pane;
 import tictactoe.helper.BaseController;
 import tictactoe.helper.Constants;
 import tictactoe.helper.Navigator;
+import tictactoe.model.PlayMode;
 
 /**
  * FXML Controller class
@@ -21,21 +23,20 @@ import tictactoe.helper.Navigator;
  */
 public class RegisterController extends BaseController implements Initializable {
 
-    private RegisterViewBase registerView;
     Alert userErr = new Alert(Alert.AlertType.WARNING);
+    private RegisterViewBase view;
 
     //Home Controller Constarctor 
     public RegisterController() {
         //create Register view
-        registerView = new RegisterViewBase();
-        //4 - Set viewBase -> Parent = currentView -> Child
-        viewBase = registerView;
+        view = new RegisterViewBase();
         //Go to avaliable  player list  Game screen
-        registerView.signUpBtn.setOnAction((event) -> {
+
+        view.signUpBtn.setOnAction((event) -> {
             /*go to player list*/ //case 1: user entered a value more than 20 or less than 3 for user name
-            String userName = registerView.userNameTF.getText();
-            String pass = registerView.passwordPF.getText();
-            String confPass = registerView.confirmPasswordPF.getText();
+            String userName = view.userNameTF.getText();
+            String pass = view.passwordPF.getText();
+            String confPass = view.confirmPasswordPF.getText();
 
             try {
                 if (!userName.matches(Constants.VALIDATION_REGEX_USER)) {
@@ -48,7 +49,7 @@ public class RegisterController extends BaseController implements Initializable 
                     userErr.setContentText("Password fields should have the same input");
                     userErr.show();
                 } else {
-                    Navigator.goToGame();
+                    Navigator.goToAvailablePlayer();
                 }
 
             } catch (PatternSyntaxException ex) {
@@ -58,18 +59,27 @@ public class RegisterController extends BaseController implements Initializable 
 
         });
         //Go to Home screen 
-        registerView.signUpBackBtn.setOnAction((event) -> {
+        view.backBtn.setOnAction((event) -> {
             Navigator.goToHome();
         });
         //Go to MultiPlayer Offline Game Page
-        registerView.signUpBackBtn.setOnAction((event) -> {
+        view.backBtn.setOnAction((event) -> {
             Navigator.goToLogin();
         });
+        
     }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+    } 
+    
+    
+        //MARK: - Implement BaseController method  
+    @Override
+    public Pane getView() {
+        //set super view
+        return view;
     }
-
+    
 }

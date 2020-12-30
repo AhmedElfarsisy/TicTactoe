@@ -10,19 +10,10 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tictactoe.presenter.auth.register.RegisterViewController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-<<<<<<< HEAD
-      <ImageView fitHeight="407.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../resource/images/background.jpg" />
-         </image>
-      </ImageView>
-      <VBox id="userNameTF" fx:id="signUpVBox" layoutX="300.0" layoutY="2.0" prefHeight="400.0" prefWidth="300.0" style="-fx-background-color: #ffffff;">
-=======
       <ImageView fitHeight="400.0" fitWidth="300.0" pickOnBounds="true" />
       <VBox id="userNameTF" fx:id="userNameTF" layoutX="300.0" layoutY="2.0" prefHeight="400.0" prefWidth="300.0" style="-fx-background-color: #ffffff;">
->>>>>>> e35f8d7ab410cb2ee88b4902b87baa9605cb4b4f
          <children>
             <Label id="signUpLbl" fx:id="singnUpLbl" prefHeight="59.0" prefWidth="300.0" text=" Sign up" textAlignment="JUSTIFY" textFill="#00b8d0">
                <opaqueInsets>
@@ -106,12 +97,12 @@
                   <Font name="Cooper Black" size="20.0" />
                </font>
             </Button>
-            <Button id="signUpBackBtn" fx:id="signUpBackBtn" mnemonicParsing="false" prefHeight="36.0" prefWidth="72.0" style="-fx-background-color: #ffffff;" text="Back&gt;" textFill="#00b8d0">
+            <Button fx:id="backBtn" mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" style="-fx-background-color: white;" text="back&gt;" textAlignment="RIGHT" textFill="#00b8d0">
                <font>
-                  <Font name="Cooper Black" size="16.0" />
+                  <Font name="Cooper Black" size="20.0" />
                </font>
                <VBox.margin>
-                  <Insets left="210.0" right="10.0" top="10.0" />
+                  <Insets left="200.0" top="50.0" />
                </VBox.margin>
             </Button>
          </children>

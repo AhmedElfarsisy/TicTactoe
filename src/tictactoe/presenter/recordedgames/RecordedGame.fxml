@@ -11,11 +11,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tictactoe.presenter.onlineplayers.OnlinePlayersController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tictactoe.presenter.onlineplayers.OnlinePlayersController">
    <children>
       <ImageView fx:id="backgroundIV" fitHeight="400.0" fitWidth="300.0" pickOnBounds="true">
          <image>
-            <Image url="@../../../../../Desktop/WhatsApp%20Image%202020-12-23%20at%202.53.51%20PM.jpeg" />
+            <Image url="@../../resource/images/background.jpg" />
          </image>
       </ImageView>
       <VBox layoutX="300.0" prefHeight="400.0" prefWidth="300.0" spacing="10.0" style="-fx-background-color: #FFFFFF;">
@@ -30,23 +30,16 @@
             </Label>
             <TableView fx:id="recordedGamestTV" prefHeight="200.0" prefWidth="200.0">
               <columns>
-                <TableColumn fx:id="player1RecordedGameTC" prefWidth="107.0" text="player" />
-                <TableColumn fx:id="player2RecordedGameTC" prefWidth="94.0" text="player2" />
-                  <TableColumn fx:id="resultRecordedGameTC" prefWidth="78.0" text="result" />
+                <TableColumn fx:id="player1RecordedGameTC" prefWidth="70.0" text="player" />
+                <TableColumn fx:id="player2RecordedGameTC" prefWidth="70.0" text="player2" />
+                  <TableColumn fx:id="resultRecordedGameTC" prefWidth="70.0" text="result" />
+                  <TableColumn fx:id="resultRecordedGameTC1" prefWidth="70.0" text="Date" />
               </columns>
             </TableView>
             <Button fx:id="showbtn" mnemonicParsing="false" prefHeight="25.0" prefWidth="303.0" style="-fx-background-color: #00B8D0;" text="show" textFill="WHITE">
                <font>
                   <Font name="Cooper Black" size="20.0" />
                </font>
-            </Button>
-            <Button fx:id="backbtn" alignment="BOTTOM_RIGHT" layoutX="20.0" layoutY="285.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="95.0" style="-fx-background-color: #00B8D0;" text="Back&gt;" textFill="WHITE">
-               <font>
-                  <Font name="Cooper Black" size="20.0" />
-               </font>
-               <VBox.margin>
-                  <Insets left="185.0" />
-               </VBox.margin>
             </Button>
          </children>
          <padding>
@@ -68,5 +61,10 @@
             <Font name="Cooper Black" size="30.0" />
          </font>
       </Label>
+      <Button fx:id="backBtn" layoutX="500.0" layoutY="350.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" style="-fx-background-color: white;" text="back&gt;" textAlignment="RIGHT" textFill="#00b8d0">
+         <font>
+            <Font name="Cooper Black" size="20.0" />
+         </font>
+      </Button>
    </children>
 </Pane>

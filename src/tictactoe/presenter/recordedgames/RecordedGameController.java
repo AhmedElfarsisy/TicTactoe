@@ -10,9 +10,9 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.Pane;
 import tictactoe.helper.BaseController;
 import tictactoe.helper.Navigator;
-import tictactoe.presenter.onlineplayers.OnlinePlayersBase;
 import tictactoe.repository.GameDao;
 import tictactoe.repository.models.Game;
 
@@ -23,45 +23,49 @@ import tictactoe.repository.models.Game;
  */
 public class RecordedGameController extends BaseController implements Initializable {
 
-    private RecordedGameBase rg;
+    private RecordedGameBase view;
     private GameDao gameDao;
     ArrayList<Game> gamesList;
 
     public RecordedGameController() {
 
         //create new view
-        rg = new RecordedGameBase();
+        view = new RecordedGameBase();
         //DAO Object 
         gameDao = new GameDao();
 
         gameDao.getRecordedGames();
         gamesList = gameDao.readGamesFromFiles();
         showGamesOnTable();
-       
-        //4 - Set viewBase -> Parent = currentView -> Child
-        viewBase = rg;
-        rg.backbtn.setOnAction((event) -> {
+
+        view.backBtn.setOnAction((event) -> {
             Navigator.goToOptions();
            
         });
 
-        rg.showbtn.setOnAction((event) -> {
+        view.showBtn.setOnAction((event) -> {
 
         });
-
+    
     }
-
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }
 
     private void showGamesOnTable() {
-        System.out.println("show table");
-        rg.recordedGamestTV.getItems().addAll(gamesList);
-        rg.player1RecordedGameTC.setCellValueFactory(new PropertyValueFactory<>("playerOneName"));
-        rg.player2RecordedGameTC.setCellValueFactory(new PropertyValueFactory<>("playerTwoName"));
-        rg.resultRecordedGameTC.setCellValueFactory(new PropertyValueFactory<>("gameState"));
+        view.recordedGamestTV.getItems().addAll(gamesList);
+        view.player1RecordedGameTC.setCellValueFactory(new PropertyValueFactory<>("playerOneName"));
+        view.player2RecordedGameTC.setCellValueFactory(new PropertyValueFactory<>("playerTwoName"));
+        view.resultRecordedGameTC.setCellValueFactory(new PropertyValueFactory<>("gameState"));
+    }
+ 
+    
+    //MARK: - Implement BaseController method  
+    @Override
+    public Pane getView() {
+        return view;
     }
 
 }

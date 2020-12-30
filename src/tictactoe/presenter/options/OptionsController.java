@@ -7,6 +7,7 @@ package tictactoe.presenter.options;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
+import javafx.scene.layout.Pane;
 
 import tictactoe.helper.BaseController;
 import tictactoe.helper.Navigator;
@@ -16,23 +17,24 @@ import tictactoe.helper.Navigator;
  * @author A.Elfarsisy
  */
 public class OptionsController extends BaseController implements Initializable{
-     private  OptionsViewBase optionsView;
+     private  OptionsViewBase view;
     
     //Options Controller Constarctor 
      public OptionsController() {
          //create Options view
-        optionsView = new OptionsViewBase();
-        //4 - Set viewBase -> Parent = currentView -> Child
-        viewBase = optionsView;
-        optionsView.backOptionsBtn.setOnAction((event) -> {Navigator.goToHome();});
-        optionsView.recordedGamesBtn.setOnAction((event) -> {Navigator.goToRecordedGame();});
+        view = new OptionsViewBase();
+        view.backBtn.setOnAction((event) -> {Navigator.goToHome();});
+        view.recordedGamesBtn.setOnAction((event) -> {Navigator.goToRecordedGame();});
     }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
     }
-     //Get Options View 
-    public OptionsViewBase getHomeView() {
-        return optionsView;
-    } 
+    
+    //MARK: - Implement BaseController method  
+    @Override
+    public Pane getView() {
+        //set super view
+        return view;
+    }
     
 }

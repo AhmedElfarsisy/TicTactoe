@@ -12,6 +12,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
 import tictactoe.helper.BaseController;
 import tictactoe.helper.Navigator;
 import tictactoe.presenter.game.GameViewBase;
@@ -21,26 +22,27 @@ import tictactoe.presenter.game.GameViewBase;
  *
  * @author Mostafa Abdalla
  */
-
-
 public class OnlinePlayersController extends BaseController implements Initializable {
 
-    
-
-    private OnlinePlayersBase op;
+    private OnlinePlayersBase view;
     
     public OnlinePlayersController(){
     //create new view
-        op= new OnlinePlayersBase();
+        view = new OnlinePlayersBase();
         
-        //4 - Set viewBase -> Parent = currentView -> Child
-        viewBase = op;
-        op.backbtn.setOnAction((event) -> {Navigator.goToHome();});
+        view.backbtn.setOnAction((event) -> {Navigator.goToHome();});
     
     }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
+    
+        //MARK: - Implement BaseController method  
+    @Override
+    public Pane getView() {
+        //set super view
+        return view;
+    }
     
 }

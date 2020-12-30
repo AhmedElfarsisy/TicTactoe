@@ -6,6 +6,10 @@
 package tictactoe.helper;
 
 import tictactoe.TicTacToe;
+import tictactoe.model.Game;
+import tictactoe.model.PlayMode;
+import tictactoe.model.Player;
+import tictactoe.model.Symbol;
 import tictactoe.presenter.auth.register.RegisterController;
 import tictactoe.presenter.auth.signin.SignInController;
 import tictactoe.presenter.game.GameController;
@@ -21,9 +25,29 @@ import tictactoe.presenter.options.OptionsController;
  * @author yasmineghazy
  */
 public class Navigator {
-    public static void goToGame(){
-       TicTacToe.changeScene(new GameController());
+    
+    public static void goToGame(PlayMode mode){
+        Game g;
+        Player player1;
+        Player player2;
+        
+        if(mode == PlayMode.SINGLE){//Play with Computer
+            player1 = new Player("You", Symbol.X);
+            player2 = new Player("Computer", Symbol.O);  
+        }else{
+            player1 = new Player("Player 1", Symbol.X);
+            player2 = new Player("Player 2", Symbol.O); 
+        }
+        
+         Player [] players = {player1, player2};
+         g = new Game(players,mode);
+        
+         TicTacToe.changeScene(new GameController(g));
     }
+    
+    
+    
+    
     
     public static void goToHome(){
         TicTacToe.changeScene(new HomeController());

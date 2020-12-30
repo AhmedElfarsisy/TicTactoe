@@ -3,6 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
@@ -20,7 +21,10 @@
          <children>
             <StackPane prefHeight="150.0" prefWidth="200.0">
                <children>
-                  <ImageView fx:id="backgroundIV" fitHeight="400.0" fitWidth="300.0" pickOnBounds="true" />
+                  <ImageView fx:id="backgroundIV" fitHeight="400.0" fitWidth="300.0" pickOnBounds="true">
+                     <image>
+                        <Image url="@../../resource/images/background.jpg" />
+                     </image></ImageView>
                   <BorderPane prefHeight="200.0" prefWidth="200.0">
                      <top>
                         <Label fx:id="gameNameLbl" alignment="CENTER" prefHeight="50.0" prefWidth="293.0" text="X CANDY O" textAlignment="CENTER" textFill="#00b8d0" BorderPane.alignment="CENTER">
@@ -47,17 +51,17 @@
                            <children>
                               <Label fx:id="playersLbl" alignment="CENTER" prefHeight="17.0" prefWidth="293.0" text="Players" textAlignment="CENTER" textFill="#00b8d0" GridPane.rowIndex="1">
                                  <font>
-                                    <Font name="Cooper Black" size="20.0" />
+                                    <Font size="18.0" />
                                  </font>
                               </Label>
-                              <Label alignment="CENTER" prefHeight="17.0" prefWidth="293.0" text="You" textAlignment="CENTER" textFill="#00b8d0" GridPane.columnIndex="1">
+                              <Label fx:id="firstPlayerNameLbl" alignment="CENTER" prefHeight="17.0" prefWidth="293.0" text="You" textAlignment="CENTER" textFill="#00b8d0" GridPane.columnIndex="1">
                                  <font>
-                                    <Font size="20.0" />
+                                    <Font size="18.0" />
                                  </font>
                               </Label>
                               <Label fx:id="secondPlayerNameLbl" alignment="CENTER" prefHeight="17.0" prefWidth="293.0" text="Computer" textAlignment="CENTER" textFill="#00b8d0" GridPane.columnIndex="2">
                                  <font>
-                                    <Font size="20.0" />
+                                    <Font size="18.0" />
                                  </font>
                               </Label>
                               <Label fx:id="firstPlayerCharLbl" alignment="CENTER" prefHeight="17.0" prefWidth="293.0" text="X" textAlignment="CENTER" textFill="#00b8d0" GridPane.columnIndex="1" GridPane.rowIndex="1">
@@ -72,7 +76,7 @@
                               </Label>
                               <Label fx:id="scoreLbl" alignment="CENTER" prefHeight="17.0" prefWidth="293.0" text="Score" textAlignment="CENTER" textFill="#00b8d0" GridPane.rowIndex="2">
                                  <font>
-                                    <Font name="Cooper Black" size="20.0" />
+                                    <Font size="18.0" />
                                  </font>
                               </Label>
                               <Label fx:id="firstPlayerScoreLbl" alignment="CENTER" prefHeight="17.0" prefWidth="293.0" text="0" textAlignment="CENTER" textFill="#00b8d0" GridPane.columnIndex="1" GridPane.rowIndex="2">
@@ -128,47 +132,47 @@
                                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                 </rowConstraints>
                                  <children>
-                                    <Button fx:id="board1Btn" mnemonicParsing="false" prefHeight="25.0" prefWidth="303.0" style="-fx-background-color: #00B8D0;" textFill="WHITE">
+                                    <Button fx:id="boardBtn00" mnemonicParsing="false" prefHeight="25.0" prefWidth="303.0" style="-fx-background-color: #00B8D0;" textFill="WHITE">
                                        <font>
                                           <Font name="Cooper Black" size="20.0" />
                                        </font>
                                     </Button>
-                                    <Button fx:id="board2Btn" mnemonicParsing="false" prefHeight="25.0" prefWidth="303.0" style="-fx-background-color: #00B8D0;" textFill="WHITE" GridPane.columnIndex="1">
+                                    <Button fx:id="boardBtn01" mnemonicParsing="false" prefHeight="25.0" prefWidth="303.0" style="-fx-background-color: #00B8D0;" textFill="WHITE" GridPane.columnIndex="1">
                                        <font>
                                           <Font name="Cooper Black" size="20.0" />
                                        </font>
                                     </Button>
-                                    <Button fx:id="board3Btn" mnemonicParsing="false" prefHeight="25.0" prefWidth="303.0" style="-fx-background-color: #00B8D0;" textFill="WHITE" GridPane.columnIndex="2">
+                                    <Button fx:id="boardBtn02" mnemonicParsing="false" prefHeight="25.0" prefWidth="303.0" style="-fx-background-color: #00B8D0;" textFill="WHITE" GridPane.columnIndex="2">
                                        <font>
                                           <Font name="Cooper Black" size="20.0" />
                                        </font>
                                     </Button>
-                                    <Button fx:id="board4Btn" mnemonicParsing="false" prefHeight="25.0" prefWidth="303.0" style="-fx-background-color: #00B8D0;" textFill="WHITE" GridPane.rowIndex="1">
+                                    <Button fx:id="boardBtn10" mnemonicParsing="false" prefHeight="25.0" prefWidth="303.0" style="-fx-background-color: #00B8D0;" textFill="WHITE" GridPane.rowIndex="1">
                                        <font>
                                           <Font name="Cooper Black" size="20.0" />
                                        </font>
                                     </Button>
-                                    <Button fx:id="board5Btn" mnemonicParsing="false" prefHeight="25.0" prefWidth="303.0" style="-fx-background-color: #00B8D0;" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                    <Button fx:id="boardBtn11" mnemonicParsing="false" prefHeight="25.0" prefWidth="303.0" style="-fx-background-color: #00B8D0;" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                        <font>
                                           <Font name="Cooper Black" size="20.0" />
                                        </font>
                                     </Button>
-                                    <Button fx:id="board6Btn" mnemonicParsing="false" prefHeight="25.0" prefWidth="303.0" style="-fx-background-color: #00B8D0;" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                    <Button fx:id="boardBtn12" mnemonicParsing="false" prefHeight="25.0" prefWidth="303.0" style="-fx-background-color: #00B8D0;" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="1">
                                        <font>
                                           <Font name="Cooper Black" size="20.0" />
                                        </font>
                                     </Button>
-                                    <Button fx:id="board7Btn" mnemonicParsing="false" prefHeight="25.0" prefWidth="303.0" style="-fx-background-color: #00B8D0;" textFill="WHITE" GridPane.rowIndex="2">
+                                    <Button fx:id="board20Btn" mnemonicParsing="false" prefHeight="25.0" prefWidth="303.0" style="-fx-background-color: #00B8D0;" textFill="WHITE" GridPane.rowIndex="2">
                                        <font>
                                           <Font name="Cooper Black" size="20.0" />
                                        </font>
                                     </Button>
-                                    <Button fx:id="board8Btn" mnemonicParsing="false" prefHeight="25.0" prefWidth="303.0" style="-fx-background-color: #00B8D0;" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                    <Button fx:id="boardBtn21" mnemonicParsing="false" prefHeight="25.0" prefWidth="303.0" style="-fx-background-color: #00B8D0;" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="2">
                                        <font>
                                           <Font name="Cooper Black" size="20.0" />
                                        </font>
                                     </Button>
-                                    <Button fx:id="board9Btn" mnemonicParsing="false" prefHeight="25.0" prefWidth="303.0" style="-fx-background-color: #00B8D0;" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                                    <Button fx:id="boardBtn22" mnemonicParsing="false" prefHeight="25.0" prefWidth="303.0" style="-fx-background-color: #00B8D0;" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="2">
                                        <font>
                                           <Font name="Cooper Black" size="20.0" />
                                        </font>
@@ -204,21 +208,24 @@
                         <AnchorPane prefHeight="240.0" prefWidth="1.0" BorderPane.alignment="CENTER" />
                      </left>
                   </BorderPane>
-                  <Button fx:id="backBtn" mnemonicParsing="false" prefHeight="40.0" prefWidth="82.0" style="-fx-background-color: white;" text="back&gt;" textAlignment="RIGHT" textFill="#00b8d0">
+                  <Button fx:id="backBtn" mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" style="-fx-background-color: white;" text="back&gt;" textAlignment="RIGHT" textFill="#00b8d0">
                      <font>
                         <Font name="Cooper Black" size="20.0" />
                      </font>
+                     <VBox.margin>
+                        <Insets right="-10.0" />
+                     </VBox.margin>
                   </Button>
                </children>
                <padding>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                  <Insets left="10.0" right="10.0" top="10.0" />
                </padding>
             </VBox>
          </children>
       </HBox>
    </center>
    <top>
-      <AnchorPane prefHeight="2.0" prefWidth="567.0" BorderPane.alignment="CENTER" />
+      <AnchorPane prefHeight="0.0" prefWidth="567.0" BorderPane.alignment="CENTER" />
    </top>
    <left>
       <AnchorPane prefHeight="400.0" prefWidth="0.0" BorderPane.alignment="CENTER" />

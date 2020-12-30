@@ -1,6 +1,5 @@
 package tictactoe.presenter.auth.signin;
 
-
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
@@ -15,20 +14,20 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import tictactoe.helper.Constants;
 
-public  class SignInViewBase extends Pane {
+public class SignInViewBase extends Pane {
 
     protected final ImageView imageView;
     protected final VBox vBox;
     protected final Label loginLbl;
     protected final Label userNameLbl;
-    protected TextField userNameTF;
+    protected final TextField userNameTF;
     protected final Label passwordLbl;
-    protected PasswordField passwordPF;
-    protected Button loginBtn;
+    protected final PasswordField passwordPF;
+    protected final Button loginBtn;
     protected final HBox hBox;
     protected final Label notHaveAccountLbl;
-    protected Hyperlink signUpHP;
-    protected Button backBtn;
+    protected final Hyperlink signUpHP;
+    protected final Button backBtn1;
     protected final Label xCandyOLbl;
     protected final Label letsPlayLbl;
     protected final Label ticTacToeLbl;
@@ -46,7 +45,7 @@ public  class SignInViewBase extends Pane {
         hBox = new HBox();
         notHaveAccountLbl = new Label();
         signUpHP = new Hyperlink();
-        backBtn = new Button();
+        backBtn1 = new Button();
         xCandyOLbl = new Label();
         letsPlayLbl = new Label();
         ticTacToeLbl = new Label();
@@ -61,7 +60,6 @@ public  class SignInViewBase extends Pane {
         imageView.setFitHeight(400.0);
         imageView.setFitWidth(300.0);
         imageView.setPickOnBounds(true);
-
         imageView.setImage(new Image(getClass().getResource(Constants.BACKGROUND).toExternalForm()));
 
         vBox.setLayoutX(300.0);
@@ -137,18 +135,15 @@ public  class SignInViewBase extends Pane {
         signUpHP.setFont(new Font("Cooper Black", 11.0));
         VBox.setMargin(hBox, new Insets(0.0));
 
-        backBtn.setId("backBtn");
-        backBtn.setLayoutX(20.0);
-        backBtn.setLayoutY(267.0);
-        backBtn.setMnemonicParsing(false);
-        backBtn.setPrefHeight(25.0);
-        backBtn.setPrefWidth(328.0);
-        backBtn.setStyle("-fx-background-color: #ffffff;");
-        backBtn.setText("Back >");
-        backBtn.setTextFill(javafx.scene.paint.Color.valueOf("#00b8d0"));
-        backBtn.setPadding(new Insets(10.0, 0.0, 10.0, 0.0));
-        backBtn.setFont(new Font("Cooper Black", 15.0));
-        VBox.setMargin(backBtn, new Insets(25.0, 10.0, 0.0, 230.0));
+        backBtn1.setMnemonicParsing(false);
+        backBtn1.setPrefHeight(50.0);
+        backBtn1.setPrefWidth(100.0);
+        backBtn1.setStyle("-fx-background-color: white;");
+        backBtn1.setText("back>");
+        backBtn1.setTextAlignment(javafx.scene.text.TextAlignment.RIGHT);
+        backBtn1.setTextFill(javafx.scene.paint.Color.valueOf("#00b8d0"));
+        backBtn1.setFont(new Font("Cooper Black", 20.0));
+        VBox.setMargin(backBtn1, new Insets(0.0, 0.0, 0.0, 200.0));
 
         xCandyOLbl.setId("xCandyOLbl");
         xCandyOLbl.setText("X Candy O");
@@ -181,11 +176,11 @@ public  class SignInViewBase extends Pane {
         hBox.getChildren().add(notHaveAccountLbl);
         hBox.getChildren().add(signUpHP);
         vBox.getChildren().add(hBox);
-        vBox.getChildren().add(backBtn);
+        vBox.getChildren().add(backBtn1);
         getChildren().add(vBox);
         getChildren().add(xCandyOLbl);
         getChildren().add(letsPlayLbl);
         getChildren().add(ticTacToeLbl);
-        
+
     }
 }

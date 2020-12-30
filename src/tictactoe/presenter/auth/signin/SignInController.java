@@ -9,6 +9,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.regex.PatternSyntaxException;
 import javafx.fxml.Initializable;
+import javafx.scene.layout.Pane;
 import tictactoe.helper.BaseController;
 import tictactoe.helper.Navigator;
 import javafx.event.ActionEvent;
@@ -29,22 +30,20 @@ import tictactoe.helper.Constants;
  */
 public class SignInController extends BaseController implements Initializable {
 
-      private SignInViewBase signInView;
-      Alert userErr= new Alert(Alert.AlertType.WARNING);
-     
+      Alert userErr= new Alert(Alert.AlertType.WARNING);   
+      private SignInViewBase view;
+
     //SignIn Controller Constarctor 
     public SignInController() {
         //create SignIn view
-        signInView = new SignInViewBase();
-        //4 - Set viewBase -> Parent = currentView -> Child
-        viewBase = signInView;
+        view = new SignInViewBase();
         //Go to available  Player  screen 
 
         //signInView.loginBtn.setOnAction((event) -> {  /*Navigator.goToAvailable ();*/  Navigator.goToGame();});
-        signInView.loginBtn.setOnAction((event) -> {  /*Navigator.goToAvailable ();*/  
+        view.loginBtn.setOnAction((event) -> {  /*Navigator.goToAvailable ();*/  
           //  signInValidation.totalSignInValidation();
-        String userName = signInView.userNameTF.getText();
-        String pass = signInView.passwordPF.getText();
+        String userName = view.userNameTF.getText();
+        String pass = view.passwordPF.getText();
            
 
             try {
@@ -55,7 +54,7 @@ public class SignInController extends BaseController implements Initializable {
                     userErr.setContentText("Password shouldn't be less than 3 letters");
                     userErr.show();
                 } else {
-                    Navigator.goToGame();
+                    Navigator.goToAvailablePlayer();
                 }
 
             } catch (PatternSyntaxException ex) {
@@ -64,21 +63,24 @@ public class SignInController extends BaseController implements Initializable {
             }
         });
 
-
         //Go to register  screen
-        signInView.signUpHP.setOnAction((event) -> {Navigator.goToRegister();});
+        view.signUpHP.setOnAction((event) -> {Navigator.goToRegister();});
         //Go back to home 
-        signInView.backBtn.setOnAction((event) -> {   Navigator.goToHome();});
+        view.backBtn1.setOnAction((event) -> {   Navigator.goToHome();});
         
     }
-    
-    @FXML
-      private Button loginBtn;
-    
+ 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         
     }    
+    
+    //MARK: - Implement BaseController method  
+    @Override
+    public Pane getView() {
+        //set super view
+        return view;
+    }
     
 }

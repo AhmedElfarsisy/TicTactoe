@@ -14,17 +14,8 @@ import javafx.scene.layout.Pane;
  * This Class is the base controller that all controllers inherits from.
  */
 
-public class BaseController{
+public abstract class BaseController{
     
-    @FXML
-    protected Pane viewBase ;
-     
-    
-    public Pane getViewBase(){
-        // TODO
-        return  viewBase;
-    } 
-    
-    //protected abstract void setViewPane();
-    
+    //Child will override this method and return its own view
+    public abstract Pane getView();  
 }
