@@ -5,27 +5,16 @@
  */
 package tictactoe;
 
-import static com.sun.javafx.PlatformUtil.isEmbedded;
-import java.io.IOException;
-import java.util.TimerTask;
-import java.util.concurrent.TimeUnit;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javafx.animation.FadeTransition;
 import javafx.application.Application;
-import javafx.application.Platform;
-import javafx.application.Preloader.StateChangeNotification;
-import javafx.event.ActionEvent;
+import javafx.concurrent.Task;
+import javafx.concurrent.WorkerStateEvent;
 import javafx.event.EventHandler;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
+import javafx.scene.control.Button;
 import javafx.stage.Stage;
-import javafx.util.Duration;
 import tictactoe.helper.BaseController;
 import tictactoe.helper.Constants;
+import tictactoe.model.Move;
 import tictactoe.presenter.home.HomeController;
 import tictactoe.presenter.spalsh.SplashController;
 import tictactoe.repository.GameDao;
@@ -47,11 +36,11 @@ public class TicTacToe extends Application {
         this.stage = stage;
 
         stage.setResizable(false);
-        Scene scene = new Scene(new HomeController().getView());
+        Scene scene = new Scene(SplashController.buildVC().getView());
         scene.getStylesheets().add(getClass().getResource(Constants.STYLE).toString());
-        
         stage.setScene(scene);
         stage.show();
+        goToHome();
 
     }
 
@@ -66,6 +55,27 @@ public class TicTacToe extends Application {
         Scene scene = new Scene(controller.getView());
         stage.setScene(scene);
         stage.show();
+    }
+    
+    
+        private void goToHome(){
+        Task<Void> sleeper = new Task<Void>() {
+            @Override
+            protected Void call() throws Exception {
+                try {
+                    Thread.sleep(4500);
+                } catch (InterruptedException e) {
+                }
+                return null;
+            }
+        };
+        sleeper.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
+            @Override
+            public void handle(WorkerStateEvent event) {
+                changeScene(new HomeController());
+            }
+        });
+        new Thread(sleeper).start();
     }
 
 }

@@ -35,7 +35,7 @@ public class SplashViewBase extends AnchorPane {
         setMaxWidth(USE_PREF_SIZE);
         setMinHeight(USE_PREF_SIZE);
         setMinWidth(USE_PREF_SIZE);
-        setPrefHeight(400.0);
+        setPrefHeight(450.0);
         setPrefWidth(600.0);
 
         stackPane.setPrefHeight(150.0);
@@ -73,7 +73,7 @@ public class SplashViewBase extends AnchorPane {
         gameNameLbl.setTextAlignment(javafx.scene.text.TextAlignment.CENTER);
         gameNameLbl.setTextFill(javafx.scene.paint.Color.valueOf("#00b8d0"));
         gameNameLbl.setWrapText(true);
-        gameNameLbl.setFont(new Font("Apple Symbols", 30.0));
+        gameNameLbl.setFont(new Font("Cooper Black", 30.0));
         borderPane.setTop(gameNameLbl);
 
         stackPane.getChildren().add(backgroundIV);

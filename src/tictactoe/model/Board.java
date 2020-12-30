@@ -114,6 +114,7 @@ public class Board{
         
         int mainDiag = 0, antiDiag = 0;
         
+        outerloop:
         for(int row = 0; row < size; row++){
             
             int nCol = 0, nRow = 0;
@@ -124,7 +125,9 @@ public class Board{
                 if(isEqual(row,col,symbol)){ //row = 0, col = 1, ,2 ,3
                     nCol++; 
                     if(nCol == 2){ 
-                        attackMove = getEmptyRowMove(row); break;
+                        attackMove = getEmptyRowMove(row); 
+                        break outerloop;
+                        
                     }
                 }
                  
@@ -133,7 +136,8 @@ public class Board{
                 if(isEqual(col,row,symbol)){ //row = 1 , 2, 3 col = 0
                     nRow++;  
                     if(nRow == 2){ 
-                        attackMove = getEmptyColMove(row); break;
+                        attackMove = getEmptyColMove(row); 
+                        break outerloop;
                     }
                 }  
             }

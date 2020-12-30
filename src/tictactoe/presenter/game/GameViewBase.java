@@ -200,7 +200,7 @@ public class GameViewBase extends BorderPane {
         playersLbl.setText("Players");
         playersLbl.setTextAlignment(javafx.scene.text.TextAlignment.CENTER);
         playersLbl.setTextFill(javafx.scene.paint.Color.valueOf("#00b8d0"));
-        playersLbl.setFont(new Font(18.0));
+        playersLbl.setFont(new Font("Cooper Black", 14.0));
 
         GridPane.setColumnIndex(firstPlayerNameLbl, 1);
         firstPlayerNameLbl.setAlignment(javafx.geometry.Pos.CENTER);
@@ -209,7 +209,7 @@ public class GameViewBase extends BorderPane {
         firstPlayerNameLbl.setText("You");
         firstPlayerNameLbl.setTextAlignment(javafx.scene.text.TextAlignment.CENTER);
         firstPlayerNameLbl.setTextFill(javafx.scene.paint.Color.valueOf("#00b8d0"));
-        firstPlayerNameLbl.setFont(new Font(18.0));
+        firstPlayerNameLbl.setFont(new Font("Cooper Black", 14.0));
 
         GridPane.setColumnIndex(secondPlayerNameLbl, 2);
         secondPlayerNameLbl.setAlignment(javafx.geometry.Pos.CENTER);
@@ -218,7 +218,7 @@ public class GameViewBase extends BorderPane {
         secondPlayerNameLbl.setText("Computer");
         secondPlayerNameLbl.setTextAlignment(javafx.scene.text.TextAlignment.CENTER);
         secondPlayerNameLbl.setTextFill(javafx.scene.paint.Color.valueOf("#00b8d0"));
-        secondPlayerNameLbl.setFont(new Font(18.0));
+        secondPlayerNameLbl.setFont(new Font("Cooper Black", 14.0));
 
         GridPane.setColumnIndex(firstPlayerCharLbl, 1);
         GridPane.setRowIndex(firstPlayerCharLbl, 1);
@@ -247,7 +247,7 @@ public class GameViewBase extends BorderPane {
         scoreLbl.setText("Score");
         scoreLbl.setTextAlignment(javafx.scene.text.TextAlignment.CENTER);
         scoreLbl.setTextFill(javafx.scene.paint.Color.valueOf("#00b8d0"));
-        scoreLbl.setFont(new Font(18.0));
+        scoreLbl.setFont(new Font("Cooper Black", 14.0));
 
         GridPane.setColumnIndex(firstPlayerScoreLbl, 1);
         GridPane.setRowIndex(firstPlayerScoreLbl, 2);
