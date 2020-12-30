@@ -13,7 +13,6 @@ import tictactoe.model.Symbol;
 import tictactoe.presenter.auth.register.RegisterController;
 import tictactoe.presenter.auth.signin.SignInController;
 import tictactoe.presenter.game.GameController;
-import tictactoe.presenter.game.GameViewBase;
 import tictactoe.presenter.onlineplayers.OnlinePlayersController;
 import tictactoe.presenter.recordedgames.RecordedGameController;
 
@@ -45,8 +44,11 @@ public class Navigator {
          TicTacToe.changeScene(new GameController(g));
     }
     
-    
-    
+    public static void goToRecordedGame(Game game){
+        game.setMode(PlayMode.RECORDED);
+        GameController controller = new GameController(game);
+        TicTacToe.changeScene(controller);
+    }
     
     
     public static void goToHome(){

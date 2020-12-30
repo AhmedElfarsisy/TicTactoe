@@ -6,28 +6,32 @@
 package tictactoe.repository.models;
 
 import java.io.Serializable;
+import java.util.Date;
 import tictactoe.model.Game;
 
 /**
  *
  * @author A.Elfarsisy
  */
-public class TableGame implements Serializable{
-    String PlayerOneName; 
-    String PlayerTwoName; 
-    String GameState; 
-    
+public class TableGame implements Serializable {
+
+    String PlayerOneName;
+    String PlayerTwoName;
+    String GameState;
+    Date date;
 
     public TableGame(String PlayerOneName, String PlayerTwoName, String GameState) {
         this.PlayerOneName = PlayerOneName;
         this.PlayerTwoName = PlayerTwoName;
         this.GameState = GameState;
     }
-    public TableGame(Game game){
-        this.PlayerOneName=game.getPlayerName(0);
-        this.PlayerTwoName=game.getPlayerName(1); 
-        this.GameState=game.getWinner()==0 ?"win":"lose";
-        
+
+    public TableGame(Game game) {
+        this.PlayerOneName = game.getPlayerName(0);
+        this.PlayerTwoName = game.getPlayerName(1);
+        this.GameState = game.getWinner() == 0 ? "win" : "lose";
+        this.date = game.getDate();
+
     }
 
     public String getPlayerOneName() {
@@ -53,5 +57,13 @@ public class TableGame implements Serializable{
     public void setGameState(String GameState) {
         this.GameState = GameState;
     }
-    
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
 }

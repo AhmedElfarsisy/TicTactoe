@@ -16,7 +16,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import tictactoe.helper.Constants;
 import tictactoe.model.Game;
-import tictactoe.repository.models.Player;
 
 /**
  *

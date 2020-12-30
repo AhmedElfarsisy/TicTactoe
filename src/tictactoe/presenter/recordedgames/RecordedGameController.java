@@ -12,16 +12,12 @@ import javafx.collections.ListChangeListener;
 import javafx.collections.ListChangeListener.Change;
 import javafx.collections.ObservableList;
 import javafx.fxml.Initializable;
-import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TablePosition;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
 import tictactoe.helper.BaseController;
 import tictactoe.helper.Navigator;
 import tictactoe.model.Game;
-import tictactoe.model.PlayMode;
-import tictactoe.model.Player;
-import tictactoe.model.Symbol;
 import tictactoe.repository.GameDao;
 import tictactoe.repository.models.TableGame;
 
@@ -35,6 +31,7 @@ public class RecordedGameController extends BaseController implements Initializa
     private RecordedGameBase view;
     private GameDao gameDao;
     ArrayList<Game> gamesList;
+    Game game;
 
     public RecordedGameController() {
 
@@ -42,14 +39,14 @@ public class RecordedGameController extends BaseController implements Initializa
         view = new RecordedGameBase();
         //DAO Object 
         gameDao = GameDao.getInstance();
-        gamesList = gameDao.readGamesFromFiles("Ahmed Elfarsisy");
+        gamesList = gameDao.readGamesFromFiles("You");
         showGamesOnTable();
+        view.recordedGamestTV.setEditable(false);
         view.backBtn.setOnAction((event) -> {
             Navigator.goToOptions();
         });
 
         view.showBtn.setOnAction((event) -> {
-            view.recordedGamestTV.setEditable(false);
 
         });
         ObservableList selectedCells = view.recordedGamestTV.getSelectionModel().getSelectedCells();
@@ -57,8 +54,9 @@ public class RecordedGameController extends BaseController implements Initializa
             @Override
             public void onChanged(Change c) {
                 TablePosition tablePosition = (TablePosition) selectedCells.get(0);
-                int row = tablePosition.getRow();
-                
+               int row = tablePosition.getRow();
+                Navigator.goToRecordedGame(gamesList.get(row));
+
             }
         });
 
@@ -80,6 +78,7 @@ public class RecordedGameController extends BaseController implements Initializa
         view.player1RecordedGameTC.setCellValueFactory(new PropertyValueFactory<>("playerOneName"));
         view.player2RecordedGameTC.setCellValueFactory(new PropertyValueFactory<>("playerTwoName"));
         view.resultRecordedGameTC.setCellValueFactory(new PropertyValueFactory<>("gameState"));
+        view.dateRecordedGameTC.setCellValueFactory(new PropertyValueFactory<>("date"));
 
     }
 

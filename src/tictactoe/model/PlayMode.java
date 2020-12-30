@@ -14,5 +14,6 @@ import java.io.Serializable;
 public enum PlayMode implements Serializable{
   SINGLE,
   MULTIONLINE,
-  MULTIOFFLINE
+  MULTIOFFLINE,
+  RECORDED
 }
