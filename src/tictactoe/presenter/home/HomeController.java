@@ -13,6 +13,11 @@ import javafx.scene.layout.Pane;
 import tictactoe.helper.BaseController;
 import tictactoe.helper.Navigator;
 import tictactoe.model.PlayMode;
+//import tictactoe.repository.models.Game;
+import tictactoe.model.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+
 
 /**
  *
@@ -30,7 +35,19 @@ public class HomeController extends BaseController implements Initializable {
         view.singlePlayerBtn.setOnAction((event) -> {Navigator.goToGame(PlayMode.SINGLE);});
         
         //Go to MultiPlayer Offline Game Page
-          view.multiPlayerOnlineBtn.setOnAction((event) -> {Navigator.goToLogin();});
+          view.multiPlayerOnlineBtn.setOnAction((event) -> {
+              //Navigator.goToLogin();
+              
+              //testing
+              
+              Player[] players = { new Player("Player1", Symbol.X) , new Player("Player2", Symbol.O)};
+              String [][] tiles = {{"X","O","O"},{"X","O","O"},{"X","O","O"} };
+              ArrayList<Move> moves = new ArrayList(Arrays.asList(new Move(1,1), new Move(0,1), new Move(1,0), new Move(2,1), new Move(2,2)));
+    
+              Game g = new Game(players, 0,0, PlayMode.SINGLE, tiles,moves);
+              Navigator.goToRecordedGame(g);
+          
+          });
         //homeView.multiPlayerOnlineBtn.setOnAction((event) -> {Navigator.goToOnlinePlayers();});
 
         //Go to MultiPlayer Offline Game Page

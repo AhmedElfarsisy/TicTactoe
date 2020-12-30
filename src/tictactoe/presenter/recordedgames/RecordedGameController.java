@@ -44,7 +44,7 @@ public class RecordedGameController extends BaseController implements Initializa
         });
 
         view.showBtn.setOnAction((event) -> {
-
+            
         });
     
     }

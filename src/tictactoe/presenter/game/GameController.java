@@ -7,10 +7,14 @@ package tictactoe.presenter.game;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.concurrent.TimeUnit;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.concurrent.Task;
+import javafx.concurrent.WorkerStateEvent;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import tictactoe.helper.*;
@@ -30,6 +34,8 @@ public class GameController extends BaseController implements Initializable {
     private final Game game;
     private int currentPlayer = 0;
     private Button[][] gridButtons;
+    Task<Void> sleeper;
+    Thread thread;
     
     //MARK: - Constructor
     public GameController(Game g){
@@ -43,6 +49,13 @@ public class GameController extends BaseController implements Initializable {
         setupViews();
         startGame();
         setActionHandler();
+        
+        if(game.getMode() == PlayMode.RECORDED){
+            setBoardDisable(true);
+            currentPlayer = game.getFirstMovePlayer();
+            playRecordedGame(0);
+            
+        }
     }
 
     
@@ -85,18 +98,21 @@ public class GameController extends BaseController implements Initializable {
             for(Integer y = 0; y < 3; y++){
                gridButtons[x][y].setId(x.toString() + y.toString());
                 (gridButtons[x][y]).setOnAction((ActionEvent event) -> {
-                Button btn = (Button) event.getSource();
-                btn.setText(game.getPlayerSymbol(currentPlayer));
-                btn.setDisable(true);
-                game.setMove(btn.getText(), getInt(btn, 0), getInt(btn, 1));
-                checkGameEnd();
-                  
-            });
+                    Button btn = (Button) event.getSource();
+                    performMove(btn);    
+                });
             }
         }
           
         view.playAgainBtn.setOnAction((event) -> { startGame(); });
         view.backBtn.setOnAction((event) -> { Navigator.goToHome(); });
+    }
+    
+    private void performMove(Button btn){
+            btn.setText(game.getPlayerSymbol(currentPlayer));
+            btn.setDisable(true);
+            game.setMove(btn.getText(), getInt(btn, 0), getInt(btn, 1));
+            checkGameEnd();
     }
     
     private int getInt(Button btn,int index){
@@ -119,19 +135,24 @@ public class GameController extends BaseController implements Initializable {
         }else if(game.getWinner() == 1){ //Second player wins
            showWinner(1);
         }else if(game.isBoardFull()){
-           view.playerTurnLbl.setText("You Draw");
+           showWinner(-1);
         }else{
             isGameEnded = false;
         }
         return isGameEnded;
     }
     
-    private void showWinner(int index){
-         view.playerTurnLbl.setText(game.getPlayerName(index) + " Win");
-         currentPlayer = index;
-         game.updatePlayerScore(index);
-         view.firstPlayerScoreLbl.setText(game.getPlayerScore(0));
-         view.secondPlayerScoreLbl.setText(game.getPlayerScore(1));
+    private void showWinner(int index){ 
+        if(index == -1){
+            view.playerTurnLbl.setText("You Draw");
+        }else{
+            currentPlayer = index;
+            game.updatePlayerScore(index);
+            view.playerTurnLbl.setText(game.getPlayerName(index) + " Win");
+            view.firstPlayerScoreLbl.setText(game.getPlayerScore(0));
+            view.secondPlayerScoreLbl.setText(game.getPlayerScore(1));
+        }
+        
     }
     
     //Reinitialize board
@@ -145,6 +166,8 @@ public class GameController extends BaseController implements Initializable {
         view.secondPlayerScoreLbl.setText(game.getPlayerScore(1));
         view.playerTurnLbl.setText(game.getPlayerName(currentPlayer) + " Turn");
         view.playAgainBtn.setVisible(false);
+        game.setFirstMovePlayer(currentPlayer);
+        checkIfComputerTurn();
     }
     
     private Button getBoardButton(int pos){
@@ -174,12 +197,77 @@ public class GameController extends BaseController implements Initializable {
     private void togglePlayer(){
         currentPlayer = currentPlayer == 0 ? 1 : 0;
         view.playerTurnLbl.setText(game.getPlayerName(currentPlayer) + " Turn");
-        
+        checkIfComputerTurn();  
+    }
+    
+    private void checkIfComputerTurn(){
         if(game.getMode() == PlayMode.SINGLE){
            if(currentPlayer == 1){//Computer
-              Move move = game.getBoard().getNextMove(game.getPlayerSymbol(currentPlayer));
-              gridButtons[move.getX()][move.getY()].fire();
+              performComputerMove();
            }
         }
     }
+
+    
+    private void performComputerMove(){
+        Task<Void> sleeper = new Task<Void>() {
+            @Override
+            protected Void call() throws Exception {
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                }
+                return null;
+            }
+        };
+        sleeper.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
+            @Override
+            public void handle(WorkerStateEvent event) {
+                Move move = game.getBoard().getNextMove(game.getPlayerSymbol(currentPlayer));
+                Button btn = gridButtons[move.getX()][move.getY()];
+                performMove(btn);
+            }
+        });
+        new Thread(sleeper).start();
+    }
+
+    public void playRecordedGame(int index) {
+       
+        
+        sleeper = new Task<Void>() {
+            @Override
+            protected Void call() throws Exception {
+                try {
+                    System.out.println(Thread.activeCount());
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                }
+                return null;
+            }
+        };
+        
+
+        
+        sleeper.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
+            @Override
+            public void handle(WorkerStateEvent event) {
+                
+                Button btn;
+                btn = gridButtons[game.getMoves().get(index).getX()][game.getMoves().get(index).getY()];
+                btn.setText(game.getPlayerSymbol(currentPlayer));
+                togglePlayer();
+                if(index < game.getMoves().size()-1){ //index < 8
+                    playRecordedGame(index + 1);
+                }else{
+                    showWinner(game.getWinner());
+                }
+               
+            }
+        });
+        
+       thread = new Thread(sleeper); 
+       thread.start();
+        
+        }
+    
 }

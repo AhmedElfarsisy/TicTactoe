@@ -12,5 +12,6 @@ package tictactoe.model;
 public enum PlayMode {
   SINGLE,
   MULTIONLINE,
-  MULTIOFFLINE
+  MULTIOFFLINE,
+  RECORDED
 }
