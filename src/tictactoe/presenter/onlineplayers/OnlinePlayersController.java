@@ -24,13 +24,13 @@ import tictactoe.presenter.game.GameViewBase;
  */
 public class OnlinePlayersController extends BaseController implements Initializable {
 
-    private OnlinePlayersBase view;
+    private OnlinePlayersViewBase view;
     
     public OnlinePlayersController(){
     //create new view
-        view = new OnlinePlayersBase();
+        view = new OnlinePlayersViewBase();
         
-        view.backbtn.setOnAction((event) -> {Navigator.goToHome();});
+        view.backBtn.setOnAction((event) -> {Navigator.goToHome();});
     
     }
     @Override

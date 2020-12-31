@@ -1,5 +1,6 @@
 package tictactoe.presenter.recordedgames;
 
+import java.util.Date;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -11,7 +12,8 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import tictactoe.helper.Constants;
-import tictactoe.repository.models.Game;
+import tictactoe.repository.models.Player;
+import tictactoe.repository.models.TableGame;
 
 public class RecordedGameBase extends Pane {
 
@@ -19,10 +21,10 @@ public class RecordedGameBase extends Pane {
     protected final VBox vBox;
     protected final Label label;
     protected final TableView recordedGamestTV;
-    protected final TableColumn<Game,String> player1RecordedGameTC;
-    protected final TableColumn<Game,String>  player2RecordedGameTC;
-    protected final TableColumn<Game,String> resultRecordedGameTC;
-    protected final TableColumn<Game,String> resultRecordedGameTC1;
+    protected final TableColumn<TableGame,String> player1RecordedGameTC;
+    protected final TableColumn<TableGame,String>  player2RecordedGameTC;
+    protected final TableColumn<TableGame,String> resultRecordedGameTC;
+    protected final TableColumn<TableGame,Date> dateRecordedGameTC;
     protected final Button showBtn;
     protected final Label label0;
     protected final Label label1;
@@ -38,7 +40,7 @@ public class RecordedGameBase extends Pane {
         player1RecordedGameTC = new TableColumn();
         player2RecordedGameTC = new TableColumn();
         resultRecordedGameTC = new TableColumn();
-        resultRecordedGameTC1 = new TableColumn();
+        dateRecordedGameTC = new TableColumn();
         showBtn = new Button();
         label0 = new Label();
         label1 = new Label();
@@ -85,8 +87,8 @@ public class RecordedGameBase extends Pane {
         resultRecordedGameTC.setPrefWidth(70.0);
         resultRecordedGameTC.setText("result");
 
-        resultRecordedGameTC1.setPrefWidth(70.0);
-        resultRecordedGameTC1.setText("Date");
+        dateRecordedGameTC.setPrefWidth(70.0);
+        dateRecordedGameTC.setText("Date");
 
         showBtn.setMnemonicParsing(false);
         showBtn.setPrefHeight(25.0);
@@ -143,7 +145,7 @@ public class RecordedGameBase extends Pane {
         recordedGamestTV.getColumns().add(player1RecordedGameTC);
         recordedGamestTV.getColumns().add(player2RecordedGameTC);
         recordedGamestTV.getColumns().add(resultRecordedGameTC);
-        recordedGamestTV.getColumns().add(resultRecordedGameTC1);
+        recordedGamestTV.getColumns().add(dateRecordedGameTC);
         vBox.getChildren().add(recordedGamestTV);
         vBox.getChildren().add(showBtn);
         getChildren().add(vBox);

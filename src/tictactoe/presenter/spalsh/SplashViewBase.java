@@ -11,7 +11,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.text.Font;
 import tictactoe.helper.Constants;
 
-public class SplashViewBase extends AnchorPane {
+public  class SplashViewBase extends AnchorPane {
 
     protected final StackPane stackPane;
     protected final ImageView backgroundIV;
@@ -35,20 +35,20 @@ public class SplashViewBase extends AnchorPane {
         setMaxWidth(USE_PREF_SIZE);
         setMinHeight(USE_PREF_SIZE);
         setMinWidth(USE_PREF_SIZE);
-        setPrefHeight(450.0);
+        setPrefHeight(400.0);
         setPrefWidth(600.0);
 
         stackPane.setPrefHeight(150.0);
         stackPane.setPrefWidth(200.0);
 
-        backgroundIV.setFitHeight(600.0);
+        backgroundIV.setFitHeight(450.0);
         backgroundIV.setFitWidth(600.0);
         backgroundIV.setPickOnBounds(true);
-        backgroundIV.setImage(new Image(getClass().getResourceAsStream(Constants.SPLASH)));
+        backgroundIV.setImage(new Image(getClass().getResource(Constants.SPLASH).toExternalForm()));
 
         borderPane.setPrefHeight(200.0);
         borderPane.setPrefWidth(200.0);
-        StackPane.setMargin(borderPane, new Insets(10.0));
+        StackPane.setMargin(borderPane, new Insets(0.0));
 
         BorderPane.setAlignment(anchorPane, javafx.geometry.Pos.CENTER);
         anchorPane.setPrefHeight(224.0);
@@ -68,7 +68,7 @@ public class SplashViewBase extends AnchorPane {
         BorderPane.setAlignment(gameNameLbl, javafx.geometry.Pos.CENTER);
         gameNameLbl.setAlignment(javafx.geometry.Pos.CENTER);
         gameNameLbl.setPrefHeight(128.0);
-        gameNameLbl.setPrefWidth(295.0);
+        gameNameLbl.setPrefWidth(338.0);
         gameNameLbl.setText("Welcome to our Game X CANDY O");
         gameNameLbl.setTextAlignment(javafx.scene.text.TextAlignment.CENTER);
         gameNameLbl.setTextFill(javafx.scene.paint.Color.valueOf("#00b8d0"));

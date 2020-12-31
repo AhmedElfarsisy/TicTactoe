@@ -5,11 +5,13 @@
  */
 package tictactoe.model;
 
+import java.io.Serializable;
+
 /**
  *
  * @author yasmineghazy
  */
-public enum PlayMode {
+public enum PlayMode implements Serializable{
   SINGLE,
   MULTIONLINE,
   MULTIOFFLINE,

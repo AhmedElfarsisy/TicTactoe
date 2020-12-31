@@ -31,7 +31,7 @@ public class Navigator {
         Player player2;
         
         if(mode == PlayMode.SINGLE){//Play with Computer
-            player1 = new Player("You", Symbol.X);
+            player1 = new Player("Player 1", Symbol.X);
             player2 = new Player("Computer", Symbol.O);  
         }else{
             player1 = new Player("Player 1", Symbol.X);

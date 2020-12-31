@@ -8,18 +8,11 @@ package tictactoe.presenter.auth.signin;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.regex.PatternSyntaxException;
-import javafx.fxml.Initializable;
 import javafx.scene.layout.Pane;
 import tictactoe.helper.BaseController;
 import tictactoe.helper.Navigator;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
 import tictactoe.helper.Constants;
 
 
