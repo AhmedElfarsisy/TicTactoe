@@ -6,21 +6,19 @@
 package tictactoe;
 
 import javafx.application.Application;
+
 import javafx.concurrent.Task;
 import javafx.concurrent.WorkerStateEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import tictactoe.helper.BaseController;
 import tictactoe.helper.Constants;
-import tictactoe.model.Move;
-import tictactoe.model.User;
 import tictactoe.presenter.home.HomeController;
 import tictactoe.presenter.spalsh.SplashController;
-import tictactoe.repository.GameDao;
-import tictactoe.repository.defaults.DefaultKey;
-import tictactoe.repository.defaults.UserDefaults;
 
 /**
  *
@@ -37,22 +35,22 @@ public class TicTacToe extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         this.stage = stage;
-
         stage.setResizable(false);
         Scene scene = new Scene(SplashController.buildVC().getView());
         scene.getStylesheets().add(getClass().getResource(Constants.STYLE).toString());
         stage.setScene(scene);
         stage.show();
+        playMusic();
         goToHome();
         
-        UserDefaults.getInstance().add(DefaultKey.USER, new User("Yasmine", 10));
-        UserDefaults.getInstance().add(DefaultKey.ISGAMERECORDED, true);
-        
-        System.out.println(UserDefaults.getInstance().get(DefaultKey.USER)); 
-        System.out.println(UserDefaults.getInstance().get(DefaultKey.ISGAMERECORDED)); 
-        
-        UserDefaults.getInstance().remove(DefaultKey.USER);
-        System.out.println(UserDefaults.getInstance().get(DefaultKey.USER));
+//        UserDefaults.getInstance().add(DefaultKey.USER, new User("Yasmine", 10));
+//        UserDefaults.getInstance().add(DefaultKey.ISGAMERECORDED, true);
+//        
+//        System.out.println(UserDefaults.getInstance().get(DefaultKey.USER)); 
+//        System.out.println(UserDefaults.getInstance().get(DefaultKey.ISGAMERECORDED)); 
+//        
+//        UserDefaults.getInstance().remove(DefaultKey.USER);
+//        System.out.println(UserDefaults.getInstance().get(DefaultKey.USER));
 
     }
 
@@ -68,9 +66,8 @@ public class TicTacToe extends Application {
         stage.setScene(scene);
         stage.show();
     }
-    
-    
-        private void goToHome(){
+
+    private void goToHome() {
         Task<Void> sleeper = new Task<Void>() {
             @Override
             protected Void call() throws Exception {
@@ -90,15 +87,24 @@ public class TicTacToe extends Application {
         new Thread(sleeper).start();
     }
 
+    private void playMusic() {
+        new Thread(() -> {   // For example
+//            String musicFile = "C:/Users/A.Elfarsisy/TicTacToe/src/tictactoe/resource/sounds/music.mp3";
+            Media sound = new Media(getClass().getResource(Constants.MUSIC).toExternalForm());
+            MediaPlayer mediaPlayer = new MediaPlayer(sound);
+            //mediaPlayer.setAutoPlay(true);
+            mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+            mediaPlayer.setOnReady(() -> {
+            //mediaPlayer.play();
+        });
+
+            mediaPlayer.setOnEndOfMedia(() -> {
+            mediaPlayer.seek(Duration.ZERO);
+
+            });
+            //mediaPlayer.play();
+        }).start();
+
+    }
+
 }
-
-//    private void createGameFile() {
-//        GameDao gameDao=new GameDao(); 
-//        gameDao.createGameFile();
-//        gameDao.createRecordGameFile();
-//        gameDao.addDummyData();
-//        gameDao.writeGame();
-//        
-//    }
-
-

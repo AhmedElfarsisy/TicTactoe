@@ -5,11 +5,13 @@
  */
 package tictactoe.model;
 
+import java.io.Serializable;
+
 /**
  *
  * @author yasmineghazy
  */
-public class Move {
+public class Move implements Serializable{
     private int x;
     private int y;
 

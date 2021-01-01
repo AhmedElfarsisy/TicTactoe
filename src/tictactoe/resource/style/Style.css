@@ -20,7 +20,7 @@ and open the template in the editor.
     -fx-font-size: 20pt;
     -fx-font-family: 'Cooper Black';
     -fx-base: rgb(132, 145, 47);
-    -fx-background: red;
+    -fx-background-color:White;
 }
 
 .imageView {

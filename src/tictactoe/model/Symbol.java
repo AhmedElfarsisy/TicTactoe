@@ -5,11 +5,13 @@
  */
 package tictactoe.model;
 
+import java.io.Serializable;
+
 /**
  *
  * @author yasmineghazy
  */
-public enum Symbol{
+public enum Symbol implements Serializable{
     X,
     O,
     none

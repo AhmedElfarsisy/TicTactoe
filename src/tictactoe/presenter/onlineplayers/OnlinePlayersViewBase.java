@@ -1,8 +1,7 @@
-package tictactoe.presenter.recordedgames;
+package tictactoe.presenter.onlineplayers;
 
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -12,34 +11,30 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import tictactoe.helper.Constants;
+import tictactoe.model.User;
 
-public class RecordedGameBase extends Pane {
+
+public class OnlinePlayersViewBase extends Pane {
 
     protected final ImageView backgroundIV;
     protected final VBox vBox;
     protected final Label label;
     protected final TableView recordedGamestTV;
-    protected final TableColumn player1RecordedGameTC;
-    protected final TableColumn player2RecordedGameTC;
-    protected final TableColumn resultRecordedGameTC;
-    protected final TableColumn dateRecordedGameTC;
-    protected final CheckBox recordingCheckBox;
+    protected final TableColumn<User, String> playerTC;
+    protected final TableColumn<User, Integer> scoreTC;
     protected final Label label0;
     protected final Label label1;
     protected final Label label2;
     protected final Button backBtn;
 
-    public RecordedGameBase() {
+    public OnlinePlayersViewBase() {
 
         backgroundIV = new ImageView();
         vBox = new VBox();
         label = new Label();
         recordedGamestTV = new TableView();
-        player1RecordedGameTC = new TableColumn();
-        player2RecordedGameTC = new TableColumn();
-        resultRecordedGameTC = new TableColumn();
-        dateRecordedGameTC = new TableColumn();
-        recordingCheckBox = new CheckBox();
+        playerTC = new TableColumn();
+        scoreTC = new TableColumn();
         label0 = new Label();
         label1 = new Label();
         label2 = new Label();
@@ -58,7 +53,6 @@ public class RecordedGameBase extends Pane {
         backgroundIV.setPickOnBounds(true);
         backgroundIV.setImage(new Image(getClass().getResource(Constants.BACKGROUND).toExternalForm()));
 
-
         vBox.setLayoutX(300.0);
         vBox.setPrefHeight(400.0);
         vBox.setPrefWidth(300.0);
@@ -68,7 +62,7 @@ public class RecordedGameBase extends Pane {
         label.setAlignment(javafx.geometry.Pos.CENTER);
         label.setPrefHeight(17.0);
         label.setPrefWidth(293.0);
-        label.setText("Recorded Games");
+        label.setText("Select Player");
         label.setTextAlignment(javafx.scene.text.TextAlignment.CENTER);
         label.setTextFill(javafx.scene.paint.Color.valueOf("#00b8d0"));
         label.setFont(new Font("Cooper Black", 30.0));
@@ -77,22 +71,11 @@ public class RecordedGameBase extends Pane {
         recordedGamestTV.setPrefHeight(200.0);
         recordedGamestTV.setPrefWidth(200.0);
 
-        player1RecordedGameTC.setPrefWidth(70.0);
-        player1RecordedGameTC.setText("player");
+        playerTC.setPrefWidth(141.0);
+        playerTC.setText("player");
 
-        player2RecordedGameTC.setPrefWidth(70.0);
-        player2RecordedGameTC.setText("player2");
-
-        resultRecordedGameTC.setPrefWidth(70.0);
-        resultRecordedGameTC.setText("result");
-
-        dateRecordedGameTC.setPrefWidth(70.0);
-        dateRecordedGameTC.setText("Date");
-
-        recordingCheckBox.setMnemonicParsing(false);
-        recordingCheckBox.setPrefHeight(55.0);
-        recordingCheckBox.setPrefWidth(278.0);
-        recordingCheckBox.setText("Enable Game Recording");
+        scoreTC.setPrefWidth(138.0);
+        scoreTC.setText("Score");
         vBox.setPadding(new Insets(10.0));
 
         label0.setAlignment(javafx.geometry.Pos.CENTER);
@@ -138,12 +121,9 @@ public class RecordedGameBase extends Pane {
 
         getChildren().add(backgroundIV);
         vBox.getChildren().add(label);
-        recordedGamestTV.getColumns().add(player1RecordedGameTC);
-        recordedGamestTV.getColumns().add(player2RecordedGameTC);
-        recordedGamestTV.getColumns().add(resultRecordedGameTC);
-        recordedGamestTV.getColumns().add(dateRecordedGameTC);
+        recordedGamestTV.getColumns().add(playerTC);
+        recordedGamestTV.getColumns().add(scoreTC);
         vBox.getChildren().add(recordedGamestTV);
-        vBox.getChildren().add(recordingCheckBox);
         getChildren().add(vBox);
         getChildren().add(label0);
         getChildren().add(label1);

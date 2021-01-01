@@ -16,6 +16,9 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import tictactoe.helper.*;
 import tictactoe.model.*;
+import tictactoe.repository.GameDao;
+import tictactoe.repository.defaults.DefaultKey;
+import tictactoe.repository.defaults.UserDefaults;
 
 
 /**
@@ -42,13 +45,15 @@ public class GameController extends BaseController implements Initializable {
         
         //Set game
         this.game = g;
-       
+        System.out.println(g.getWinner());
+       if(game.getMode() == PlayMode.RECORDED)game.resetScore();
         setupViews();
         startGame();
         setActionHandler();
         
         if(game.getMode() == PlayMode.RECORDED){
             setBoardDisable(true);
+             
             currentPlayer = game.getFirstMovePlayer();
             playRecordedGame(0);
             
@@ -91,9 +96,9 @@ public class GameController extends BaseController implements Initializable {
     
     private void setActionHandler(){
         
-        for(Integer x = 0; x < 3; x++){
-            for(Integer y = 0; y < 3; y++){
-               gridButtons[x][y].setId(x.toString() + y.toString());
+        for(int x = 0; x < 3; x++){
+            for(int y = 0; y < 3; y++){
+               gridButtons[x][y].setId(x+""+y);
                 (gridButtons[x][y]).setOnAction((ActionEvent event) -> {
                     Button btn = (Button) event.getSource();
                     performMove(btn);    
@@ -102,7 +107,14 @@ public class GameController extends BaseController implements Initializable {
         }
           
         view.playAgainBtn.setOnAction((event) -> { startGame(); });
-        view.backBtn.setOnAction((event) -> { Navigator.goToHome(); });
+        view.backBtn.setOnAction((event) -> {
+            if(game.getMode() == PlayMode.RECORDED){
+                Navigator.goToRecordedGame();
+            }else{
+                 Navigator.goToHome();
+            }
+            
+        });
     }
     
     private void performMove(Button btn){
@@ -120,6 +132,10 @@ public class GameController extends BaseController implements Initializable {
         if(isGameEnded()){
             view.playAgainBtn.setVisible(true);
             setBoardDisable(true);
+            if((Boolean)UserDefaults.getInstance().get(DefaultKey.ISGAMERECORDED)){
+                GameDao.getInstance().addGame(game);
+            }
+            
         }else{
             togglePlayer();
         }
@@ -127,9 +143,9 @@ public class GameController extends BaseController implements Initializable {
     
     private Boolean isGameEnded(){
         Boolean isGameEnded = true;
-        if(game.getWinner() == 0){ //First player wins
+        if(game.checkWinner() == 0){ //First player wins
            showWinner(0);
-        }else if(game.getWinner() == 1){ //Second player wins
+        }else if(game.checkWinner() == 1){ //Second player wins
            showWinner(1);
         }else if(game.isBoardFull()){
            showWinner(-1);
@@ -228,14 +244,13 @@ public class GameController extends BaseController implements Initializable {
         new Thread(sleeper).start();
     }
 
-    public void playRecordedGame(int index) {
+    private void playRecordedGame(int index) {
        
         
         sleeper = new Task<Void>() {
             @Override
             protected Void call() throws Exception {
                 try {
-                    System.out.println(Thread.activeCount());
                     Thread.sleep(500);
                 } catch (InterruptedException e) {
                 }
@@ -256,7 +271,9 @@ public class GameController extends BaseController implements Initializable {
                 if(index < game.getMoves().size()-1){ //index < 8
                     playRecordedGame(index + 1);
                 }else{
+                    System.out.println(game.getWinner());
                     showWinner(game.getWinner());
+                    
                 }
                
             }
