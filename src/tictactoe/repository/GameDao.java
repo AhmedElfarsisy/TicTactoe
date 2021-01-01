@@ -37,7 +37,6 @@ public class GameDao {
         }
         return shared;
     }
-
     public void createGameFile() {
         String property = System.getProperty("user.dir");
         File file = new File(property, "XCandyO");

@@ -271,7 +271,7 @@ public class GameController extends BaseController implements Initializable {
                 }else{
                     System.out.println(game.getWinner());
                     showWinner(game.getWinner());
-                    
+                   
                 }
                
             }

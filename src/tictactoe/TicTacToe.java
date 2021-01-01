@@ -12,7 +12,6 @@ import javafx.concurrent.Task;
 import javafx.concurrent.WorkerStateEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
-import javafx.scene.media.AudioClip;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
@@ -65,39 +64,34 @@ public class TicTacToe extends Application {
             @Override
             protected Void call() throws Exception {
                 try {
-                    Thread.sleep(4500);
+                    Thread.sleep(4000);
                 } catch (InterruptedException e) {
                 }
                 return null;
             }
         };
-        sleeper.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
-            @Override
-            public void handle(WorkerStateEvent event) {
-                changeScene(new HomeController());
-            }
+        sleeper.setOnSucceeded((WorkerStateEvent event) -> {
+            changeScene(new HomeController());
         });
         new Thread(sleeper).start();
     }
 
     private void playMusic() {
-        new Thread(() -> {   // For example
-//            String musicFile = "C:/Users/A.Elfarsisy/TicTacToe/src/tictactoe/resource/sounds/music.mp3";
-            Media sound = new Media(getClass().getResource(Constants.MUSIC).toExternalForm());
+        new Thread(() -> {
+            String fileDirectroy = System.getProperty("user.dir");
+            String musicFile = fileDirectroy + "/src/tictactoe/resource/sounds/music.mp3";
+            Media sound = new Media(new File(musicFile).toURI().toString());
             MediaPlayer mediaPlayer = new MediaPlayer(sound);
-            mediaPlayer.setAutoPlay(true);
-            mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+
             mediaPlayer.setOnReady(() -> {
-            mediaPlayer.play();
-        });
-
+                mediaPlayer.play();
+            });
             mediaPlayer.setOnEndOfMedia(() -> {
-            mediaPlayer.seek(Duration.ZERO);
-
+                mediaPlayer.seek(Duration.ZERO);
             });
             mediaPlayer.play();
+
         }).start();
 
     }
-
 }

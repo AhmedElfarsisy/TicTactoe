@@ -14,15 +14,15 @@ public class Constants {
     //Background Path in the app 
     public static String BACKGROUND = "/tictactoe/resource/images/background.jpg";
     public static String STYLE = "/tictactoe/resource/style/Style.css";
-    public static String VALIDATION_REGEX_USER="\\b[a-zA-Z][a-zA-Z0-9\\-._]{3,}\\b";
-    public static String VALIDATION_REGEX_PASS="\\b[a-zA-Z0-9\\-._]{3,}\\b";
+    public static String VALIDATION_REGEX_USER = "\\b[a-zA-Z][a-zA-Z0-9\\-._]{3,}\\b";
+    public static String VALIDATION_REGEX_PASS = "\\b[a-zA-Z0-9\\-._]{3,}\\b";
+    public static String SPLASH = "/tictactoe/resource/images/loading.gif";
+    public static String LOADER = "/tictactoe/resource/images/loader.gif";
+    public static String MUSIC = "/tictactoe/resource/sounds/music.mp3";
 
     public static String getFileDirectory() {
         String fileDirectroy = System.getProperty("user.dir");
-        fileDirectroy += "//XCandyO//";
+        fileDirectroy+="/XCandyO/";   
         return fileDirectroy;
     }
-    public static String SPLASH = "/tictactoe/resource/images/loading.gif";
-    public static String LOADER = "/tictactoe/resource/images/loader.gif";
-    public static String MUSIC="/tictactoe/resource/sounds/music.mp3";
 }
