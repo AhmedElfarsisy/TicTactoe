@@ -15,9 +15,12 @@ import javafx.stage.Stage;
 import tictactoe.helper.BaseController;
 import tictactoe.helper.Constants;
 import tictactoe.model.Move;
+import tictactoe.model.User;
 import tictactoe.presenter.home.HomeController;
 import tictactoe.presenter.spalsh.SplashController;
 import tictactoe.repository.GameDao;
+import tictactoe.repository.defaults.DefaultKey;
+import tictactoe.repository.defaults.UserDefaults;
 
 /**
  *
@@ -41,6 +44,15 @@ public class TicTacToe extends Application {
         stage.setScene(scene);
         stage.show();
         goToHome();
+        
+        UserDefaults.getInstance().add(DefaultKey.USER, new User("Yasmine", 10));
+        UserDefaults.getInstance().add(DefaultKey.ISGAMERECORDED, true);
+        
+        System.out.println(UserDefaults.getInstance().get(DefaultKey.USER)); 
+        System.out.println(UserDefaults.getInstance().get(DefaultKey.ISGAMERECORDED)); 
+        
+        UserDefaults.getInstance().remove(DefaultKey.USER);
+        System.out.println(UserDefaults.getInstance().get(DefaultKey.USER));
 
     }
 

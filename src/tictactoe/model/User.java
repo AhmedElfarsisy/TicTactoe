@@ -5,11 +5,13 @@
  */
 package tictactoe.model;
 
+import java.io.Serializable;
+
 /**
  *
  * @author A.Elfarsisy
  */
-public class User {
+public class User implements Serializable{
     String userName;  
     Integer score; 
 
@@ -18,7 +20,7 @@ public class User {
         this.score = 0;
     }
 
-    public User(String userName, Integer score, int state) {
+    public User(String userName, Integer score) {
         this.userName = userName;
         this.score = score;
     }

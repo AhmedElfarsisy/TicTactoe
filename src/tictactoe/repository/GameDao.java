@@ -14,8 +14,6 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import tictactoe.helper.Constants;
 import tictactoe.repository.models.Game;
 import tictactoe.repository.models.Player;
