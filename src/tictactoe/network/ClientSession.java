@@ -13,11 +13,8 @@ import java.net.Socket;
 import java.net.SocketException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.xml.ws.Response;
-import tictactoe.model.User;
 import tictactoe.network.model.NWResponse;
 import tictactoe.network.model.Request;
-import tictactoe.network.model.RequestType;
 import tictactoe.network.model.ResponseStatus;
 
 /**
@@ -44,7 +41,6 @@ public class ClientSession {
             mySocket = new Socket(InetAddress.getLocalHost(), 5006);
             oos = new ObjectOutputStream(mySocket.getOutputStream());
             ois = new ObjectInputStream(mySocket.getInputStream());
-
         } catch (IOException ex) {
             try {
                 oos.close();

@@ -51,14 +51,12 @@ public class TicTacToe extends Application {
 
     public static void changeScene(BaseController controller) {
         Scene scene = new Scene(controller.getView());
+        scene.getStylesheets().add(controller.getClass().getResource(Constants.STYLE).toString());
         stage.setScene(scene);
         stage.show();
-        
-        
     }
     
     private void goToHome() {
-        Thread th = null;
         Task<Void> sleeper = new Task<Void>() {
             @Override
             protected Void call() throws Exception {
@@ -73,8 +71,7 @@ public class TicTacToe extends Application {
         sleeper.setOnSucceeded((WorkerStateEvent event) -> {
              changeScene(new HomeController()); 
         });
-        th = new Thread(sleeper);
-        th.start();
+        new Thread(sleeper).start();
     }    
 }
 

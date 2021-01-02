@@ -80,13 +80,11 @@ public class UserDefaults {
     public void loadMap(){
         try {
             // read from file
-            objectIS = new ObjectInputStream(new BufferedInputStream(new FileInputStream(file)));
-            map = (Map<DefaultKey, Object>) objectIS.readObject();
-            
-            objectIS.close();
-            
-            
-            
+            if(file.exists()){
+                objectIS = new ObjectInputStream(new BufferedInputStream(new FileInputStream(file)));
+                map = (Map<DefaultKey, Object>) objectIS.readObject();
+                objectIS.close();
+            }   
         } catch (FileNotFoundException ex) {
             Logger.getLogger(UserDefaults.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException | ClassNotFoundException ex) {

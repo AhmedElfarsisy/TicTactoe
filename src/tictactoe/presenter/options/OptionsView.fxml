@@ -36,11 +36,25 @@
                   <Font name="Cooper Black" size="20.0" />
                </font>
             </Button>
-            <Button fx:id="themesBtn" mnemonicParsing="false" prefHeight="25.0" prefWidth="303.0" style="-fx-background-color: #00B8D0;" text="Themes" textFill="WHITE">
-               <font>
-                  <Font name="Cooper Black" size="20.0" />
-               </font>
-            </Button>
+            <HBox prefHeight="42.0" prefWidth="280.0" spacing="10.0">
+               <children>
+                  <Label fx:id="homeLbl11" prefHeight="40.0" prefWidth="293.0" text="Select Theme" textAlignment="CENTER" textFill="#00b8d0" textOverrun="CLIP">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="themesBtn2" mnemonicParsing="false" prefHeight="25.0" prefWidth="303.0" style="-fx-background-color: #00B8D0;" textFill="WHITE">
+                     <font>
+                        <Font name="Cooper Black" size="20.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="themesBtn3" mnemonicParsing="false" prefHeight="25.0" prefWidth="303.0" style="-fx-background-color: #A81A00;" textFill="#ce646b">
+                     <font>
+                        <Font name="Cooper Black" size="20.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
             <HBox prefHeight="40.0" prefWidth="280.0">
                <children>
                   <Label fx:id="homeLbl1" prefHeight="40.0" prefWidth="293.0" text="Music Volume" textAlignment="CENTER" textFill="#00b8d0" textOverrun="CLIP">
