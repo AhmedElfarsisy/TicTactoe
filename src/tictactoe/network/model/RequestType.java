@@ -11,15 +11,16 @@ import java.io.Serializable;
  *
  * @author A.Elfarsisy
  */
-
 public enum RequestType implements Serializable {
-    
-    LOGIN,   //user  username password 
-    SIGNUP,   //  user  username password 
-    CONNECT,   // user   username
+
+    LOGIN, //user  username password 
+    SIGNUP, //  user  username password 
+    CONNECT, // user   username
     REQUESTGAME, //  user  username anotherplayer
-    ACCEPTGAME,  //  user  username anotherplayer
+    ACCEPTGAME, //  user  username anotherplayer
     REJECTGAME,
     PLAYGAME,
+    LOGOUT,
+    GETONLINEPLAYERS,
     ENDGAME,
 }
