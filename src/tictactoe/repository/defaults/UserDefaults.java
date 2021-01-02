@@ -70,7 +70,7 @@ public class UserDefaults {
         }
     }
     
-    public void add(DefaultKey key, Object value){      
+    public void set(DefaultKey key, Object value){      
     
             // write to file
             map.put(key, value);

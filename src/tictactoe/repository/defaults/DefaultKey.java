@@ -11,5 +11,6 @@ package tictactoe.repository.defaults;
  */
 public enum DefaultKey{
     USER,
-    ISGAMERECORDED
+    ISGAMERECORDED,
+    MUSICVOLUME
 }

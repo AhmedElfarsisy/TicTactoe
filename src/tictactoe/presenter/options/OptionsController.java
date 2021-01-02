@@ -10,6 +10,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.layout.Pane;
 
 import tictactoe.helper.BaseController;
+import tictactoe.helper.MusicPlayer;
 import tictactoe.helper.Navigator;
 
 /**
@@ -21,11 +22,16 @@ public class OptionsController extends BaseController implements Initializable{
     
     //Options Controller Constarctor 
      public OptionsController() {
-         //create Options view
+         //create Options view     
         view = new OptionsViewBase();
         view.backBtn.setOnAction((event) -> {Navigator.goToHome();});
         view.recordedGamesBtn.setOnAction((event) -> {Navigator.goToRecordedGame();});
+        view.slider.valueProperty().addListener((observable, oldValue, newValue) -> {
+            MusicPlayer.getInstance().setVolume(newValue.doubleValue());
+        });   
+        view.slider.adjustValue(MusicPlayer.getInstance().getVolume());
     }
+     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
     }

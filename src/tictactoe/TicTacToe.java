@@ -5,18 +5,15 @@
  */
 package tictactoe;
 
-import java.io.File;
 import javafx.application.Application;
 
 import javafx.concurrent.Task;
 import javafx.concurrent.WorkerStateEvent;
 import javafx.scene.Scene;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
-import javafx.util.Duration;
 import tictactoe.helper.BaseController;
 import tictactoe.helper.Constants;
+import tictactoe.helper.MusicPlayer;
 import tictactoe.presenter.home.HomeController;
 import tictactoe.presenter.spalsh.SplashController;
 
@@ -36,21 +33,13 @@ public class TicTacToe extends Application {
     public void start(Stage stage) throws Exception {
         this.stage = stage;
         stage.setResizable(false);
+        MusicPlayer.getInstance().play();
         Scene scene = new Scene(SplashController.buildVC().getView());
         scene.getStylesheets().add(getClass().getResource(Constants.STYLE).toString());
         stage.setScene(scene);
         stage.show();
-        playMusic();
         goToHome();
-
-//        UserDefaults.getInstance().add(DefaultKey.USER, new User("Yasmine", 10));
-//        UserDefaults.getInstance().add(DefaultKey.ISGAMERECORDED, true);
-//        
-//        System.out.println(UserDefaults.getInstance().get(DefaultKey.USER)); 
-//        System.out.println(UserDefaults.getInstance().get(DefaultKey.ISGAMERECORDED)); 
-//        
-//        UserDefaults.getInstance().remove(DefaultKey.USER);
-//        System.out.println(UserDefaults.getInstance().get(DefaultKey.USER));
+        
     }
 
     /**
@@ -64,48 +53,28 @@ public class TicTacToe extends Application {
         Scene scene = new Scene(controller.getView());
         stage.setScene(scene);
         stage.show();
+        
+        
     }
-
+    
     private void goToHome() {
+        Thread th = null;
         Task<Void> sleeper = new Task<Void>() {
             @Override
             protected Void call() throws Exception {
                 try {
                     Thread.sleep(4000);
+                    
                 } catch (InterruptedException e) {
                 }
                 return null;
             }
         };
         sleeper.setOnSucceeded((WorkerStateEvent event) -> {
-            changeScene(new HomeController());
+             changeScene(new HomeController()); 
         });
-        new Thread(sleeper).start();
-    }
-
-    private void playMusic() {
-        new Thread(() -> {
-            String fileDirectroy = System.getProperty("user.dir");
-            String musicFile = fileDirectroy + "/src/tictactoe/resource/sounds/music.mp3";
-            Media sound = new Media(new File(musicFile).toURI().toString());
-            MediaPlayer mediaPlayer = new MediaPlayer(sound);
-            mediaPlayer.setAutoPlay(true);
-            mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
-            mediaPlayer.setOnReady(() -> {
-                //mediaPlayer.play();
-            });
-           
-
-            mediaPlayer.setOnReady(() -> {
-                mediaPlayer.play();
-            });
-            mediaPlayer.setOnEndOfMedia(() -> {
-                mediaPlayer.seek(Duration.ZERO);
-            });
-            
-            mediaPlayer.play();
-
-        }).start();
-
-    }
+        th = new Thread(sleeper);
+        th.start();
+    }    
 }
+

@@ -59,7 +59,7 @@ public class SignInController extends BaseController implements Initializable {
                     NWResponse response = ClientSession.getInstance().sendRequest(request);
                     switch (response.getStatus()) {
                         case SUCCESS:
-                            UserDefaults.getInstance().add(DefaultKey.USER, response.getData());
+                            UserDefaults.getInstance().set(DefaultKey.USER, response.getData());
                             Navigator.goToAvailablePlayer();
                             break;
                         case FAILURE:

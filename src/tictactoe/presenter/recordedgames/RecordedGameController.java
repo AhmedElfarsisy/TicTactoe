@@ -51,7 +51,7 @@ public class RecordedGameController extends BaseController implements Initializa
         });
 
         view.recordingCheckBox.setOnAction((event) -> {
-            UserDefaults.getInstance().add(DefaultKey.ISGAMERECORDED,
+            UserDefaults.getInstance().set(DefaultKey.ISGAMERECORDED,
                                            view.recordingCheckBox.isSelected());
         });
         ObservableList selectedCells = view.recordedGamestTV.getSelectionModel().getSelectedCells();

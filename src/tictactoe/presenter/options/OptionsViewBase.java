@@ -3,8 +3,10 @@ package tictactoe.presenter.options;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Slider;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
@@ -17,7 +19,9 @@ public class OptionsViewBase extends Pane {
     protected final Label homeLbl;
     protected final Button recordedGamesBtn;
     protected final Button themesBtn;
-    protected final Button soundOptionsBtn;
+    protected final HBox hBox;
+    protected final Label homeLbl1;
+    protected final Slider slider;
     protected final Button levelsBtn;
     protected final Label gameNameLbl;
     protected final Label letUsPlayLbl;
@@ -31,7 +35,9 @@ public class OptionsViewBase extends Pane {
         homeLbl = new Label();
         recordedGamesBtn = new Button();
         themesBtn = new Button();
-        soundOptionsBtn = new Button();
+        hBox = new HBox();
+        homeLbl1 = new Label();
+        slider = new Slider();
         levelsBtn = new Button();
         gameNameLbl = new Label();
         letUsPlayLbl = new Label();
@@ -83,13 +89,23 @@ public class OptionsViewBase extends Pane {
         themesBtn.setTextFill(javafx.scene.paint.Color.WHITE);
         themesBtn.setFont(new Font("Cooper Black", 20.0));
 
-        soundOptionsBtn.setMnemonicParsing(false);
-        soundOptionsBtn.setPrefHeight(25.0);
-        soundOptionsBtn.setPrefWidth(303.0);
-        soundOptionsBtn.setStyle("-fx-background-color: #00B8D0;");
-        soundOptionsBtn.setText("Sound Options ");
-        soundOptionsBtn.setTextFill(javafx.scene.paint.Color.WHITE);
-        soundOptionsBtn.setFont(new Font("Cooper Black", 20.0));
+        hBox.setPrefHeight(40.0);
+        hBox.setPrefWidth(280.0);
+
+        homeLbl1.setPrefHeight(40.0);
+        homeLbl1.setPrefWidth(293.0);
+        homeLbl1.setText("Music Volume");
+        homeLbl1.setTextAlignment(javafx.scene.text.TextAlignment.CENTER);
+        homeLbl1.setTextFill(javafx.scene.paint.Color.valueOf("#00b8d0"));
+        homeLbl1.setTextOverrun(javafx.scene.control.OverrunStyle.CLIP);
+        homeLbl1.setFont(new Font(14.0));
+
+        slider.setBlockIncrement(0.1);
+        slider.setMax(1.0);
+        slider.setMin(0.0);
+        slider.setPrefHeight(40.0);
+        slider.setPrefWidth(399.0);
+        slider.setValue(0.5);
 
         levelsBtn.setMnemonicParsing(false);
         levelsBtn.setPrefHeight(25.0);
@@ -145,7 +161,9 @@ public class OptionsViewBase extends Pane {
         VBox.getChildren().add(homeLbl);
         VBox.getChildren().add(recordedGamesBtn);
         VBox.getChildren().add(themesBtn);
-        VBox.getChildren().add(soundOptionsBtn);
+        hBox.getChildren().add(homeLbl1);
+        hBox.getChildren().add(slider);
+        VBox.getChildren().add(hBox);
         VBox.getChildren().add(levelsBtn);
         getChildren().add(VBox);
         getChildren().add(gameNameLbl);
