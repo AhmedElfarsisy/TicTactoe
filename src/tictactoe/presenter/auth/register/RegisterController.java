@@ -14,7 +14,15 @@ import javafx.scene.layout.Pane;
 import tictactoe.helper.BaseController;
 import tictactoe.helper.Constants;
 import tictactoe.helper.Navigator;
+import tictactoe.helper.UIHelper;
 import tictactoe.model.PlayMode;
+import tictactoe.model.User;
+import tictactoe.network.ClientSession;
+import tictactoe.network.model.NWResponse;
+import tictactoe.network.model.Request;
+import tictactoe.network.model.RequestType;
+import tictactoe.repository.defaults.DefaultKey;
+import tictactoe.repository.defaults.UserDefaults;
 
 /**
  * FXML Controller class
@@ -49,7 +57,18 @@ public class RegisterController extends BaseController implements Initializable 
                     userErr.setContentText("Password fields should have the same input");
                     userErr.show();
                 } else {
-                    Navigator.goToAvailablePlayer();
+                      Request<User> request = new Request<>(RequestType.SIGNUP, new User(userName, pass));
+                    NWResponse response = ClientSession.getInstance().sendRequest(request);
+                    switch (response.getStatus()) {
+                        case SUCCESS:
+                            UserDefaults.getInstance().add(DefaultKey.USER, response.getData());
+                            Navigator.goToAvailablePlayer();
+                            break;
+                        case FAILURE:
+                            UIHelper.showDialog(response.getMessage());
+                            break;
+                    }
+                
                 }
 
             } catch (PatternSyntaxException ex) {

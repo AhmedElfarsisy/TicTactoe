@@ -105,5 +105,13 @@ public class GameDao {
         return gamesList;
 
     }
+    
+       public void addGame(Game game){
+        GameDao instance = GameDao.getInstance();
+        instance.createGameFile();
+        instance.createRecordGameFile(game.getPlayerName(0));
+        instance.writeGame(game);
+    }
 
 }
+

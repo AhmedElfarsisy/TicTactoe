@@ -10,7 +10,6 @@ import javafx.application.Application;
 
 import javafx.concurrent.Task;
 import javafx.concurrent.WorkerStateEvent;
-import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -44,6 +43,14 @@ public class TicTacToe extends Application {
         playMusic();
         goToHome();
 
+//        UserDefaults.getInstance().add(DefaultKey.USER, new User("Yasmine", 10));
+//        UserDefaults.getInstance().add(DefaultKey.ISGAMERECORDED, true);
+//        
+//        System.out.println(UserDefaults.getInstance().get(DefaultKey.USER)); 
+//        System.out.println(UserDefaults.getInstance().get(DefaultKey.ISGAMERECORDED)); 
+//        
+//        UserDefaults.getInstance().remove(DefaultKey.USER);
+//        System.out.println(UserDefaults.getInstance().get(DefaultKey.USER));
     }
 
     /**
@@ -82,6 +89,12 @@ public class TicTacToe extends Application {
             String musicFile = fileDirectroy + "/src/tictactoe/resource/sounds/music.mp3";
             Media sound = new Media(new File(musicFile).toURI().toString());
             MediaPlayer mediaPlayer = new MediaPlayer(sound);
+            mediaPlayer.setAutoPlay(true);
+            mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+            mediaPlayer.setOnReady(() -> {
+                //mediaPlayer.play();
+            });
+           
 
             mediaPlayer.setOnReady(() -> {
                 mediaPlayer.play();
@@ -89,6 +102,7 @@ public class TicTacToe extends Application {
             mediaPlayer.setOnEndOfMedia(() -> {
                 mediaPlayer.seek(Duration.ZERO);
             });
+            
             mediaPlayer.play();
 
         }).start();

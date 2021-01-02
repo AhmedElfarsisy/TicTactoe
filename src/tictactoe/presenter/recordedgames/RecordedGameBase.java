@@ -1,8 +1,8 @@
 package tictactoe.presenter.recordedgames;
 
-import java.util.Date;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -12,8 +12,6 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import tictactoe.helper.Constants;
-import tictactoe.repository.models.Player;
-import tictactoe.repository.models.TableGame;
 
 public class RecordedGameBase extends Pane {
 
@@ -21,11 +19,11 @@ public class RecordedGameBase extends Pane {
     protected final VBox vBox;
     protected final Label label;
     protected final TableView recordedGamestTV;
-    protected final TableColumn<TableGame,String> player1RecordedGameTC;
-    protected final TableColumn<TableGame,String>  player2RecordedGameTC;
-    protected final TableColumn<TableGame,String> resultRecordedGameTC;
-    protected final TableColumn<TableGame,Date> dateRecordedGameTC;
-    protected final Button showBtn;
+    protected final TableColumn player1RecordedGameTC;
+    protected final TableColumn player2RecordedGameTC;
+    protected final TableColumn resultRecordedGameTC;
+    protected final TableColumn dateRecordedGameTC;
+    protected final CheckBox recordingCheckBox;
     protected final Label label0;
     protected final Label label1;
     protected final Label label2;
@@ -41,7 +39,7 @@ public class RecordedGameBase extends Pane {
         player2RecordedGameTC = new TableColumn();
         resultRecordedGameTC = new TableColumn();
         dateRecordedGameTC = new TableColumn();
-        showBtn = new Button();
+        recordingCheckBox = new CheckBox();
         label0 = new Label();
         label1 = new Label();
         label2 = new Label();
@@ -59,6 +57,7 @@ public class RecordedGameBase extends Pane {
         backgroundIV.setFitWidth(300.0);
         backgroundIV.setPickOnBounds(true);
         backgroundIV.setImage(new Image(getClass().getResource(Constants.BACKGROUND).toExternalForm()));
+
 
         vBox.setLayoutX(300.0);
         vBox.setPrefHeight(400.0);
@@ -90,13 +89,10 @@ public class RecordedGameBase extends Pane {
         dateRecordedGameTC.setPrefWidth(70.0);
         dateRecordedGameTC.setText("Date");
 
-        showBtn.setMnemonicParsing(false);
-        showBtn.setPrefHeight(25.0);
-        showBtn.setPrefWidth(303.0);
-        showBtn.setStyle("-fx-background-color: #00B8D0;");
-        showBtn.setText("show");
-        showBtn.setTextFill(javafx.scene.paint.Color.WHITE);
-        showBtn.setFont(new Font("Cooper Black", 20.0));
+        recordingCheckBox.setMnemonicParsing(false);
+        recordingCheckBox.setPrefHeight(55.0);
+        recordingCheckBox.setPrefWidth(278.0);
+        recordingCheckBox.setText("Enable Game Recording");
         vBox.setPadding(new Insets(10.0));
 
         label0.setAlignment(javafx.geometry.Pos.CENTER);
@@ -147,7 +143,7 @@ public class RecordedGameBase extends Pane {
         recordedGamestTV.getColumns().add(resultRecordedGameTC);
         recordedGamestTV.getColumns().add(dateRecordedGameTC);
         vBox.getChildren().add(recordedGamestTV);
-        vBox.getChildren().add(showBtn);
+        vBox.getChildren().add(recordingCheckBox);
         getChildren().add(vBox);
         getChildren().add(label0);
         getChildren().add(label1);

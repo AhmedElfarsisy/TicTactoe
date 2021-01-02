@@ -14,7 +14,15 @@ import tictactoe.helper.Navigator;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import tictactoe.helper.Constants;
-
+import tictactoe.helper.UIHelper;
+import tictactoe.model.User;
+import tictactoe.network.ClientSession;
+import tictactoe.network.model.NWResponse;
+import tictactoe.network.model.Request;
+import tictactoe.network.model.RequestType;
+import tictactoe.network.model.ResponseStatus;
+import tictactoe.repository.defaults.DefaultKey;
+import tictactoe.repository.defaults.UserDefaults;
 
 /**
  * FXML Controller class
@@ -23,8 +31,8 @@ import tictactoe.helper.Constants;
  */
 public class SignInController extends BaseController implements Initializable {
 
-      Alert userErr= new Alert(Alert.AlertType.WARNING);   
-      private SignInViewBase view;
+    Alert userErr = new Alert(Alert.AlertType.WARNING);
+    private SignInViewBase view;
 
     //SignIn Controller Constarctor 
     public SignInController() {
@@ -33,11 +41,11 @@ public class SignInController extends BaseController implements Initializable {
         //Go to available  Player  screen 
 
         //signInView.loginBtn.setOnAction((event) -> {  /*Navigator.goToAvailable ();*/  Navigator.goToGame();});
-        view.loginBtn.setOnAction((event) -> {  /*Navigator.goToAvailable ();*/  
-          //  signInValidation.totalSignInValidation();
-        String userName = view.userNameTF.getText();
-        String pass = view.passwordPF.getText();
-           
+        view.loginBtn.setOnAction((event) -> {
+            /*Navigator.goToAvailable ();*/
+            //  signInValidation.totalSignInValidation();
+            String userName = view.userNameTF.getText();
+            String pass = view.passwordPF.getText();
 
             try {
                 if (!userName.matches(Constants.VALIDATION_REGEX_USER)) {
@@ -47,7 +55,17 @@ public class SignInController extends BaseController implements Initializable {
                     userErr.setContentText("Password shouldn't be less than 3 letters");
                     userErr.show();
                 } else {
-                    Navigator.goToAvailablePlayer();
+                    Request<User> request = new Request<>(RequestType.LOGIN, new User(userName, pass));
+                    NWResponse response = ClientSession.getInstance().sendRequest(request);
+                    switch (response.getStatus()) {
+                        case SUCCESS:
+                            UserDefaults.getInstance().add(DefaultKey.USER, response.getData());
+                            Navigator.goToAvailablePlayer();
+                            break;
+                        case FAILURE:
+                            UIHelper.showDialog(response.getMessage());
+                            break;
+                    }
                 }
 
             } catch (PatternSyntaxException ex) {
@@ -57,23 +75,27 @@ public class SignInController extends BaseController implements Initializable {
         });
 
         //Go to register  screen
-        view.signUpHP.setOnAction((event) -> {Navigator.goToRegister();});
+        view.signUpHP.setOnAction((event) -> {
+            Navigator.goToRegister();
+        });
         //Go back to home 
-        view.backBtn1.setOnAction((event) -> {   Navigator.goToHome();});
-        
+        view.backBtn1.setOnAction((event) -> {
+            Navigator.goToHome();
+        });
+
     }
- 
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        
-    }    
-    
+
+    }
+
     //MARK: - Implement BaseController method  
     @Override
     public Pane getView() {
         //set super view
         return view;
     }
-    
+
 }

@@ -19,6 +19,8 @@ import tictactoe.helper.BaseController;
 import tictactoe.helper.Navigator;
 import tictactoe.model.Game;
 import tictactoe.repository.GameDao;
+import tictactoe.repository.defaults.DefaultKey;
+import tictactoe.repository.defaults.UserDefaults;
 import tictactoe.repository.models.TableGame;
 
 /**
@@ -48,8 +50,9 @@ public class RecordedGameController extends BaseController implements Initializa
             Navigator.goToOptions();
         });
 
-        view.showBtn.setOnAction((event) -> {
-            
+        view.recordingCheckBox.setOnAction((event) -> {
+            UserDefaults.getInstance().add(DefaultKey.ISGAMERECORDED,
+                                           view.recordingCheckBox.isSelected());
         });
         ObservableList selectedCells = view.recordedGamestTV.getSelectionModel().getSelectedCells();
         selectedCells.addListener(new ListChangeListener() {
@@ -62,6 +65,8 @@ public class RecordedGameController extends BaseController implements Initializa
       
             }
         });
+        
+        view.recordingCheckBox.setSelected((boolean)UserDefaults.getInstance().get(DefaultKey.ISGAMERECORDED));
 
     }
 

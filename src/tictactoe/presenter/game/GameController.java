@@ -17,6 +17,8 @@ import javafx.scene.layout.Pane;
 import tictactoe.helper.*;
 import tictactoe.model.*;
 import tictactoe.repository.GameDao;
+import tictactoe.repository.defaults.DefaultKey;
+import tictactoe.repository.defaults.UserDefaults;
 
 
 /**
@@ -130,10 +132,10 @@ public class GameController extends BaseController implements Initializable {
         if(isGameEnded()){
             view.playAgainBtn.setVisible(true);
             setBoardDisable(true);
-            GameDao instance = GameDao.getInstance();
-            instance.createGameFile();
-            instance.createRecordGameFile(game.getPlayerName(0));
-            instance.writeGame(game);
+            if((Boolean)UserDefaults.getInstance().get(DefaultKey.ISGAMERECORDED)){
+                GameDao.getInstance().addGame(game);
+            }
+            
         }else{
             togglePlayer();
         }

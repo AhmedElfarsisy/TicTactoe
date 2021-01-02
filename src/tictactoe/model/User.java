@@ -11,18 +11,25 @@ import java.io.Serializable;
  *
  * @author A.Elfarsisy
  */
-public class User implements Serializable{
-    String userName;  
-    Integer score; 
+public class User implements Serializable {
+   private String userName; 
+    private String password; 
+    private Integer score=0; 
 
     public User(String userName, String password) {
         this.userName = userName;
-        this.score = 0;
+        this.password = password;
     }
 
-    public User(String userName, Integer score, int state) {
+    public User(String userName, String password, Integer score) {
+        this.userName = userName;
+        this.password = password;
+        this.score = score;
+    }
+    public User(String userName, Integer score) {
         this.userName = userName;
         this.score = score;
+        
     }
 
     public String getUserName() {
@@ -33,6 +40,14 @@ public class User implements Serializable{
         this.userName = userName;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     public Integer getScore() {
         return score;
     }
@@ -40,4 +55,6 @@ public class User implements Serializable{
     public void setScore(Integer score) {
         this.score = score;
     }
+
+ 
 }

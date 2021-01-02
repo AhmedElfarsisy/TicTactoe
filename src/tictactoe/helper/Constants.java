@@ -22,7 +22,7 @@ public class Constants {
 
     public static String getFileDirectory() {
         String fileDirectroy = System.getProperty("user.dir");
-        fileDirectroy+="/XCandyO/";   
+        fileDirectroy += "/XCandyO/";
         return fileDirectroy;
     }
 }
