@@ -56,8 +56,7 @@ public class OnlinePlayersController extends BaseController implements Initializ
                 TablePosition tablePosition = (TablePosition) selectedCells.get(0);
                 int row = tablePosition.getRow();
                 //Send request to player
-                System.out.println(playersList.get(row).getUserName());
-                             
+                System.out.println(playersList.get(row).getUserName());    
                 Navigator.goToOnlineGame(playersList.get(row));
             }
         });

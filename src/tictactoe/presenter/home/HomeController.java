@@ -66,7 +66,6 @@ public class HomeController extends BaseController implements Initializable {
             NWResponse response = ClientSession.getInstance().sendRequest(request);
             switch (response.getStatus()) {
                 case SUCCESS:
-                    
                     UserDefaults.getInstance().remove(DefaultKey.USER);
                     view.logoutBtn.setVisible(false);
                     break;

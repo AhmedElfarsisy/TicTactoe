@@ -36,30 +36,20 @@ public class ClientSession {
     }
 
     private ClientSession() {
-
-        try {
-            mySocket = new Socket(InetAddress.getLocalHost(), 5006);
-            oos = new ObjectOutputStream(mySocket.getOutputStream());
-            ois = new ObjectInputStream(mySocket.getInputStream());
-        } catch (IOException ex) {
-            try {
-                oos.close();
-                ois.close();
-                mySocket.close();
-                Logger.getLogger(ClientSession.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (IOException ex1) {
-                Logger.getLogger(ClientSession.class.getName()).log(Level.SEVERE, null, ex1);
-            }
-        }
+        establishConnection();
 
     }
 
     public NWResponse sendRequest(Request request) {
         NWResponse response;
         try {
+            if (mySocket.isClosed()) {
+                establishConnection();
+            }
             oos.writeObject(request);
             oos.flush();
             response = (NWResponse) ois.readObject();
+            System.out.println(response.getMessage());
 
         } catch (SocketException se) {
             try {
@@ -88,6 +78,23 @@ public class ClientSession {
             Logger.getLogger(ClientSession.class.getName()).log(Level.SEVERE, null, ex);
         }
         return response;
+    }
+
+    private void establishConnection() {
+        try {
+            mySocket = new Socket(InetAddress.getLocalHost(), 5006);
+            oos = new ObjectOutputStream(mySocket.getOutputStream());
+            ois = new ObjectInputStream(mySocket.getInputStream());
+        } catch (IOException ex) {
+            try {
+                oos.close();
+                ois.close();
+                mySocket.close();
+                Logger.getLogger(ClientSession.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex1) {
+                Logger.getLogger(ClientSession.class.getName()).log(Level.SEVERE, null, ex1);
+            }
+        }
     }
 
 }
