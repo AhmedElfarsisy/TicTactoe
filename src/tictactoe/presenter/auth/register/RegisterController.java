@@ -18,6 +18,8 @@ import tictactoe.helper.UIHelper;
 import tictactoe.model.PlayMode;
 import tictactoe.model.User;
 import tictactoe.network.ClientSession;
+import tictactoe.network.NWDelegate;
+import tictactoe.network.NetworkSession;
 import tictactoe.network.model.NWResponse;
 import tictactoe.network.model.Request;
 import tictactoe.network.model.RequestType;
@@ -29,13 +31,16 @@ import tictactoe.repository.defaults.UserDefaults;
  *
  * @author Heba
  */
-public class RegisterController extends BaseController implements Initializable {
+public class RegisterController extends BaseController implements Initializable, NWDelegate {
 
     Alert userErr = new Alert(Alert.AlertType.WARNING);
     private RegisterViewBase view;
 
     //Home Controller Constarctor 
     public RegisterController() {
+        
+        NetworkSession.getInstance().setDelegate(this);
+
         //create Register view
         view = new RegisterViewBase();
         //Go to avaliable  player list  Game screen
@@ -57,18 +62,9 @@ public class RegisterController extends BaseController implements Initializable 
                     userErr.setContentText("Password fields should have the same input");
                     userErr.show();
                 } else {
-                      Request<User> request = new Request<>(RequestType.SIGNUP, new User(userName, pass));
-                    NWResponse response = ClientSession.getInstance().sendRequest(request);
-                    switch (response.getStatus()) {
-                        case SUCCESS:
-                            UserDefaults.getInstance().set(DefaultKey.USER, response.getData());
-                            Navigator.goToAvailablePlayer();
-                            break;
-                        case FAILURE:
-                            UIHelper.showDialog(response.getMessage());
-                            break;
-                    }
-                
+                    Request<User> request = new Request<>(RequestType.SIGNUP, new User(userName, pass));
+                    NetworkSession.getInstance().notifyServer(request);
+
                 }
 
             } catch (PatternSyntaxException ex) {
@@ -85,20 +81,25 @@ public class RegisterController extends BaseController implements Initializable 
         view.backBtn.setOnAction((event) -> {
             Navigator.goToLogin();
         });
-        
+
     }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    } 
-    
-    
-        //MARK: - Implement BaseController method  
+    }
+
+    //MARK: - Implement BaseController method  
     @Override
     public Pane getView() {
         //set super view
         return view;
     }
-    
+    //MARK: - Implement NWDelegate Method
+
+    @Override
+    public void handleResponse(Object data) {
+        Constants.currentUser = (User) data;
+        Navigator.goToAvailablePlayer();
+    }
 }

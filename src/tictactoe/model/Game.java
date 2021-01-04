@@ -138,6 +138,10 @@ public class Game implements Serializable {
         return date;
     }
 
+    public User getUser(int index) {
+        return players[index].getUser();
+    }
+
     public void resetScore() {
         players[0].getUser().setScore(0);
         players[1].getUser().setScore(0);

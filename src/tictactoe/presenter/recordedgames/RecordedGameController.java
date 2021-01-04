@@ -16,6 +16,7 @@ import javafx.scene.control.TablePosition;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
 import tictactoe.helper.BaseController;
+import tictactoe.helper.Constants;
 import tictactoe.helper.Navigator;
 import tictactoe.model.Game;
 import tictactoe.repository.GameDao;
@@ -42,7 +43,8 @@ public class RecordedGameController extends BaseController implements Initializa
         //DAO Object 
         gameDao = GameDao.getInstance();
         
-        gamesList = gameDao.readGamesFromFiles("Player 1");
+        String name = Constants.currentUser == null ? "Player 1" : Constants.currentUser.getUserName() ;
+        gamesList = gameDao.readGamesFromFiles(name);
         showGamesOnTable();
         view.recordedGamestTV.setEditable(false);
         

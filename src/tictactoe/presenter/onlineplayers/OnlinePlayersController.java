@@ -15,10 +15,13 @@ import javafx.scene.control.TablePosition;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
 import tictactoe.helper.BaseController;
+import tictactoe.helper.Constants;
 import tictactoe.helper.Navigator;
 import tictactoe.helper.UIHelper;
 import tictactoe.model.*;
 import tictactoe.network.ClientSession;
+import tictactoe.network.NWDelegate;
+import tictactoe.network.NetworkSession;
 import tictactoe.network.model.NWResponse;
 import tictactoe.network.model.Request;
 import tictactoe.network.model.RequestType;
@@ -30,49 +33,37 @@ import tictactoe.repository.defaults.UserDefaults;
  *
  * @author Mostafa Abdalla
  */
-public class OnlinePlayersController extends BaseController implements Initializable {
+public class OnlinePlayersController extends BaseController implements Initializable,NWDelegate {
 
     private OnlinePlayersViewBase view;
     ArrayList<User> playersList;
 
     public OnlinePlayersController() {
+        NetworkSession.getInstance().setDelegate(this);
 
         //create new view
         view = new OnlinePlayersViewBase();
-
         playersList = new ArrayList<>();
-        playersList.add(new User("Yasmine", 10));
-
-        view.recordedGamestTV.setEditable(false);
-
+        view.onlinePlayersTV.setEditable(false);
         view.backBtn.setOnAction((event) -> {
             Navigator.goToHome();
         });
+        view.refreshPlayerListBtn.setOnAction((event) -> {
+            loadData();
+        });
 
-        ObservableList selectedCells = view.recordedGamestTV.getSelectionModel().getSelectedCells();
+        ObservableList selectedCells = view.onlinePlayersTV.getSelectionModel().getSelectedCells();
         selectedCells.addListener(new ListChangeListener() {
             @Override
             public void onChanged(ListChangeListener.Change c) {
                 TablePosition tablePosition = (TablePosition) selectedCells.get(0);
                 int row = tablePosition.getRow();
                 //Send request to player
-                System.out.println(playersList.get(row).getUserName());    
+                System.out.println(playersList.get(row).getUserName());
                 Navigator.goToOnlineGame(playersList.get(row));
             }
         });
-
-        Request<User> request = new Request<>(RequestType.GETONLINEPLAYERS, (User) UserDefaults.getInstance().get(DefaultKey.USER));
-        NWResponse response = ClientSession.getInstance().sendRequest(request);
-        switch (response.getStatus()) {
-            case SUCCESS:
-                playersList = (ArrayList<User>) response.getData();
-                showPlayersOnTable();
-
-                break;
-            case FAILURE:
-                UIHelper.showDialog(response.getMessage());
-                break;
-        }
+        loadData();
 
     }
 
@@ -81,11 +72,16 @@ public class OnlinePlayersController extends BaseController implements Initializ
         // TODO
     }
 
+    private void loadData() {
+        Request<User> request = new Request<>(RequestType.GETONLINEPLAYERS, Constants.currentUser);
+        NetworkSession.getInstance().notifyServer(request);
+    }
+
     private void showPlayersOnTable() {
-        view.recordedGamestTV.getItems().addAll(playersList);
+        view.onlinePlayersTV.getItems().clear();
+        view.onlinePlayersTV.getItems().addAll(playersList);
         view.playerTC.setCellValueFactory(new PropertyValueFactory<>("userName"));
         view.scoreTC.setCellValueFactory(new PropertyValueFactory<>("score"));
-
     }
 
     //MARK: - Implement BaseController method  
@@ -93,5 +89,10 @@ public class OnlinePlayersController extends BaseController implements Initializ
     public Pane getView() {
         return view;
     }
-
+     //MARK: - Implement NWDelegate Method
+    @Override
+    public void handleResponse(Object data) {
+         playersList = (ArrayList<User>) data;
+                showPlayersOnTable();
+    }
 }

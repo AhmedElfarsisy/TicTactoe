@@ -449,6 +449,7 @@ public class GameViewBase extends BorderPane {
         playAgainBtn.setText("Play Again");
         playAgainBtn.setTextFill(javafx.scene.paint.Color.WHITE);
         playAgainBtn.setFont(new Font("Cooper Black", 20.0));
+        
         borderPane0.setBottom(playAgainBtn);
 
         BorderPane.setAlignment(anchorPane7, javafx.geometry.Pos.CENTER);

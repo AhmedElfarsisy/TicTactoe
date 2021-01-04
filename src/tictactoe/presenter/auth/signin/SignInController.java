@@ -15,35 +15,34 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import tictactoe.helper.Constants;
 import tictactoe.helper.UIHelper;
+import tictactoe.model.Move;
 import tictactoe.model.User;
 import tictactoe.network.ClientSession;
+import tictactoe.network.NWDelegate;
+import tictactoe.network.NetworkSession;
 import tictactoe.network.model.NWResponse;
 import tictactoe.network.model.Request;
 import tictactoe.network.model.RequestType;
-import tictactoe.network.model.ResponseStatus;
-import tictactoe.repository.defaults.DefaultKey;
-import tictactoe.repository.defaults.UserDefaults;
+
 
 /**
  * FXML Controller class
  *
  * @author Heba
  */
-public class SignInController extends BaseController implements Initializable {
+public class SignInController extends BaseController implements Initializable, NWDelegate {
 
     Alert userErr = new Alert(Alert.AlertType.WARNING);
     private SignInViewBase view;
 
     //SignIn Controller Constarctor 
     public SignInController() {
+
+        NetworkSession.getInstance().setDelegate(this);
         //create SignIn view
         view = new SignInViewBase();
-        //Go to available  Player  screen 
 
-        //signInView.loginBtn.setOnAction((event) -> {  /*Navigator.goToAvailable ();*/  Navigator.goToGame();});
         view.loginBtn.setOnAction((event) -> {
-            /*Navigator.goToAvailable ();*/
-            //  signInValidation.totalSignInValidation();
             String userName = view.userNameTF.getText();
             String pass = view.passwordPF.getText();
 
@@ -56,16 +55,8 @@ public class SignInController extends BaseController implements Initializable {
                     userErr.show();
                 } else {
                     Request<User> request = new Request<>(RequestType.LOGIN, new User(userName, pass));
-                    NWResponse response = ClientSession.getInstance().sendRequest(request);
-                    switch (response.getStatus()) {
-                        case SUCCESS:
-                            UserDefaults.getInstance().set(DefaultKey.USER, response.getData());
-                            Navigator.goToAvailablePlayer();
-                            break;
-                        case FAILURE:
-                            UIHelper.showDialog(response.getMessage());
-                            break;
-                    }
+                    NetworkSession.getInstance().notifyServer(request);
+
                 }
 
             } catch (PatternSyntaxException ex) {
@@ -98,4 +89,10 @@ public class SignInController extends BaseController implements Initializable {
         return view;
     }
 
+    //MARK: - Implement NWDelegate Method
+    @Override
+    public void handleResponse(Object data) {
+         Constants.currentUser = (User) data;
+         Navigator.goToAvailablePlayer();
+    }
 }

@@ -7,6 +7,7 @@ package tictactoe.repository.defaults;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
+import java.io.EOFException;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -40,6 +41,16 @@ public class UserDefaults {
             shared = new UserDefaults();
         }
         return shared;
+    }
+    
+    public void init(){
+        if(UserDefaults.getInstance().get(DefaultKey.ISGAMERECORDED) == null){
+             UserDefaults.getInstance().set(DefaultKey.ISGAMERECORDED, true);
+        }
+         if(UserDefaults.getInstance().get(DefaultKey.MUSICVOLUME) == null){
+             UserDefaults.getInstance().set(DefaultKey.MUSICVOLUME, 0.5);
+        }
+        
     }
 
     public UserDefaults() {
@@ -84,13 +95,35 @@ public class UserDefaults {
                 map = (Map<DefaultKey, Object>) objectIS.readObject();
                 objectIS.close();
             }
-        } catch (FileNotFoundException ex) {
+        } 
+        catch(EOFException eof){
+           
+        }catch (FileNotFoundException ex) {
             Logger.getLogger(UserDefaults.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException | ClassNotFoundException ex) {
             Logger.getLogger(UserDefaults.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
+//        public Object get(DefaultKey key) {
+//        try {
+//            // read from file
+//            if (file.exists()) {
+//                objectIS = new ObjectInputStream(new BufferedInputStream(new FileInputStream(file)));
+//                map = (Map<DefaultKey, Object>) objectIS.readObject();
+//                map.get(key);
+//                objectIS.close();
+//            }
+//        } 
+//        catch(EOFException eof){
+//           
+//        }catch (FileNotFoundException ex) {
+//            Logger.getLogger(UserDefaults.class.getName()).log(Level.SEVERE, null, ex);
+//        } catch (IOException | ClassNotFoundException ex) {
+//            Logger.getLogger(UserDefaults.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//        return map;
+//    }
     public Object get(DefaultKey key) {
         loadMap();
         return map.get(key);

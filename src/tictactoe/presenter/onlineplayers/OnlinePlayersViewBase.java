@@ -11,17 +11,17 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import tictactoe.helper.Constants;
-import tictactoe.model.User;
+import tictactoe.model.Player;
 
-
-public class OnlinePlayersViewBase extends Pane {
+public  class OnlinePlayersViewBase extends Pane {
 
     protected final ImageView backgroundIV;
     protected final VBox vBox;
     protected final Label label;
-    protected final TableView recordedGamestTV;
-    protected final TableColumn<User, String> playerTC;
-    protected final TableColumn<User, Integer> scoreTC;
+    protected final TableView onlinePlayersTV;
+    protected final TableColumn<Player,String> playerTC;
+    protected final TableColumn<Player,String> scoreTC;
+    protected final Button refreshPlayerListBtn;
     protected final Label label0;
     protected final Label label1;
     protected final Label label2;
@@ -32,9 +32,10 @@ public class OnlinePlayersViewBase extends Pane {
         backgroundIV = new ImageView();
         vBox = new VBox();
         label = new Label();
-        recordedGamestTV = new TableView();
+        onlinePlayersTV = new TableView();
         playerTC = new TableColumn();
         scoreTC = new TableColumn();
+        refreshPlayerListBtn = new Button();
         label0 = new Label();
         label1 = new Label();
         label2 = new Label();
@@ -58,7 +59,7 @@ public class OnlinePlayersViewBase extends Pane {
         vBox.setPrefWidth(300.0);
         vBox.setSpacing(10.0);
         vBox.setStyle("-fx-background-color: #FFFFFF;");
-
+//🔄
         label.setAlignment(javafx.geometry.Pos.CENTER);
         label.setPrefHeight(17.0);
         label.setPrefWidth(293.0);
@@ -68,14 +69,24 @@ public class OnlinePlayersViewBase extends Pane {
         label.setFont(new Font("Cooper Black", 30.0));
         VBox.setMargin(label, new Insets(10.0, 0.0, 0.0, 0.0));
 
-        recordedGamestTV.setPrefHeight(200.0);
-        recordedGamestTV.setPrefWidth(200.0);
+        onlinePlayersTV.setPrefHeight(200.0);
+        onlinePlayersTV.setPrefWidth(200.0);
 
         playerTC.setPrefWidth(141.0);
         playerTC.setText("player");
 
         scoreTC.setPrefWidth(138.0);
         scoreTC.setText("Score");
+
+        refreshPlayerListBtn.setId("loginBtn");
+        refreshPlayerListBtn.setMnemonicParsing(false);
+        refreshPlayerListBtn.setPrefHeight(25.0);
+        refreshPlayerListBtn.setPrefWidth(328.0);
+        refreshPlayerListBtn.setStyle("-fx-background-color: #00b8d0;");
+        refreshPlayerListBtn.setText("Refresh 🔄");
+        refreshPlayerListBtn.setTextFill(javafx.scene.paint.Color.WHITE);
+        refreshPlayerListBtn.setPadding(new Insets(10.0, 0.0, 10.0, 0.0));
+        refreshPlayerListBtn.setFont(new Font("Cooper Black", 20.0));
         vBox.setPadding(new Insets(10.0));
 
         label0.setAlignment(javafx.geometry.Pos.CENTER);
@@ -121,9 +132,10 @@ public class OnlinePlayersViewBase extends Pane {
 
         getChildren().add(backgroundIV);
         vBox.getChildren().add(label);
-        recordedGamestTV.getColumns().add(playerTC);
-        recordedGamestTV.getColumns().add(scoreTC);
-        vBox.getChildren().add(recordedGamestTV);
+        onlinePlayersTV.getColumns().add(playerTC);
+        onlinePlayersTV.getColumns().add(scoreTC);
+        vBox.getChildren().add(onlinePlayersTV);
+        vBox.getChildren().add(refreshPlayerListBtn);
         getChildren().add(vBox);
         getChildren().add(label0);
         getChildren().add(label1);

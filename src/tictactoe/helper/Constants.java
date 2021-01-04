@@ -5,6 +5,8 @@
  */
 package tictactoe.helper;
 
+import tictactoe.model.User;
+
 /**
  *
  * @author yasmineghazy
@@ -19,6 +21,7 @@ public class Constants {
     public static String SPLASH = "/tictactoe/resource/images/loading.gif";
     public static String LOADER = "/tictactoe/resource/images/loader.gif";
     public static String MUSIC = "/tictactoe/resource/sounds/music.mp3";
+     public static User currentUser;
 
     public static String getFileDirectory() {
         String fileDirectroy = System.getProperty("user.dir");

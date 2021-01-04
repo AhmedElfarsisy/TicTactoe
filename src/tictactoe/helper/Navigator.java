@@ -56,8 +56,9 @@ public class Navigator {
     
     public static void goToOnlineGame(User user){
         Game game;
-        User currentUser = (User)UserDefaults.getInstance().get(DefaultKey.USER);
-        Player player1 = new Player(currentUser, Symbol.X);
+//        User currentUser = (User)UserDefaults.getInstance().get(DefaultKey.USER);
+        
+        Player player1 = new Player(Constants.currentUser, Symbol.X);
         Player player2 = new Player(user, Symbol.O); 
         Player [] players = {player1, player2};
         game = new Game(players, PlayMode.MULTIONLINE);

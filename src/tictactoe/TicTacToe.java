@@ -16,6 +16,8 @@ import tictactoe.helper.Constants;
 import tictactoe.helper.MusicPlayer;
 import tictactoe.presenter.home.HomeController;
 import tictactoe.presenter.spalsh.SplashController;
+import tictactoe.repository.defaults.DefaultKey;
+import tictactoe.repository.defaults.UserDefaults;
 
 /**
  *
@@ -31,15 +33,17 @@ public class TicTacToe extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
+
         this.stage = stage;
         stage.setResizable(false);
-        MusicPlayer.getInstance().play();
+//        MusicPlayer.getInstance().play();
         Scene scene = new Scene(SplashController.buildVC().getView());
         scene.getStylesheets().add(getClass().getResource(Constants.STYLE).toString());
         stage.setScene(scene);
+        UserDefaults.getInstance().init();
         stage.show();
         goToHome();
-        
+
     }
 
     /**
@@ -51,27 +55,25 @@ public class TicTacToe extends Application {
 
     public static void changeScene(BaseController controller) {
         Scene scene = new Scene(controller.getView());
-        scene.getStylesheets().add(controller.getClass().getResource(Constants.STYLE).toString());
         stage.setScene(scene);
         stage.show();
     }
-    
+
     private void goToHome() {
         Task<Void> sleeper = new Task<Void>() {
             @Override
             protected Void call() throws Exception {
                 try {
                     Thread.sleep(4000);
-                    
+
                 } catch (InterruptedException e) {
                 }
                 return null;
             }
         };
         sleeper.setOnSucceeded((WorkerStateEvent event) -> {
-             changeScene(new HomeController()); 
+            changeScene(new HomeController());
         });
         new Thread(sleeper).start();
-    }    
+    }
 }
-

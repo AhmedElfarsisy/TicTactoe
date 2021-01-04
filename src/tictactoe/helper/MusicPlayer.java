@@ -72,6 +72,7 @@ public class MusicPlayer {
 
     
     public void play(){
+        
         thread.start();        
     }
     

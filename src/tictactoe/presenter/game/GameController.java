@@ -30,10 +30,10 @@ import tictactoe.repository.defaults.UserDefaults;
 public class GameController extends BaseController implements Initializable {
     
     //MARK: - Properties
-    private final GameViewBase view;
-    private final Game game;
-    private int currentPlayer = 0;
-    private Button[][] gridButtons;
+    protected final GameViewBase view;
+    protected final Game game;
+    protected int currentPlayer = 0;
+    protected Button[][] gridButtons;
     Task<Void> sleeper;
     Thread thread;
     
@@ -118,20 +118,22 @@ public class GameController extends BaseController implements Initializable {
         });
     }
     
-    private void performMove(Button btn){
+    protected void performMove(Button btn){
             btn.setText(game.getPlayerSymbol(currentPlayer));
             btn.setDisable(true);
             game.setMove(btn.getText(), getInt(btn, 0), getInt(btn, 1));
             checkGameEnd();
     }
     
-    private int getInt(Button btn,int index){
+    protected int getInt(Button btn,int index){
         return btn.getId().charAt(index) - '0';
     }
     
     private void checkGameEnd(){
         if(isGameEnded()){
-            view.playAgainBtn.setVisible(true);
+            if(game.getMode() != PlayMode.MULTIONLINE)
+                view.playAgainBtn.setVisible(true);
+            
             setBoardDisable(true);
             if((Boolean)UserDefaults.getInstance().get(DefaultKey.ISGAMERECORDED)){
                 GameDao.getInstance().addGame(game);

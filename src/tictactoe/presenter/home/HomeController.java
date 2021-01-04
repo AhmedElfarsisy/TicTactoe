@@ -21,12 +21,13 @@ import tictactoe.network.model.RequestType;
 import tictactoe.repository.defaults.DefaultKey;
 import tictactoe.repository.defaults.UserDefaults;
 import tictactoe.TicTacToe;
+import tictactoe.helper.Constants;
+import tictactoe.network.NetworkSession;
 
 /**
  *
  * @author A.Elfarsisy
  */
-
 public class HomeController extends BaseController implements Initializable {
 
     private HomeViewBase view;
@@ -42,7 +43,8 @@ public class HomeController extends BaseController implements Initializable {
 
         //Go to MultiPlayer Offline Game Page
         view.multiPlayerOnlineBtn.setOnAction((event) -> {
-            if (UserDefaults.getInstance().get(DefaultKey.USER) == null) {
+//            if (UserDefaults.getInstance().get(DefaultKey.USER) == null) {
+            if (Constants.currentUser==null) {
                 Navigator.goToLogin();
             } else {
                 Navigator.goToAvailablePlayer();
@@ -59,14 +61,12 @@ public class HomeController extends BaseController implements Initializable {
         view.optionsBtn.setOnAction((event) -> {
             Navigator.goToOptions();
         });
-        view.logoutBtn.setVisible(UserDefaults.getInstance().get(DefaultKey.USER) != null);
+        view.logoutBtn.setVisible(Constants.currentUser != null);
         view.logoutBtn.setOnAction((event) -> {
-            UserDefaults.getInstance().remove(DefaultKey.USER);
             Request<User> request = new Request<>(RequestType.LOGOUT, null);
-            NWResponse response = ClientSession.getInstance().sendRequest(request);
+            NWResponse response = NetworkSession.getInstance().sendRequest(request);
             switch (response.getStatus()) {
                 case SUCCESS:
-                    UserDefaults.getInstance().remove(DefaultKey.USER);
                     view.logoutBtn.setVisible(false);
                     break;
                 case FAILURE:
