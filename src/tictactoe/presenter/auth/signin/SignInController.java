@@ -23,6 +23,7 @@ import tictactoe.network.NetworkSession;
 import tictactoe.network.model.NWResponse;
 import tictactoe.network.model.Request;
 import tictactoe.network.model.RequestType;
+import tictactoe.helper.VideoPlayer;
 
 
 /**
@@ -67,6 +68,7 @@ public class SignInController extends BaseController implements Initializable, N
 
         //Go to register  screen
         view.signUpHP.setOnAction((event) -> {
+            //VideoPlayer.getInstance("winner").play();
             Navigator.goToRegister();
         });
         //Go back to home 
