@@ -52,7 +52,7 @@ public class TicTacToe extends Application {
         goToHome();
 
     }
-
+    
     /**
      * @param args the command line arguments
      */
