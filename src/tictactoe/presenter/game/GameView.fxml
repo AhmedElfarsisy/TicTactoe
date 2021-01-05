@@ -15,116 +15,45 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <top>
+      <AnchorPane prefHeight="0.0" prefWidth="567.0" BorderPane.alignment="CENTER" />
+   </top>
+   <right>
+      <AnchorPane prefHeight="400.0" prefWidth="0.0" BorderPane.alignment="CENTER" />
+   </right>
+   <bottom>
+      <AnchorPane prefHeight="0.0" prefWidth="767.0" BorderPane.alignment="CENTER" />
+   </bottom>
    <center>
-      <HBox prefHeight="400.0" prefWidth="669.0" BorderPane.alignment="CENTER">
+      <StackPane fx:id="videoStackPane" prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <StackPane prefHeight="150.0" prefWidth="200.0">
+            <HBox prefHeight="400.0" prefWidth="669.0">
                <children>
-                  <ImageView fx:id="backgroundIV" fitHeight="400.0" fitWidth="300.0" pickOnBounds="true">
-                     <image>
-                        <Image url="@../../resource/images/background.jpg" />
-                     </image></ImageView>
-                  <BorderPane prefHeight="200.0" prefWidth="200.0">
-                     <top>
-                        <Label fx:id="gameNameLbl" alignment="CENTER" prefHeight="50.0" prefWidth="293.0" text="X CANDY O" textAlignment="CENTER" textFill="#00b8d0" BorderPane.alignment="CENTER">
-                           <font>
-                              <Font name="Cooper Black" size="30.0" />
-                           </font>
-                        </Label>
-                     </top>
-                     <StackPane.margin>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                     </StackPane.margin>
-                     <center>
-                        <GridPane prefHeight="170.0" prefWidth="267.0" BorderPane.alignment="CENTER">
-                          <columnConstraints>
-                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="75.0" minWidth="10.0" prefWidth="75.0" />
-                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="80.0" minWidth="10.0" prefWidth="69.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="86.0" minWidth="10.0" prefWidth="76.0" />
-                          </columnConstraints>
-                          <rowConstraints>
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                          </rowConstraints>
-                           <children>
-                              <Label fx:id="playersLbl" alignment="CENTER" prefHeight="17.0" prefWidth="293.0" text="Players" textAlignment="CENTER" textFill="#00b8d0" GridPane.rowIndex="1">
+                  <StackPane prefHeight="150.0" prefWidth="200.0">
+                     <children>
+                        <ImageView fx:id="backgroundIV" fitHeight="400.0" fitWidth="300.0" pickOnBounds="true">
+                           <image>
+                              <Image url="@../../resource/images/background.jpg" />
+                           </image>
+                        </ImageView>
+                        <BorderPane prefHeight="200.0" prefWidth="200.0">
+                           <top>
+                              <Label fx:id="gameNameLbl" alignment="CENTER" prefHeight="50.0" prefWidth="293.0" text="X CANDY O" textAlignment="CENTER" textFill="#00b8d0" BorderPane.alignment="CENTER">
                                  <font>
-                                    <Font size="18.0" />
+                                    <Font name="Cooper Black" size="30.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="firstPlayerNameLbl" alignment="CENTER" prefHeight="17.0" prefWidth="293.0" text="You" textAlignment="CENTER" textFill="#00b8d0" GridPane.columnIndex="1">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                              </Label>
-                              <Label fx:id="secondPlayerNameLbl" alignment="CENTER" prefHeight="17.0" prefWidth="293.0" text="Computer" textAlignment="CENTER" textFill="#00b8d0" GridPane.columnIndex="2">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                              </Label>
-                              <Label fx:id="firstPlayerCharLbl" alignment="CENTER" prefHeight="17.0" prefWidth="293.0" text="X" textAlignment="CENTER" textFill="#00b8d0" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                                 <font>
-                                    <Font name="Cooper Black" size="20.0" />
-                                 </font>
-                              </Label>
-                              <Label fx:id="secondPlayerCharLbl" alignment="CENTER" prefHeight="17.0" prefWidth="293.0" text="O" textAlignment="CENTER" textFill="#00b8d0" GridPane.columnIndex="2" GridPane.rowIndex="1">
-                                 <font>
-                                    <Font name="Cooper Black" size="20.0" />
-                                 </font>
-                              </Label>
-                              <Label fx:id="scoreLbl" alignment="CENTER" prefHeight="17.0" prefWidth="293.0" text="Score" textAlignment="CENTER" textFill="#00b8d0" GridPane.rowIndex="2">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                              </Label>
-                              <Label fx:id="firstPlayerScoreLbl" alignment="CENTER" prefHeight="17.0" prefWidth="293.0" text="0" textAlignment="CENTER" textFill="#00b8d0" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                                 <font>
-                                    <Font name="Cooper Black" size="20.0" />
-                                 </font>
-                              </Label>
-                              <Label fx:id="secondPlayerScoreLbl" alignment="CENTER" prefHeight="17.0" prefWidth="293.0" text="0" textAlignment="CENTER" textFill="#00b8d0" GridPane.columnIndex="2" GridPane.rowIndex="2">
-                                 <font>
-                                    <Font name="Cooper Black" size="20.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                           <padding>
-                              <Insets top="50.0" />
-                           </padding>
-                        </GridPane>
-                     </center>
-                     <left>
-                        <AnchorPane prefHeight="224.0" prefWidth="6.0" BorderPane.alignment="CENTER" />
-                     </left>
-                     <right>
-                        <AnchorPane prefHeight="224.0" prefWidth="7.0" BorderPane.alignment="CENTER" />
-                     </right>
-                     <bottom>
-                        <AnchorPane prefHeight="148.0" prefWidth="280.0" BorderPane.alignment="CENTER" />
-                     </bottom>
-                  </BorderPane>
-               </children>
-            </StackPane>
-            <VBox alignment="CENTER_RIGHT" prefHeight="400.0" prefWidth="470.0" spacing="10.0">
-               <children>
-                  <BorderPane prefHeight="399.0" prefWidth="280.0">
-                     <top>
-                        <Label fx:id="playerTurnLbl" alignment="CENTER" prefHeight="50.0" prefWidth="280.0" text="Your Turn" textAlignment="CENTER" textFill="#00b8d0" BorderPane.alignment="CENTER">
-                           <font>
-                              <Font name="Cooper Black" size="30.0" />
-                           </font>
-                        </Label>
-                     </top>
-                     <center>
-                        <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                           </top>
+                           <StackPane.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </StackPane.margin>
                            <center>
-                              <GridPane fx:id="gameBoardGP" alignment="CENTER" hgap="10.0" prefHeight="200.0" prefWidth="200.0" vgap="10.0" BorderPane.alignment="CENTER">
+                              <GridPane prefHeight="170.0" prefWidth="267.0" BorderPane.alignment="CENTER">
                                 <columnConstraints>
-                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="75.0" minWidth="10.0" prefWidth="75.0" />
+                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="80.0" minWidth="10.0" prefWidth="69.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="86.0" minWidth="10.0" prefWidth="76.0" />
                                 </columnConstraints>
                                 <rowConstraints>
                                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -132,108 +61,184 @@
                                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                 </rowConstraints>
                                  <children>
-                                    <Button fx:id="boardBtn00" mnemonicParsing="false" prefHeight="25.0" prefWidth="303.0" style="-fx-background-color: #00B8D0;" textFill="WHITE">
+                                    <Label fx:id="playersLbl" alignment="CENTER" prefHeight="17.0" prefWidth="293.0" text="Players" textAlignment="CENTER" textFill="#00b8d0" GridPane.rowIndex="1">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="firstPlayerNameLbl" alignment="CENTER" prefHeight="17.0" prefWidth="293.0" text="You" textAlignment="CENTER" textFill="#00b8d0" GridPane.columnIndex="1">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="secondPlayerNameLbl" alignment="CENTER" prefHeight="17.0" prefWidth="293.0" text="Computer" textAlignment="CENTER" textFill="#00b8d0" GridPane.columnIndex="2">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="firstPlayerCharLbl" alignment="CENTER" prefHeight="17.0" prefWidth="293.0" text="X" textAlignment="CENTER" textFill="#00b8d0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                        <font>
                                           <Font name="Cooper Black" size="20.0" />
                                        </font>
-                                    </Button>
-                                    <Button fx:id="boardBtn01" mnemonicParsing="false" prefHeight="25.0" prefWidth="303.0" style="-fx-background-color: #00B8D0;" textFill="WHITE" GridPane.columnIndex="1">
+                                    </Label>
+                                    <Label fx:id="secondPlayerCharLbl" alignment="CENTER" prefHeight="17.0" prefWidth="293.0" text="O" textAlignment="CENTER" textFill="#00b8d0" GridPane.columnIndex="2" GridPane.rowIndex="1">
                                        <font>
                                           <Font name="Cooper Black" size="20.0" />
                                        </font>
-                                    </Button>
-                                    <Button fx:id="boardBtn02" mnemonicParsing="false" prefHeight="25.0" prefWidth="303.0" style="-fx-background-color: #00B8D0;" textFill="WHITE" GridPane.columnIndex="2">
+                                    </Label>
+                                    <Label fx:id="scoreLbl" alignment="CENTER" prefHeight="17.0" prefWidth="293.0" text="Score" textAlignment="CENTER" textFill="#00b8d0" GridPane.rowIndex="2">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="firstPlayerScoreLbl" alignment="CENTER" prefHeight="17.0" prefWidth="293.0" text="0" textAlignment="CENTER" textFill="#00b8d0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                                        <font>
                                           <Font name="Cooper Black" size="20.0" />
                                        </font>
-                                    </Button>
-                                    <Button fx:id="boardBtn10" mnemonicParsing="false" prefHeight="25.0" prefWidth="303.0" style="-fx-background-color: #00B8D0;" textFill="WHITE" GridPane.rowIndex="1">
+                                    </Label>
+                                    <Label fx:id="secondPlayerScoreLbl" alignment="CENTER" prefHeight="17.0" prefWidth="293.0" text="0" textAlignment="CENTER" textFill="#00b8d0" GridPane.columnIndex="2" GridPane.rowIndex="2">
                                        <font>
                                           <Font name="Cooper Black" size="20.0" />
                                        </font>
-                                    </Button>
-                                    <Button fx:id="boardBtn11" mnemonicParsing="false" prefHeight="25.0" prefWidth="303.0" style="-fx-background-color: #00B8D0;" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                                       <font>
-                                          <Font name="Cooper Black" size="20.0" />
-                                       </font>
-                                    </Button>
-                                    <Button fx:id="boardBtn12" mnemonicParsing="false" prefHeight="25.0" prefWidth="303.0" style="-fx-background-color: #00B8D0;" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="1">
-                                       <font>
-                                          <Font name="Cooper Black" size="20.0" />
-                                       </font>
-                                    </Button>
-                                    <Button fx:id="board20Btn" mnemonicParsing="false" prefHeight="25.0" prefWidth="303.0" style="-fx-background-color: #00B8D0;" textFill="WHITE" GridPane.rowIndex="2">
-                                       <font>
-                                          <Font name="Cooper Black" size="20.0" />
-                                       </font>
-                                    </Button>
-                                    <Button fx:id="boardBtn21" mnemonicParsing="false" prefHeight="25.0" prefWidth="303.0" style="-fx-background-color: #00B8D0;" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                                       <font>
-                                          <Font name="Cooper Black" size="20.0" />
-                                       </font>
-                                    </Button>
-                                    <Button fx:id="boardBtn22" mnemonicParsing="false" prefHeight="25.0" prefWidth="303.0" style="-fx-background-color: #00B8D0;" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="2">
-                                       <font>
-                                          <Font name="Cooper Black" size="20.0" />
-                                       </font>
-                                    </Button>
+                                    </Label>
                                  </children>
+                                 <padding>
+                                    <Insets top="50.0" />
+                                 </padding>
                               </GridPane>
                            </center>
-                           <top>
-                              <AnchorPane prefHeight="45.0" prefWidth="280.0" BorderPane.alignment="CENTER" />
-                           </top>
                            <left>
-                              <AnchorPane prefHeight="150.0" prefWidth="50.0" BorderPane.alignment="CENTER" />
+                              <AnchorPane prefHeight="224.0" prefWidth="6.0" BorderPane.alignment="CENTER" />
                            </left>
                            <right>
-                              <AnchorPane prefHeight="150.0" prefWidth="50.0" BorderPane.alignment="CENTER" />
+                              <AnchorPane prefHeight="224.0" prefWidth="7.0" BorderPane.alignment="CENTER" />
                            </right>
                            <bottom>
-                              <AnchorPane prefHeight="45.0" prefWidth="280.0" BorderPane.alignment="CENTER" />
+                              <AnchorPane prefHeight="148.0" prefWidth="280.0" BorderPane.alignment="CENTER" />
                            </bottom>
                         </BorderPane>
-                     </center>
-                     <right>
-                        <AnchorPane prefHeight="303.0" prefWidth="0.0" BorderPane.alignment="CENTER" />
-                     </right>
-                     <bottom>
-                        <Button fx:id="playAgainBtn" mnemonicParsing="false" prefHeight="40.0" prefWidth="347.0" style="-fx-background-color: #00B8D0;" text="Play Again" textFill="WHITE" BorderPane.alignment="CENTER">
+                     </children>
+                  </StackPane>
+                  <VBox alignment="CENTER_RIGHT" prefHeight="400.0" prefWidth="470.0" spacing="10.0">
+                     <children>
+                        <BorderPane prefHeight="399.0" prefWidth="280.0">
+                           <top>
+                              <Label fx:id="playerTurnLbl" alignment="CENTER" prefHeight="50.0" prefWidth="280.0" text="Your Turn" textAlignment="CENTER" textFill="#00b8d0" BorderPane.alignment="CENTER">
+                                 <font>
+                                    <Font name="Cooper Black" size="30.0" />
+                                 </font>
+                              </Label>
+                           </top>
+                           <center>
+                              <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                                 <center>
+                                    <GridPane fx:id="gameBoardGP" alignment="CENTER" hgap="10.0" prefHeight="200.0" prefWidth="200.0" vgap="10.0" BorderPane.alignment="CENTER">
+                                      <columnConstraints>
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                      </columnConstraints>
+                                      <rowConstraints>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                      </rowConstraints>
+                                       <children>
+                                          <Button fx:id="boardBtn00" mnemonicParsing="false" prefHeight="25.0" prefWidth="303.0" style="-fx-background-color: #00B8D0;" textFill="WHITE">
+                                             <font>
+                                                <Font name="Cooper Black" size="20.0" />
+                                             </font>
+                                          </Button>
+                                          <Button fx:id="boardBtn01" mnemonicParsing="false" prefHeight="25.0" prefWidth="303.0" style="-fx-background-color: #00B8D0;" textFill="WHITE" GridPane.columnIndex="1">
+                                             <font>
+                                                <Font name="Cooper Black" size="20.0" />
+                                             </font>
+                                          </Button>
+                                          <Button fx:id="boardBtn02" mnemonicParsing="false" prefHeight="25.0" prefWidth="303.0" style="-fx-background-color: #00B8D0;" textFill="WHITE" GridPane.columnIndex="2">
+                                             <font>
+                                                <Font name="Cooper Black" size="20.0" />
+                                             </font>
+                                          </Button>
+                                          <Button fx:id="boardBtn10" mnemonicParsing="false" prefHeight="25.0" prefWidth="303.0" style="-fx-background-color: #00B8D0;" textFill="WHITE" GridPane.rowIndex="1">
+                                             <font>
+                                                <Font name="Cooper Black" size="20.0" />
+                                             </font>
+                                          </Button>
+                                          <Button fx:id="boardBtn11" mnemonicParsing="false" prefHeight="25.0" prefWidth="303.0" style="-fx-background-color: #00B8D0;" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                             <font>
+                                                <Font name="Cooper Black" size="20.0" />
+                                             </font>
+                                          </Button>
+                                          <Button fx:id="boardBtn12" mnemonicParsing="false" prefHeight="25.0" prefWidth="303.0" style="-fx-background-color: #00B8D0;" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                             <font>
+                                                <Font name="Cooper Black" size="20.0" />
+                                             </font>
+                                          </Button>
+                                          <Button fx:id="board20Btn" mnemonicParsing="false" prefHeight="25.0" prefWidth="303.0" style="-fx-background-color: #00B8D0;" textFill="WHITE" GridPane.rowIndex="2">
+                                             <font>
+                                                <Font name="Cooper Black" size="20.0" />
+                                             </font>
+                                          </Button>
+                                          <Button fx:id="boardBtn21" mnemonicParsing="false" prefHeight="25.0" prefWidth="303.0" style="-fx-background-color: #00B8D0;" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                             <font>
+                                                <Font name="Cooper Black" size="20.0" />
+                                             </font>
+                                          </Button>
+                                          <Button fx:id="boardBtn22" mnemonicParsing="false" prefHeight="25.0" prefWidth="303.0" style="-fx-background-color: #00B8D0;" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                                             <font>
+                                                <Font name="Cooper Black" size="20.0" />
+                                             </font>
+                                          </Button>
+                                       </children>
+                                    </GridPane>
+                                 </center>
+                                 <top>
+                                    <AnchorPane prefHeight="45.0" prefWidth="280.0" BorderPane.alignment="CENTER" />
+                                 </top>
+                                 <left>
+                                    <AnchorPane prefHeight="150.0" prefWidth="50.0" BorderPane.alignment="CENTER" />
+                                 </left>
+                                 <right>
+                                    <AnchorPane prefHeight="150.0" prefWidth="50.0" BorderPane.alignment="CENTER" />
+                                 </right>
+                                 <bottom>
+                                    <AnchorPane prefHeight="45.0" prefWidth="280.0" BorderPane.alignment="CENTER" />
+                                 </bottom>
+                              </BorderPane>
+                           </center>
+                           <right>
+                              <AnchorPane prefHeight="303.0" prefWidth="0.0" BorderPane.alignment="CENTER" />
+                           </right>
+                           <bottom>
+                              <Button fx:id="playAgainBtn" mnemonicParsing="false" prefHeight="40.0" prefWidth="347.0" style="-fx-background-color: #00B8D0;" text="Play Again" textFill="WHITE" BorderPane.alignment="CENTER">
+                                 <font>
+                                    <Font name="Cooper Black" size="20.0" />
+                                 </font>
+                              </Button>
+                           </bottom>
+                           <left>
+                              <AnchorPane prefHeight="240.0" prefWidth="1.0" BorderPane.alignment="CENTER" />
+                           </left>
+                        </BorderPane>
+                        <Button fx:id="backBtn" mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" style="-fx-background-color: white;" text="back&gt;" textAlignment="RIGHT" textFill="#00b8d0">
                            <font>
                               <Font name="Cooper Black" size="20.0" />
                            </font>
+                           <VBox.margin>
+                              <Insets right="-10.0" />
+                           </VBox.margin>
                         </Button>
-                     </bottom>
-                     <left>
-                        <AnchorPane prefHeight="240.0" prefWidth="1.0" BorderPane.alignment="CENTER" />
-                     </left>
-                  </BorderPane>
-                  <Button fx:id="backBtn" mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" style="-fx-background-color: white;" text="back&gt;" textAlignment="RIGHT" textFill="#00b8d0">
-                     <font>
-                        <Font name="Cooper Black" size="20.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets right="-10.0" />
-                     </VBox.margin>
-                  </Button>
+                     </children>
+                     <padding>
+                        <Insets left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                  </VBox>
                </children>
-               <padding>
-                  <Insets left="10.0" right="10.0" top="10.0" />
-               </padding>
-            </VBox>
+            </HBox>
          </children>
-      </HBox>
+      </StackPane>
    </center>
-   <top>
-      <AnchorPane prefHeight="0.0" prefWidth="567.0" BorderPane.alignment="CENTER" />
-   </top>
    <left>
       <AnchorPane prefHeight="400.0" prefWidth="0.0" BorderPane.alignment="CENTER" />
    </left>
-   <right>
-      <AnchorPane prefHeight="400.0" prefWidth="0.0" BorderPane.alignment="CENTER" />
-   </right>
-   <bottom>
-      <AnchorPane prefHeight="0.0" prefWidth="767.0" BorderPane.alignment="CENTER" />
-   </bottom>
 </BorderPane>

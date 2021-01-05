@@ -13,16 +13,18 @@ import tictactoe.model.User;
  *
  * @author A.Elfarsisy
  */
-public class GameModel implements Serializable{
-   private User player1 ; 
-   private User player2 ;
-   private Move move;
+public class GameModel implements Serializable {
+
+    private User player1;
+    private User player2;
+    private Move move;
 
     public GameModel(User player1, User player2, Move move) {
         this.player1 = player1;
         this.player2 = player2;
         this.move = move;
     }
+
     public User getPlayer1() {
         return player1;
     }
@@ -46,6 +48,9 @@ public class GameModel implements Serializable{
     public void setMove(Move move) {
         this.move = move;
     }
-   
-    
+
+    public boolean isPlayer(User user) {
+        return user.equals(player1) || user.equals(player2);
+    }
+
 }

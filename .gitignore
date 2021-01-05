@@ -15,5 +15,6 @@ nb-configuration.xml
 *.war
 *.ear
 *.DS_Store
+*.txt
 
 

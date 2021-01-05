@@ -129,7 +129,7 @@ public class GameController extends BaseController implements Initializable {
         return btn.getId().charAt(index) - '0';
     }
     
-    private void checkGameEnd(){
+    protected void checkGameEnd(){
         if(isGameEnded()){
             if(game.getMode() != PlayMode.MULTIONLINE)
                 view.playAgainBtn.setVisible(true);
@@ -144,9 +144,10 @@ public class GameController extends BaseController implements Initializable {
         }
     }
     
-    private Boolean isGameEnded(){
+    protected Boolean isGameEnded(){
         Boolean isGameEnded = true;
         if(game.checkWinner() == 0){ //First player wins
+            
            showWinner(0);
         }else if(game.checkWinner() == 1){ //Second player wins
            showWinner(1);
@@ -158,7 +159,7 @@ public class GameController extends BaseController implements Initializable {
         return isGameEnded;
     }
     
-    private void showWinner(int index){ 
+    protected void showWinner(int index){ 
         if(index == -1){
             view.playerTurnLbl.setText("You Draw");
         }else{
@@ -197,7 +198,7 @@ public class GameController extends BaseController implements Initializable {
         clearBoard();
     }
     
-    private void setBoardDisable(Boolean isDisable){
+    protected void setBoardDisable(Boolean isDisable){
         view.gameBoardGP.getChildren().forEach((ch) -> {
                 ((Button) ch).setDisable(isDisable);
         });
@@ -210,7 +211,7 @@ public class GameController extends BaseController implements Initializable {
     }
     
     
-    private void togglePlayer(){
+    protected void togglePlayer(){
         currentPlayer = currentPlayer == 0 ? 1 : 0;
         view.playerTurnLbl.setText(game.getPlayerName(currentPlayer) + " Turn");
         checkIfComputerTurn();  

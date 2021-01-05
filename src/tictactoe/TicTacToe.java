@@ -6,17 +6,19 @@
 package tictactoe;
 
 import javafx.application.Application;
+import javafx.application.Platform;
 
 import javafx.concurrent.Task;
 import javafx.concurrent.WorkerStateEvent;
+import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import tictactoe.helper.BaseController;
 import tictactoe.helper.Constants;
-import tictactoe.helper.MusicPlayer;
+import tictactoe.network.NetworkSession;
 import tictactoe.presenter.home.HomeController;
 import tictactoe.presenter.spalsh.SplashController;
-import tictactoe.repository.defaults.DefaultKey;
 import tictactoe.repository.defaults.UserDefaults;
 
 /**
@@ -33,7 +35,12 @@ public class TicTacToe extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-
+       
+        stage.setOnCloseRequest((WindowEvent e) -> {
+            NetworkSession.getInstance().closeConnection();
+            Platform.exit();
+            System.exit(0);
+        });
         this.stage = stage;
         stage.setResizable(false);
 //        MusicPlayer.getInstance().play();
@@ -45,7 +52,7 @@ public class TicTacToe extends Application {
         goToHome();
 
     }
-
+    
     /**
      * @param args the command line arguments
      */
@@ -76,4 +83,5 @@ public class TicTacToe extends Application {
         });
         new Thread(sleeper).start();
     }
+
 }

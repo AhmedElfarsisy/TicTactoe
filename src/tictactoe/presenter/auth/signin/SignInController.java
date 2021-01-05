@@ -23,6 +23,7 @@ import tictactoe.network.NetworkSession;
 import tictactoe.network.model.NWResponse;
 import tictactoe.network.model.Request;
 import tictactoe.network.model.RequestType;
+import tictactoe.helper.VideoPlayer;
 
 
 /**
@@ -55,7 +56,7 @@ public class SignInController extends BaseController implements Initializable, N
                     userErr.show();
                 } else {
                     Request<User> request = new Request<>(RequestType.LOGIN, new User(userName, pass));
-                    NetworkSession.getInstance().notifyServer(request);
+                    NetworkSession.getInstance().sendRequest(request);
 
                 }
 
