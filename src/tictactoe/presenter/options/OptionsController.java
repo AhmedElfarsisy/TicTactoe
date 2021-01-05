@@ -30,6 +30,9 @@ public class OptionsController extends BaseController implements Initializable{
             MusicPlayer.getInstance().setVolume(newValue.doubleValue());
         });   
         view.slider.adjustValue(MusicPlayer.getInstance().getVolume());
+        
+        view.themesBtn.setVisible(false);
+        view.levelsBtn.setVisible(false);
     }
      
     @Override

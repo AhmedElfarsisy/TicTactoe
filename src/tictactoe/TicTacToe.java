@@ -16,6 +16,7 @@ import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import tictactoe.helper.BaseController;
 import tictactoe.helper.Constants;
+import tictactoe.helper.MusicPlayer;
 import tictactoe.network.NetworkSession;
 import tictactoe.presenter.home.HomeController;
 import tictactoe.presenter.spalsh.SplashController;
@@ -43,7 +44,7 @@ public class TicTacToe extends Application {
         });
         this.stage = stage;
         stage.setResizable(false);
-//        MusicPlayer.getInstance().play();
+        MusicPlayer.getInstance().play();
         Scene scene = new Scene(SplashController.buildVC().getView());
         scene.getStylesheets().add(getClass().getResource(Constants.STYLE).toString());
         stage.setScene(scene);

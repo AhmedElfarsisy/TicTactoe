@@ -12,6 +12,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import tictactoe.helper.Constants;
 import tictactoe.model.Player;
+import tictactoe.model.User;
 
 public  class OnlinePlayersViewBase extends Pane {
 
@@ -19,8 +20,8 @@ public  class OnlinePlayersViewBase extends Pane {
     protected final VBox vBox;
     protected final Label label;
     protected final TableView onlinePlayersTV;
-    protected final TableColumn<Player,String> playerTC;
-    protected final TableColumn<Player,String> scoreTC;
+    protected final TableColumn<User,String> playerTC;
+    protected final TableColumn<User,String> scoreTC;
     protected final Button refreshPlayerListBtn;
     protected final Label label0;
     protected final Label label1;

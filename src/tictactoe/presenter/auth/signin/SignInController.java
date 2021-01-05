@@ -6,6 +6,7 @@
 package tictactoe.presenter.auth.signin;
 
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.regex.PatternSyntaxException;
 import javafx.scene.layout.Pane;
@@ -13,18 +14,19 @@ import tictactoe.helper.BaseController;
 import tictactoe.helper.Navigator;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextInputDialog;
+import javafx.scene.layout.TilePane;
 import tictactoe.helper.Constants;
 import tictactoe.helper.UIHelper;
 import tictactoe.model.Move;
 import tictactoe.model.User;
-import tictactoe.network.ClientSession;
 import tictactoe.network.NWDelegate;
 import tictactoe.network.NetworkSession;
 import tictactoe.network.model.NWResponse;
 import tictactoe.network.model.Request;
 import tictactoe.network.model.RequestType;
 import tictactoe.helper.VideoPlayer;
-
 
 /**
  * FXML Controller class
@@ -38,9 +40,7 @@ public class SignInController extends BaseController implements Initializable, N
 
     //SignIn Controller Constarctor 
     public SignInController() {
-
         NetworkSession.getInstance().setDelegate(this);
-        //create SignIn view
         view = new SignInViewBase();
 
         view.loginBtn.setOnAction((event) -> {
@@ -93,7 +93,8 @@ public class SignInController extends BaseController implements Initializable, N
     //MARK: - Implement NWDelegate Method
     @Override
     public void handleResponse(Object data) {
-         Constants.currentUser = (User) data;
-         Navigator.goToAvailablePlayer();
+        Constants.currentUser = (User) data;
+        Navigator.goToAvailablePlayer();
     }
+
 }

@@ -45,7 +45,6 @@ public class NetworkSession extends Thread {
 
         if (isConnectionAvailable()) {
             start();
-
         }
 
     }

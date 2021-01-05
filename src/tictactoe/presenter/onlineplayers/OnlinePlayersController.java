@@ -25,7 +25,6 @@ import tictactoe.helper.Navigator;
 import tictactoe.helper.Toast;
 import tictactoe.helper.UIHelper;
 import tictactoe.model.*;
-import tictactoe.network.ClientSession;
 import tictactoe.network.NWDelegate;
 import tictactoe.network.NetworkSession;
 import tictactoe.network.model.NWResponse;
@@ -63,18 +62,20 @@ public class OnlinePlayersController extends BaseController implements Initializ
         selectedCells.addListener(new ListChangeListener() {
             @Override
             public void onChanged(ListChangeListener.Change c) {
-                TablePosition tablePosition = (TablePosition) selectedCells.get(0);
-                int row = tablePosition.getRow();
-                //Send request to player
-                System.out.println(playersList.get(row).getUserName());
+                if (!selectedCells.isEmpty()) {
+                    TablePosition tablePosition = (TablePosition) selectedCells.get(0);
+                    int row = tablePosition.getRow();
+                    //Send request to player
+                    System.out.println(playersList.get(row).getUserName());
 
-                Request request = new Request(RequestType.REQUESTGAME, playersList.get(row));
-                NetworkSession.getInstance().sendRequest(request);
+                    Request request = new Request(RequestType.REQUESTGAME, playersList.get(row));
+                    NetworkSession.getInstance().sendRequest(request);
+                }
 
             }
         });
         loadData();
-        
+
         view.label2.setText(Constants.currentUser.getUserName());
 
     }

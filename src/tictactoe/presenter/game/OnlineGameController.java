@@ -78,9 +78,6 @@ public class OnlineGameController extends GameController implements NWDelegate {
                 GameDao.getInstance().addGame(game);
             }
 
-            request = new Request<>(RequestType.ENDGAME, (Integer) game.checkWinner());
-            NetworkSession.getInstance().sendRequest(request);
-
         } else {
             togglePlayer();
         }
@@ -98,18 +95,25 @@ public class OnlineGameController extends GameController implements NWDelegate {
             showVideo(1);
         } else if (game.isBoardFull()) {
             showWinner(-1);
+            sendGameEnd(-1);
         } else {
             isGameEnded = false;
         }
         return isGameEnded;
     }
 
-    public void  showVideo(int winner) {
+    public void showVideo(int winner) {
         if (Constants.currentUser.getUserName().equals(game.getPlayerName(winner))) {
+           sendGameEnd(winner);
             VideoPlayer.getInstance("winner").play(view.videoStackPane);
         } else {
             VideoPlayer.getInstance("looser").play(view.videoStackPane);
         }
+    }
+    
+    public void sendGameEnd(int state){
+         request = new Request<>(RequestType.ENDGAME, state);
+         NetworkSession.getInstance().sendRequest(request);
     }
 
     @Override

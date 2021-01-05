@@ -17,7 +17,6 @@ import tictactoe.helper.Navigator;
 import tictactoe.helper.UIHelper;
 import tictactoe.model.PlayMode;
 import tictactoe.model.User;
-import tictactoe.network.ClientSession;
 import tictactoe.network.NWDelegate;
 import tictactoe.network.NetworkSession;
 import tictactoe.network.model.NWResponse;

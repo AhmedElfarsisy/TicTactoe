@@ -10,6 +10,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
+import javafx.util.Duration;
 import tictactoe.repository.defaults.DefaultKey;
 import tictactoe.repository.defaults.UserDefaults;
 
@@ -36,9 +37,7 @@ public class VideoPlayer {
 
     //decide upon player status
     private VideoPlayer(String userState) {
-        //thread = new Thread(new Runnable() {
-        //@Override
-        //public void run() {
+
         String fileDirectroy = System.getProperty("user.dir");
         String winnerVideoFile = fileDirectroy + "/src/tictactoe/resource/videos/vid0.mp4";
         String loserVideoFile = fileDirectroy + "/src/tictactoe/resource/videos/vid2.mp4";
@@ -53,30 +52,16 @@ public class VideoPlayer {
         }
     }
 
-    public void setVolume(Double volume) {
-//        if(volume == 0){
-//            stop();
-//        }
-        mediaPlayer.setVolume(volume);
-        UserDefaults.getInstance().set(DefaultKey.MUSICVOLUME, volume);
-    }
-
-    public Double getVolume() {
-        Double volume = (Double) UserDefaults.getInstance().get(DefaultKey.MUSICVOLUME);
-        if (volume == null) {
-            setVolume(0.5);
-        }
-        return volume;
-    }
-
     public void play(StackPane pane) {
-        mediaPlayer.play();
+        mediaPlayer.setVolume((double) UserDefaults.getInstance().get(DefaultKey.MUSICVOLUME));
         mediaView = new MediaView(mediaPlayer);
         mediaView.setFitWidth(600);
         mediaView.setFitHeight(400);
         pane.getChildren().add(mediaView);
         mediaPlayer.play();
         mediaPlayer.setOnEndOfMedia(() -> {
+            mediaPlayer.stop();
+            mediaPlayer.seek(Duration.ZERO);
             pane.getChildren().remove(mediaView);
         });
     }
