@@ -5,6 +5,7 @@
  */
 package tictactoe.network;
 
+import java.util.ArrayList;
 import tictactoe.model.Move;
 import tictactoe.model.User;
 
@@ -23,5 +24,6 @@ public interface NWDelegate {
     default public void acceptGame(User user){}
     
     default public void rejectGame(User user){}
+    default public void updateOnlinePlayers(ArrayList<User> players){}
     
 }

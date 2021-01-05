@@ -8,9 +8,9 @@ package tictactoe.presenter.game;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import tictactoe.helper.Constants;
+import tictactoe.helper.VideoPlayer;
 import tictactoe.model.Game;
 import tictactoe.model.Move;
-import tictactoe.model.PlayMode;
 import tictactoe.network.NetworkSession;
 import tictactoe.network.model.GameModel;
 import tictactoe.network.model.Request;
@@ -87,11 +87,37 @@ public class OnlineGameController extends GameController implements NWDelegate {
     }
 
     @Override
+    protected Boolean isGameEnded() {
+        Boolean isGameEnded = true;
+        if (game.checkWinner() == 0) { //First player wins 
+            showWinner(0);
+
+            showVideo(0);
+        } else if (game.checkWinner() == 1) { //Second player wins
+            showWinner(1);
+            showVideo(1);
+        } else if (game.isBoardFull()) {
+            showWinner(-1);
+        } else {
+            isGameEnded = false;
+        }
+        return isGameEnded;
+    }
+
+    public void  showVideo(int winner) {
+        if (Constants.currentUser.getUserName().equals(game.getPlayerName(winner))) {
+            VideoPlayer.getInstance("winner").play(view.videoStackPane);
+        } else {
+            VideoPlayer.getInstance("looser").play(view.videoStackPane);
+        }
+    }
+
+    @Override
     protected void performMove(Button btn) {
         btn.setDisable(true);
         btn.setText(game.getPlayerSymbol(currentPlayer));
         game.setMove(btn.getText(), getInt(btn, 0), getInt(btn, 1));
-        }
+    }
 
     @Override
     protected void setBoardDisable(Boolean isDisable) {

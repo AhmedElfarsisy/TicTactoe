@@ -23,4 +23,5 @@ public enum RequestType implements Serializable {
     LOGOUT,
     GETONLINEPLAYERS,
     ENDGAME,
+    UPDATEONLINEPLAYERS
 }

@@ -11,6 +11,7 @@ import java.io.ObjectOutputStream;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.net.SocketException;
+import java.util.ArrayList;
 
 import javafx.application.Platform;
 import tictactoe.helper.Toast;
@@ -114,6 +115,7 @@ public class NetworkSession extends Thread {
     private void handleRequest(Request request) {
         Platform.runLater(
                 () -> {
+                    if(delegate!=null)
                     switch (request.getType()) {
                         case PLAYGAME:
                             GameModel data = (GameModel) request.getData();
@@ -128,6 +130,10 @@ public class NetworkSession extends Thread {
                         case REJECTGAME:
                             delegate.rejectGame((User) request.getData());
                             break;
+                        case UPDATEONLINEPLAYERS:
+                            delegate.updateOnlinePlayers((ArrayList<User>) request.getData());
+                            break;
+                            
 
                     }
                 });

@@ -49,6 +49,7 @@ public class OnlinePlayersController extends BaseController implements Initializ
 
         //create new view
         view = new OnlinePlayersViewBase();
+        view.refreshPlayerListBtn.setVisible(false);
         playersList = new ArrayList<>();
         view.onlinePlayersTV.setEditable(false);
         view.backBtn.setOnAction((event) -> {
@@ -73,6 +74,8 @@ public class OnlinePlayersController extends BaseController implements Initializ
             }
         });
         loadData();
+        
+        view.label2.setText(Constants.currentUser.getUserName());
 
     }
 
@@ -101,12 +104,13 @@ public class OnlinePlayersController extends BaseController implements Initializ
     //MARK: - Implement NWDelegate Method
 
     @Override
-    public void handleResponse(Object data) {
-        playersList = (ArrayList<User>) data;
+    public void updateOnlinePlayers(ArrayList<User> players) {
+        playersList = players;
         showPlayersOnTable();
 
     }
 
+    @Override
     public void requestGame(User user) {
         //accept - reject
         Request request;
@@ -118,12 +122,13 @@ public class OnlinePlayersController extends BaseController implements Initializ
             Player[] players = {player1, player2};
             game = new Game(players, PlayMode.MULTIONLINE);
             Navigator.goToOnlineGame(game);
-        }else{
+        } else {
             request = new Request(RequestType.REJECTGAME, user);
         }
         NetworkSession.getInstance().sendRequest(request);
     }
 
+    @Override
     public void acceptGame(User user) {
         Game game;
         Player player1 = new Player(Constants.currentUser, Symbol.X);

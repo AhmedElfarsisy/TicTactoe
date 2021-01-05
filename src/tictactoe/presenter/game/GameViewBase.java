@@ -16,8 +16,12 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import tictactoe.helper.Constants;
 
-public class GameViewBase extends BorderPane {
+public  class GameViewBase extends BorderPane {
 
+    protected final AnchorPane anchorPane;
+    protected final AnchorPane anchorPane0;
+    protected final AnchorPane anchorPane1;
+    protected final StackPane videoStackPane;
     protected final HBox hBox;
     protected final StackPane stackPane;
     protected final ImageView backgroundIV;
@@ -38,9 +42,9 @@ public class GameViewBase extends BorderPane {
     protected final Label scoreLbl;
     protected final Label firstPlayerScoreLbl;
     protected final Label secondPlayerScoreLbl;
-    protected final AnchorPane anchorPane;
-    protected final AnchorPane anchorPane0;
-    protected final AnchorPane anchorPane1;
+    protected final AnchorPane anchorPane2;
+    protected final AnchorPane anchorPane3;
+    protected final AnchorPane anchorPane4;
     protected final VBox vBox;
     protected final BorderPane borderPane0;
     protected final Label playerTurnLbl;
@@ -58,24 +62,25 @@ public class GameViewBase extends BorderPane {
     protected final Button boardBtn10;
     protected final Button boardBtn11;
     protected final Button boardBtn12;
-    protected final Button boardBtn20;
+    protected final Button board20Btn;
     protected final Button boardBtn21;
     protected final Button boardBtn22;
-    protected final AnchorPane anchorPane2;
-    protected final AnchorPane anchorPane3;
-    protected final AnchorPane anchorPane4;
     protected final AnchorPane anchorPane5;
     protected final AnchorPane anchorPane6;
-    protected final Button playAgainBtn;
     protected final AnchorPane anchorPane7;
-    protected final Button backBtn;
     protected final AnchorPane anchorPane8;
     protected final AnchorPane anchorPane9;
+    protected final Button playAgainBtn;
     protected final AnchorPane anchorPane10;
+    protected final Button backBtn;
     protected final AnchorPane anchorPane11;
 
     public GameViewBase() {
 
+        anchorPane = new AnchorPane();
+        anchorPane0 = new AnchorPane();
+        anchorPane1 = new AnchorPane();
+        videoStackPane = new StackPane();
         hBox = new HBox();
         stackPane = new StackPane();
         backgroundIV = new ImageView();
@@ -96,9 +101,9 @@ public class GameViewBase extends BorderPane {
         scoreLbl = new Label();
         firstPlayerScoreLbl = new Label();
         secondPlayerScoreLbl = new Label();
-        anchorPane = new AnchorPane();
-        anchorPane0 = new AnchorPane();
-        anchorPane1 = new AnchorPane();
+        anchorPane2 = new AnchorPane();
+        anchorPane3 = new AnchorPane();
+        anchorPane4 = new AnchorPane();
         vBox = new VBox();
         borderPane0 = new BorderPane();
         playerTurnLbl = new Label();
@@ -116,27 +121,42 @@ public class GameViewBase extends BorderPane {
         boardBtn10 = new Button();
         boardBtn11 = new Button();
         boardBtn12 = new Button();
-        boardBtn20 = new Button();
+        board20Btn = new Button();
         boardBtn21 = new Button();
         boardBtn22 = new Button();
-        anchorPane2 = new AnchorPane();
-        anchorPane3 = new AnchorPane();
-        anchorPane4 = new AnchorPane();
         anchorPane5 = new AnchorPane();
         anchorPane6 = new AnchorPane();
-        playAgainBtn = new Button();
         anchorPane7 = new AnchorPane();
-        backBtn = new Button();
         anchorPane8 = new AnchorPane();
         anchorPane9 = new AnchorPane();
+        playAgainBtn = new Button();
         anchorPane10 = new AnchorPane();
+        backBtn = new Button();
         anchorPane11 = new AnchorPane();
 
         setPrefHeight(400.0);
         setPrefWidth(600.0);
         setStyle("-fx-background-color: white;");
 
-        BorderPane.setAlignment(hBox, javafx.geometry.Pos.CENTER);
+        BorderPane.setAlignment(anchorPane, javafx.geometry.Pos.CENTER);
+        anchorPane.setPrefHeight(0.0);
+        anchorPane.setPrefWidth(567.0);
+        setTop(anchorPane);
+
+        BorderPane.setAlignment(anchorPane0, javafx.geometry.Pos.CENTER);
+        anchorPane0.setPrefHeight(400.0);
+        anchorPane0.setPrefWidth(0.0);
+        setRight(anchorPane0);
+
+        BorderPane.setAlignment(anchorPane1, javafx.geometry.Pos.CENTER);
+        anchorPane1.setPrefHeight(0.0);
+        anchorPane1.setPrefWidth(767.0);
+        setBottom(anchorPane1);
+
+        BorderPane.setAlignment(videoStackPane, javafx.geometry.Pos.CENTER);
+        videoStackPane.setPrefHeight(150.0);
+        videoStackPane.setPrefWidth(200.0);
+
         hBox.setPrefHeight(400.0);
         hBox.setPrefWidth(669.0);
 
@@ -147,7 +167,6 @@ public class GameViewBase extends BorderPane {
         backgroundIV.setFitWidth(300.0);
         backgroundIV.setPickOnBounds(true);
         backgroundIV.setImage(new Image(getClass().getResource(Constants.BACKGROUND).toExternalForm()));
-
         borderPane.setPrefHeight(200.0);
         borderPane.setPrefWidth(200.0);
 
@@ -200,7 +219,7 @@ public class GameViewBase extends BorderPane {
         playersLbl.setText("Players");
         playersLbl.setTextAlignment(javafx.scene.text.TextAlignment.CENTER);
         playersLbl.setTextFill(javafx.scene.paint.Color.valueOf("#00b8d0"));
-        playersLbl.setFont(new Font("Cooper Black", 14.0));
+        playersLbl.setFont(new Font(18.0));
 
         GridPane.setColumnIndex(firstPlayerNameLbl, 1);
         firstPlayerNameLbl.setAlignment(javafx.geometry.Pos.CENTER);
@@ -209,7 +228,7 @@ public class GameViewBase extends BorderPane {
         firstPlayerNameLbl.setText("You");
         firstPlayerNameLbl.setTextAlignment(javafx.scene.text.TextAlignment.CENTER);
         firstPlayerNameLbl.setTextFill(javafx.scene.paint.Color.valueOf("#00b8d0"));
-        firstPlayerNameLbl.setFont(new Font("Cooper Black", 14.0));
+        firstPlayerNameLbl.setFont(new Font(18.0));
 
         GridPane.setColumnIndex(secondPlayerNameLbl, 2);
         secondPlayerNameLbl.setAlignment(javafx.geometry.Pos.CENTER);
@@ -218,7 +237,7 @@ public class GameViewBase extends BorderPane {
         secondPlayerNameLbl.setText("Computer");
         secondPlayerNameLbl.setTextAlignment(javafx.scene.text.TextAlignment.CENTER);
         secondPlayerNameLbl.setTextFill(javafx.scene.paint.Color.valueOf("#00b8d0"));
-        secondPlayerNameLbl.setFont(new Font("Cooper Black", 14.0));
+        secondPlayerNameLbl.setFont(new Font(18.0));
 
         GridPane.setColumnIndex(firstPlayerCharLbl, 1);
         GridPane.setRowIndex(firstPlayerCharLbl, 1);
@@ -247,7 +266,7 @@ public class GameViewBase extends BorderPane {
         scoreLbl.setText("Score");
         scoreLbl.setTextAlignment(javafx.scene.text.TextAlignment.CENTER);
         scoreLbl.setTextFill(javafx.scene.paint.Color.valueOf("#00b8d0"));
-        scoreLbl.setFont(new Font("Cooper Black", 14.0));
+        scoreLbl.setFont(new Font(18.0));
 
         GridPane.setColumnIndex(firstPlayerScoreLbl, 1);
         GridPane.setRowIndex(firstPlayerScoreLbl, 2);
@@ -271,20 +290,20 @@ public class GameViewBase extends BorderPane {
         gridPane.setPadding(new Insets(50.0, 0.0, 0.0, 0.0));
         borderPane.setCenter(gridPane);
 
-        BorderPane.setAlignment(anchorPane, javafx.geometry.Pos.CENTER);
-        anchorPane.setPrefHeight(224.0);
-        anchorPane.setPrefWidth(6.0);
-        borderPane.setLeft(anchorPane);
+        BorderPane.setAlignment(anchorPane2, javafx.geometry.Pos.CENTER);
+        anchorPane2.setPrefHeight(224.0);
+        anchorPane2.setPrefWidth(6.0);
+        borderPane.setLeft(anchorPane2);
 
-        BorderPane.setAlignment(anchorPane0, javafx.geometry.Pos.CENTER);
-        anchorPane0.setPrefHeight(224.0);
-        anchorPane0.setPrefWidth(7.0);
-        borderPane.setRight(anchorPane0);
+        BorderPane.setAlignment(anchorPane3, javafx.geometry.Pos.CENTER);
+        anchorPane3.setPrefHeight(224.0);
+        anchorPane3.setPrefWidth(7.0);
+        borderPane.setRight(anchorPane3);
 
-        BorderPane.setAlignment(anchorPane1, javafx.geometry.Pos.CENTER);
-        anchorPane1.setPrefHeight(148.0);
-        anchorPane1.setPrefWidth(280.0);
-        borderPane.setBottom(anchorPane1);
+        BorderPane.setAlignment(anchorPane4, javafx.geometry.Pos.CENTER);
+        anchorPane4.setPrefHeight(148.0);
+        anchorPane4.setPrefWidth(280.0);
+        borderPane.setBottom(anchorPane4);
 
         vBox.setAlignment(javafx.geometry.Pos.CENTER_RIGHT);
         vBox.setPrefHeight(400.0);
@@ -388,13 +407,13 @@ public class GameViewBase extends BorderPane {
         boardBtn12.setTextFill(javafx.scene.paint.Color.WHITE);
         boardBtn12.setFont(new Font("Cooper Black", 20.0));
 
-        GridPane.setRowIndex(boardBtn20, 2);
-        boardBtn20.setMnemonicParsing(false);
-        boardBtn20.setPrefHeight(25.0);
-        boardBtn20.setPrefWidth(303.0);
-        boardBtn20.setStyle("-fx-background-color: #00B8D0;");
-        boardBtn20.setTextFill(javafx.scene.paint.Color.WHITE);
-        boardBtn20.setFont(new Font("Cooper Black", 20.0));
+        GridPane.setRowIndex(board20Btn, 2);
+        board20Btn.setMnemonicParsing(false);
+        board20Btn.setPrefHeight(25.0);
+        board20Btn.setPrefWidth(303.0);
+        board20Btn.setStyle("-fx-background-color: #00B8D0;");
+        board20Btn.setTextFill(javafx.scene.paint.Color.WHITE);
+        board20Btn.setFont(new Font("Cooper Black", 20.0));
 
         GridPane.setColumnIndex(boardBtn21, 1);
         GridPane.setRowIndex(boardBtn21, 2);
@@ -415,31 +434,31 @@ public class GameViewBase extends BorderPane {
         boardBtn22.setFont(new Font("Cooper Black", 20.0));
         borderPane1.setCenter(gameBoardGP);
 
-        BorderPane.setAlignment(anchorPane2, javafx.geometry.Pos.CENTER);
-        anchorPane2.setPrefHeight(45.0);
-        anchorPane2.setPrefWidth(280.0);
-        borderPane1.setTop(anchorPane2);
-
-        BorderPane.setAlignment(anchorPane3, javafx.geometry.Pos.CENTER);
-        anchorPane3.setPrefHeight(150.0);
-        anchorPane3.setPrefWidth(50.0);
-        borderPane1.setLeft(anchorPane3);
-
-        BorderPane.setAlignment(anchorPane4, javafx.geometry.Pos.CENTER);
-        anchorPane4.setPrefHeight(150.0);
-        anchorPane4.setPrefWidth(50.0);
-        borderPane1.setRight(anchorPane4);
-
         BorderPane.setAlignment(anchorPane5, javafx.geometry.Pos.CENTER);
         anchorPane5.setPrefHeight(45.0);
         anchorPane5.setPrefWidth(280.0);
-        borderPane1.setBottom(anchorPane5);
-        borderPane0.setCenter(borderPane1);
+        borderPane1.setTop(anchorPane5);
 
         BorderPane.setAlignment(anchorPane6, javafx.geometry.Pos.CENTER);
-        anchorPane6.setPrefHeight(303.0);
-        anchorPane6.setPrefWidth(0.0);
-        borderPane0.setRight(anchorPane6);
+        anchorPane6.setPrefHeight(150.0);
+        anchorPane6.setPrefWidth(50.0);
+        borderPane1.setLeft(anchorPane6);
+
+        BorderPane.setAlignment(anchorPane7, javafx.geometry.Pos.CENTER);
+        anchorPane7.setPrefHeight(150.0);
+        anchorPane7.setPrefWidth(50.0);
+        borderPane1.setRight(anchorPane7);
+
+        BorderPane.setAlignment(anchorPane8, javafx.geometry.Pos.CENTER);
+        anchorPane8.setPrefHeight(45.0);
+        anchorPane8.setPrefWidth(280.0);
+        borderPane1.setBottom(anchorPane8);
+        borderPane0.setCenter(borderPane1);
+
+        BorderPane.setAlignment(anchorPane9, javafx.geometry.Pos.CENTER);
+        anchorPane9.setPrefHeight(303.0);
+        anchorPane9.setPrefWidth(0.0);
+        borderPane0.setRight(anchorPane9);
 
         BorderPane.setAlignment(playAgainBtn, javafx.geometry.Pos.CENTER);
         playAgainBtn.setMnemonicParsing(false);
@@ -449,13 +468,12 @@ public class GameViewBase extends BorderPane {
         playAgainBtn.setText("Play Again");
         playAgainBtn.setTextFill(javafx.scene.paint.Color.WHITE);
         playAgainBtn.setFont(new Font("Cooper Black", 20.0));
-        
         borderPane0.setBottom(playAgainBtn);
 
-        BorderPane.setAlignment(anchorPane7, javafx.geometry.Pos.CENTER);
-        anchorPane7.setPrefHeight(240.0);
-        anchorPane7.setPrefWidth(1.0);
-        borderPane0.setLeft(anchorPane7);
+        BorderPane.setAlignment(anchorPane10, javafx.geometry.Pos.CENTER);
+        anchorPane10.setPrefHeight(240.0);
+        anchorPane10.setPrefWidth(1.0);
+        borderPane0.setLeft(anchorPane10);
 
         backBtn.setMnemonicParsing(false);
         backBtn.setPrefHeight(50.0);
@@ -467,27 +485,12 @@ public class GameViewBase extends BorderPane {
         backBtn.setFont(new Font("Cooper Black", 20.0));
         VBox.setMargin(backBtn, new Insets(0.0, -10.0, 0.0, 0.0));
         vBox.setPadding(new Insets(10.0, 10.0, 0.0, 10.0));
-        setCenter(hBox);
-
-        BorderPane.setAlignment(anchorPane8, javafx.geometry.Pos.CENTER);
-        anchorPane8.setPrefHeight(0.0);
-        anchorPane8.setPrefWidth(567.0);
-        setTop(anchorPane8);
-
-        BorderPane.setAlignment(anchorPane9, javafx.geometry.Pos.CENTER);
-        anchorPane9.setPrefHeight(400.0);
-        anchorPane9.setPrefWidth(0.0);
-        setLeft(anchorPane9);
-
-        BorderPane.setAlignment(anchorPane10, javafx.geometry.Pos.CENTER);
-        anchorPane10.setPrefHeight(400.0);
-        anchorPane10.setPrefWidth(0.0);
-        setRight(anchorPane10);
+        setCenter(videoStackPane);
 
         BorderPane.setAlignment(anchorPane11, javafx.geometry.Pos.CENTER);
-        anchorPane11.setPrefHeight(0.0);
-        anchorPane11.setPrefWidth(767.0);
-        setBottom(anchorPane11);
+        anchorPane11.setPrefHeight(400.0);
+        anchorPane11.setPrefWidth(0.0);
+        setLeft(anchorPane11);
 
         stackPane.getChildren().add(backgroundIV);
         gridPane.getColumnConstraints().add(columnConstraints);
@@ -518,12 +521,13 @@ public class GameViewBase extends BorderPane {
         gameBoardGP.getChildren().add(boardBtn10);
         gameBoardGP.getChildren().add(boardBtn11);
         gameBoardGP.getChildren().add(boardBtn12);
-        gameBoardGP.getChildren().add(boardBtn20);
+        gameBoardGP.getChildren().add(board20Btn);
         gameBoardGP.getChildren().add(boardBtn21);
         gameBoardGP.getChildren().add(boardBtn22);
         vBox.getChildren().add(borderPane0);
         vBox.getChildren().add(backBtn);
         hBox.getChildren().add(vBox);
+        videoStackPane.getChildren().add(hBox);
 
     }
 }

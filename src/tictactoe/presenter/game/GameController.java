@@ -147,6 +147,7 @@ public class GameController extends BaseController implements Initializable {
     protected Boolean isGameEnded(){
         Boolean isGameEnded = true;
         if(game.checkWinner() == 0){ //First player wins
+            
            showWinner(0);
         }else if(game.checkWinner() == 1){ //Second player wins
            showWinner(1);
@@ -158,7 +159,7 @@ public class GameController extends BaseController implements Initializable {
         return isGameEnded;
     }
     
-    private void showWinner(int index){ 
+    protected void showWinner(int index){ 
         if(index == -1){
             view.playerTurnLbl.setText("You Draw");
         }else{

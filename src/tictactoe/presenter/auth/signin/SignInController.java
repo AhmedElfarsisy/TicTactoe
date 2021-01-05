@@ -68,7 +68,6 @@ public class SignInController extends BaseController implements Initializable, N
 
         //Go to register  screen
         view.signUpHP.setOnAction((event) -> {
-            //VideoPlayer.getInstance("winner").play();
             Navigator.goToRegister();
         });
         //Go back to home 
