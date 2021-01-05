@@ -11,14 +11,13 @@ import java.io.ObjectOutputStream;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.net.SocketException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 import javafx.application.Platform;
 import tictactoe.helper.Toast;
+import tictactoe.model.User;
 import tictactoe.network.model.GameModel;
 import tictactoe.network.model.NWResponse;
 import tictactoe.network.model.Request;
-import tictactoe.network.model.ResponseStatus;
 
 /**
  *
@@ -42,13 +41,32 @@ public class NetworkSession extends Thread {
     }
 
     private NetworkSession() {
+
+        if (isConnectionAvailable()) {
+            start();
+
+        }
+
+    }
+
+    private Boolean isConnectionAvailable() {
+
+        if (oos == null || serverSocket.isClosed()) {
+            startConnection();
+        }
+        return oos != null && !serverSocket.isClosed();
+
+    }
+
+    private void startConnection() {
+
         try {
             serverSocket = new Socket(InetAddress.getLocalHost(), 5006);
             oos = new ObjectOutputStream(serverSocket.getOutputStream());
             ois = new ObjectInputStream(serverSocket.getInputStream());
-            start();
+
         } catch (IOException ex) {
-            Logger.getLogger(NetworkSession.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("ex 1" + ex.getMessage());
         }
     }
 
@@ -62,18 +80,12 @@ public class NetworkSession extends Thread {
                 } else {
                     handleResponse((NWResponse) readObject);
                 }
-            } catch (IOException ex) {
-                try {
-                    stop();
-                    ois.close();
-                    oos.close();
-                    serverSocket.close();
-                    Logger.getLogger(NetworkSession.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (IOException ex1) {
-                    Logger.getLogger(NetworkSession.class.getName()).log(Level.SEVERE, null, ex1);
-                }
+            } catch (SocketException se) {
+                System.out.println(se.getMessage());
             } catch (ClassNotFoundException ex) {
-                Logger.getLogger(NetworkSession.class.getName()).log(Level.SEVERE, null, ex);
+                System.out.println("ex 2 " + ex.getMessage());
+            } catch (IOException ex) {
+                System.out.println("ex 3 " + ex.getMessage());
             }
         }
     }
@@ -107,103 +119,52 @@ public class NetworkSession extends Thread {
                             GameModel data = (GameModel) request.getData();
                             delegate.updateMove(data.getMove());
                             break;
+                        case REQUESTGAME:
+                            delegate.requestGame((User) request.getData());
+                            break;
+                        case ACCEPTGAME:
+                            delegate.acceptGame((User) request.getData());
+                            break;
+                        case REJECTGAME:
+                            delegate.rejectGame((User) request.getData());
+                            break;
+
                     }
                 });
     }
 
-    public void notifyServer(Request request) {
-        sendRequest(request, false);
-    }
+    public void sendRequest(Request request) {
+        if (isConnectionAvailable()) {
 
-    public NWResponse sendRequest(Request request) {
-        return sendRequest(request, true);
-    }
-
-    public NWResponse sendRequest(Request request, Boolean hasResponse) {
-        NWResponse response = null;
-        try {
-            oos.writeObject(request);
-            oos.flush();
-            if (hasResponse) {
-                response = (NWResponse) ois.readObject();
-
+            try {
                 System.out.println("\n\n\n================================\n"
-                        + "SERVER : response sent : "
-                        + response.getStatus() + ""
-                        + response.getData().toString() + ""
-                        + response.getMessage() + ""
+                        + "Client : request sent: "
+                        + request.getType() + ""
+                        + ""
                         + "\n==============================\n");
-            }
-
-        } catch (SocketException se) {
-            try {
-                oos.close();
-                ois.close();
-                serverSocket.close();
-                response = new NWResponse(null, ResponseStatus.FAILURE, se.getMessage());
-                se.printStackTrace();
+                oos.writeObject(request);
+                oos.flush();
+            } catch (SocketException se) {
+                System.out.println(se.getMessage());
             } catch (IOException ex) {
-                response = new NWResponse(null, ResponseStatus.FAILURE, ex.getMessage());
-                Logger.getLogger(NetworkSession.class.getName()).log(Level.SEVERE, null, ex);
+                System.out.println(ex.getMessage());
             }
-        } catch (IOException ex) {
-            response = new NWResponse(null, ResponseStatus.FAILURE, ex.getMessage());
-            try {
-                oos.close();
-                ois.close();
-                serverSocket.close();
-                Logger.getLogger(NetworkSession.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (IOException ex1) {
-                response = new NWResponse(null, ResponseStatus.FAILURE, ex.getMessage());
-                Logger.getLogger(NetworkSession.class.getName()).log(Level.SEVERE, null, ex1);
-            }
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(NetworkSession.class.getName()).log(Level.SEVERE, null, ex);
+        } else {
+            Toast.showError("Sorry, No Connection");
         }
-
-        return response;
     }
 
-//    public void sendRequest(Request request, Boolean hasResponse) {
-//        NWResponse response = null;
-//        try {
-//            oos.writeObject(request);
-//            oos.flush();
-//            if (hasResponse) {
-//               // response = (NWResponse) ois.readObject();
-//               response = (NWResponse) readObject;
-//            }
-//
-//            System.out.println("\n\n\n================================\n"
-//                    + "SERVER : response sent : "
-//                    + response.getStatus() + ""
-//                    + response.getData().toString() + ""
-//                    + response.getMessage() + ""
-//                    + "\n==============================\n");
-//
-//        } catch (SocketException se) {
-//            try {
-//                oos.close();
-//                ois.close();
-//                serverSocket.close();
-//                response = new NWResponse(null, ResponseStatus.FAILURE, se.getMessage());
-//                se.printStackTrace();
-//            } catch (IOException ex) {
-//                response = new NWResponse(null, ResponseStatus.FAILURE, ex.getMessage());
-//                Logger.getLogger(NetworkSession.class.getName()).log(Level.SEVERE, null, ex);
-//            }
-//        } catch (IOException ex) {
-//            response = new NWResponse(null, ResponseStatus.FAILURE, ex.getMessage());
-//            try {
-//                oos.close();
-//                ois.close();
-//                serverSocket.close();
-//                Logger.getLogger(NetworkSession.class.getName()).log(Level.SEVERE, null, ex);
-//            } catch (IOException ex1) {
-//                response = new NWResponse(null, ResponseStatus.FAILURE, ex.getMessage());
-//                Logger.getLogger(NetworkSession.class.getName()).log(Level.SEVERE, null, ex1);
-//            }
-//        }
-//        return response;
-//    }
+   public  void closeConnection() {
+        try {
+            System.out.println("Client:Connction closed ");
+            oos.close();
+            ois.close();
+            serverSocket.close();
+            stop();
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+
+        }
+    }
+
 }

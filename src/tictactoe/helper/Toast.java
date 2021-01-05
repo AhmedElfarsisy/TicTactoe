@@ -5,6 +5,7 @@
  */
 package tictactoe.helper;
 
+import javafx.application.Platform;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 
@@ -13,17 +14,21 @@ import javafx.scene.control.Alert.AlertType;
  * @author A.Elfarsisy
  */
 public class Toast {
-   
 
     public static void showError(String message) {
-        Alert a = new Alert(AlertType.ERROR, message);
-        a.show();
+        Platform.runLater(
+                () -> {
+                    Alert a = new Alert(AlertType.ERROR, message);
+                    a.show();
+                });
     }
 
     public static void showSuccess(String message) {
-        Alert a = new Alert(AlertType.INFORMATION, message);
-        a.show();
+        Platform.runLater(
+                () -> {
+                    Alert a = new Alert(AlertType.INFORMATION, message);
+                    a.show();
+                });
     }
 
-    
 }

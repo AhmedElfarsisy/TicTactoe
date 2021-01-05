@@ -54,14 +54,7 @@ public class Navigator {
         TicTacToe.changeScene(controller);
     }
     
-    public static void goToOnlineGame(User user){
-        Game game;
-//        User currentUser = (User)UserDefaults.getInstance().get(DefaultKey.USER);
-        
-        Player player1 = new Player(Constants.currentUser, Symbol.X);
-        Player player2 = new Player(user, Symbol.O); 
-        Player [] players = {player1, player2};
-        game = new Game(players, PlayMode.MULTIONLINE);
+    public static void goToOnlineGame(Game game){
         OnlineGameController controller = new OnlineGameController(game);
         TicTacToe.changeScene(controller);
     }

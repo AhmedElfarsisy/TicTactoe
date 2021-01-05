@@ -63,7 +63,7 @@ public class RegisterController extends BaseController implements Initializable,
                     userErr.show();
                 } else {
                     Request<User> request = new Request<>(RequestType.SIGNUP, new User(userName, pass));
-                    NetworkSession.getInstance().notifyServer(request);
+                    NetworkSession.getInstance().sendRequest(request);
 
                 }
 

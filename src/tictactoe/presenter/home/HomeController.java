@@ -64,15 +64,9 @@ public class HomeController extends BaseController implements Initializable {
         view.logoutBtn.setVisible(Constants.currentUser != null);
         view.logoutBtn.setOnAction((event) -> {
             Request<User> request = new Request<>(RequestType.LOGOUT, null);
-            NWResponse response = NetworkSession.getInstance().sendRequest(request);
-            switch (response.getStatus()) {
-                case SUCCESS:
-                    view.logoutBtn.setVisible(false);
-                    break;
-                case FAILURE:
-                    UIHelper.showDialog(response.getMessage());
-                    break;
-            }
+            NetworkSession.getInstance().sendRequest(request);
+            view.logoutBtn.setVisible(false);
+            Constants.currentUser=null; 
         });
 
     }

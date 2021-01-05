@@ -6,6 +6,7 @@
 package tictactoe.network;
 
 import tictactoe.model.Move;
+import tictactoe.model.User;
 
 /**
  *
@@ -13,11 +14,14 @@ import tictactoe.model.Move;
  */
 public interface NWDelegate {
 
-    default public void updateMove(Move move) {
+    default public void updateMove(Move move) {}
 
-    }
-
-    default public void handleResponse(Object data) {
-    }
-
+    default public void handleResponse(Object data) {}
+    
+    default public void requestGame(User user){}
+    
+    default public void acceptGame(User user){}
+    
+    default public void rejectGame(User user){}
+    
 }

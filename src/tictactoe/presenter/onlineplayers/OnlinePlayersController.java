@@ -7,16 +7,22 @@ package tictactoe.presenter.onlineplayers;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonBar.ButtonData;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TablePosition;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
 import tictactoe.helper.BaseController;
 import tictactoe.helper.Constants;
 import tictactoe.helper.Navigator;
+import tictactoe.helper.Toast;
 import tictactoe.helper.UIHelper;
 import tictactoe.model.*;
 import tictactoe.network.ClientSession;
@@ -33,7 +39,7 @@ import tictactoe.repository.defaults.UserDefaults;
  *
  * @author Mostafa Abdalla
  */
-public class OnlinePlayersController extends BaseController implements Initializable,NWDelegate {
+public class OnlinePlayersController extends BaseController implements Initializable, NWDelegate {
 
     private OnlinePlayersViewBase view;
     ArrayList<User> playersList;
@@ -60,7 +66,10 @@ public class OnlinePlayersController extends BaseController implements Initializ
                 int row = tablePosition.getRow();
                 //Send request to player
                 System.out.println(playersList.get(row).getUserName());
-                Navigator.goToOnlineGame(playersList.get(row));
+
+                Request request = new Request(RequestType.REQUESTGAME, playersList.get(row));
+                NetworkSession.getInstance().sendRequest(request);
+
             }
         });
         loadData();
@@ -74,7 +83,7 @@ public class OnlinePlayersController extends BaseController implements Initializ
 
     private void loadData() {
         Request<User> request = new Request<>(RequestType.GETONLINEPLAYERS, Constants.currentUser);
-        NetworkSession.getInstance().notifyServer(request);
+        NetworkSession.getInstance().sendRequest(request);
     }
 
     private void showPlayersOnTable() {
@@ -89,10 +98,59 @@ public class OnlinePlayersController extends BaseController implements Initializ
     public Pane getView() {
         return view;
     }
-     //MARK: - Implement NWDelegate Method
+    //MARK: - Implement NWDelegate Method
+
     @Override
     public void handleResponse(Object data) {
-         playersList = (ArrayList<User>) data;
-                showPlayersOnTable();
+        playersList = (ArrayList<User>) data;
+        showPlayersOnTable();
+
+    }
+
+    public void requestGame(User user) {
+        //accept - reject
+        Request request;
+        if (showDialogRequest(user.getUserName())) {
+            request = new Request(RequestType.ACCEPTGAME, user);
+            Game game;
+            Player player1 = new Player(user, Symbol.X);
+            Player player2 = new Player(Constants.currentUser, Symbol.O);
+            Player[] players = {player1, player2};
+            game = new Game(players, PlayMode.MULTIONLINE);
+            Navigator.goToOnlineGame(game);
+        }else{
+            request = new Request(RequestType.REJECTGAME, user);
+        }
+        NetworkSession.getInstance().sendRequest(request);
+    }
+
+    public void acceptGame(User user) {
+        Game game;
+        Player player1 = new Player(Constants.currentUser, Symbol.X);
+        Player player2 = new Player(user, Symbol.O);
+        Player[] players = {player1, player2};
+        game = new Game(players, PlayMode.MULTIONLINE);
+        Navigator.goToOnlineGame(game);
+    }
+
+    public void rejectGame(User user) {
+        Toast.showError(user.getUserName() + "  reject the game request");
+    }
+
+    public static boolean showDialogRequest(String user) {
+
+        Alert alert = new Alert(AlertType.CONFIRMATION);
+        alert.setTitle("Request Game");
+        alert.setHeaderText("This player want to play with you");
+        alert.setContentText(user);
+        ButtonType buttonTypeOne = new ButtonType("Yes");
+        ButtonType buttonTypeCancel = new ButtonType("Cancel", ButtonData.CANCEL_CLOSE);
+        alert.getButtonTypes().setAll(buttonTypeOne, buttonTypeCancel);
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == buttonTypeOne) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

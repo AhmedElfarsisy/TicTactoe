@@ -55,7 +55,7 @@ public class SignInController extends BaseController implements Initializable, N
                     userErr.show();
                 } else {
                     Request<User> request = new Request<>(RequestType.LOGIN, new User(userName, pass));
-                    NetworkSession.getInstance().notifyServer(request);
+                    NetworkSession.getInstance().sendRequest(request);
 
                 }
 
